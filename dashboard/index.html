@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard | Threat Intel</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Matrix Rain Canvas -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- CRT overlay effect -->
+  <div class="crt-overlay"></div>
+
+  <div class="container">
+    <header class="header">
+      <div class="logo-glitch" data-text="PHISHGUARD">PHISHGUARD</div>
+      <p class="subtitle">Fake Login Page Threat Detection Engine</p>
+    </header>
+
+    <main class="dashboard-grid">
+      
+      <!-- Input Section -->
+      <section class="panel input-section">
+        <h2>Initiate URL Scan</h2>
+        <div class="input-group">
+          <input type="text" id="url-input" placeholder="Enter target URL (e.g., faceboook.com)..." autocomplete="off" />
+          <button id="scan-btn">ANALYZE</button>
+        </div>
+        <div id="status-text" class="status-hidden">Decoding target vectors...</div>
+      </section>
+
+      <!-- Gauge / Results Section -->
+      <section class="panel gauge-section">
+        <h2>Threat Assessment</h2>
+        <div class="chart-container">
+           <canvas id="threat-gauge"></canvas>
+        </div>
+        <div id="threat-percentage">--%</div>
+      </section>
+
+      <!-- Diagnostics / Red Flags Terminal -->
+      <section class="panel terminal-section">
+        <h2>Diagnostics Monitor</h2>
+        <div id="terminal-output" class="terminal-window">
+          <p class="sys-msg">> System initialized ready for scanning...</p>
+        </div>
+      </section>
+      
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
