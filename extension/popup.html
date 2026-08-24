@@ -168,6 +168,13 @@
             line-height: 1.8;
         }
 
+        .scan-error {
+            color: #ff6b80;
+            font-size: 0.65rem;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+
         /* ML info */
         .ml-row {
             display: flex; justify-content: space-between; align-items: center;
@@ -218,7 +225,7 @@
         <div class="logo-icon">🛡</div>
         <div class="logo-text">
             <h1>PhishGuard</h1>
-            <div class="version">v3.0 · THREAT INTEL ENGINE</div>
+            <div class="version">v4.0 · PHISHOUT ENGINE</div>
         </div>
         <div class="status-pill checking" id="status-pill">
             <div class="dot"></div>
@@ -227,11 +234,18 @@
     </div>
 
     <div class="section">
+        <div class="section-label">Current Page</div>
+        <div id="current-page" class="scan-url">Detecting active tab...</div>
+        <button id="scan-current" class="open-dash-btn" style="width:100%;padding:9px;margin-top:8px;">Scan Current Page</button>
+        <div id="scan-error" class="scan-error" hidden></div>
+    </div>
+
+    <div class="section">
         <div class="section-label">Last Scan Result</div>
         <div id="scan-display">
             <div class="no-scan">
                 No scan yet.<br>
-                Visit a page with a login form<br>to activate threat detection.
+                Scan the current HTTP or HTTPS page to begin.
             </div>
         </div>
     </div>
@@ -248,11 +262,11 @@
         </div>
         <div class="ml-row">
             <span class="ml-key">Engine</span>
-            <span class="ml-val good">GradientBoost + RF</span>
+            <span class="ml-val good">PhishOut Learned Fusion</span>
         </div>
         <div class="ml-row">
             <span class="ml-key">Features</span>
-            <span class="ml-val good">32 Engineered</span>
+            <span class="ml-val good">32 + 12 Features</span>
         </div>
     </div>
 

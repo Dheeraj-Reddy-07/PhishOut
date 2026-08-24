@@ -1,0 +1,95 @@
+{
+  "evaluation_type": "E1_E2_final_test",
+  "test_set_size": 1533,
+  "test_legitimate": 921,
+  "test_phishing": 612,
+  "test_set_usage": "NOT used for training or calibration - final evaluation only",
+  "all_models": [
+    {
+      "model": "Structural-Only",
+      "features": "32 features",
+      "accuracy": 0.8937,
+      "precision": 0.8773,
+      "recall": 0.8529,
+      "f1": 0.865,
+      "roc_auc": 0.958,
+      "pr_auc": 0.9371,
+      "fpr": 0.0793,
+      "confusion_matrix": {
+        "tn": 848,
+        "fp": 73,
+        "fn": 90,
+        "tp": 522
+      }
+    },
+    {
+      "model": "Semantic-Only",
+      "features": "12 features",
+      "accuracy": 0.9289,
+      "precision": 0.9199,
+      "recall": 0.9003,
+      "f1": 0.91,
+      "roc_auc": 0.9791,
+      "pr_auc": 0.9712,
+      "fpr": 0.0521,
+      "confusion_matrix": {
+        "tn": 873,
+        "fp": 48,
+        "fn": 61,
+        "tp": 551
+      }
+    },
+    {
+      "model": "Hybrid (44 features)",
+      "features": "44 features",
+      "accuracy": 0.9543,
+      "precision": 0.9487,
+      "recall": 0.9363,
+      "f1": 0.9424,
+      "roc_auc": 0.9908,
+      "pr_auc": 0.986,
+      "fpr": 0.0337,
+      "confusion_matrix": {
+        "tn": 890,
+        "fp": 31,
+        "fn": 39,
+        "tp": 573
+      }
+    },
+    {
+      "model": "Learned-Fusion PhishOut",
+      "features": "score-level fusion",
+      "accuracy": 0.9543,
+      "precision": 0.9457,
+      "recall": 0.9395,
+      "f1": 0.9426,
+      "roc_auc": 0.9884,
+      "pr_auc": 0.9806,
+      "fpr": 0.0358,
+      "confusion_matrix": {
+        "tn": 888,
+        "fp": 33,
+        "fn": 37,
+        "tp": 575
+      }
+    }
+  ],
+  "best_model_by_f1": "Learned-Fusion PhishOut",
+  "threshold_config": {
+    "safe_max_probability": 0.15,
+    "phishing_min_probability": 0.5700000000000001,
+    "safe_max_risk_score": 15,
+    "phishing_min_risk_score": 57,
+    "validation_f1": 0.9408396946564885,
+    "validation_precision": 0.9535783365570599,
+    "validation_recall": 0.928436911487759,
+    "calibration_set_size": 1369,
+    "calibration_method": "grid_search_maximize_f1"
+  },
+  "fusion_config": {
+    "coef_structural": 4.308351508721833,
+    "coef_semantic": 5.094005598183561,
+    "intercept": -4.5671394781456005,
+    "formula": "P(phish) = sigmoid(4.3084\u00d7p_struct + 5.0940\u00d7p_sem + -4.5671)"
+  }
+}

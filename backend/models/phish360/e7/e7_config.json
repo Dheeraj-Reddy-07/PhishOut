@@ -1,0 +1,21 @@
+{
+  "transformation": "url_percent_encode_character",
+  "reason_unseen": "not present in the four E6 training transformations",
+  "e6_training_transformations": [
+    "benign_content_padding",
+    "visible_text_obfuscation",
+    "cosmetic_dom_addition",
+    "url_lexical_query_addition"
+  ],
+  "training_used": false,
+  "validation_used": false,
+  "raw_source": "D:\\Downloads\\phish360_parquet",
+  "pairing": {
+    "sample_count": 612,
+    "same_sample_ids": true,
+    "duplicate_clean_ids": 0,
+    "duplicate_perturbed_ids": 0,
+    "labels_preserved": true,
+    "clean_test_training_overlap": 0
+  }
+}

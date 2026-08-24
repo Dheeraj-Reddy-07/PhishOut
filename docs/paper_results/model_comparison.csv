@@ -1,0 +1,5 @@
+model,features,accuracy,precision,recall,f1,roc_auc,pr_auc,fpr
+Structural-Only,32 features,0.8937,0.8773,0.8529,0.865,0.958,0.9371,0.0793
+Semantic-Only,12 features,0.9289,0.9199,0.9003,0.91,0.9791,0.9712,0.0521
+Hybrid (44 features),44 features,0.9543,0.9487,0.9363,0.9424,0.9908,0.986,0.0337
+Learned-Fusion PhishOut,score-level fusion,0.9543,0.9457,0.9395,0.9426,0.9884,0.9806,0.0358

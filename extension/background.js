@@ -1,5 +1,5 @@
 /**
- * PhishGuard Background Service Worker — v3.0
+ * PhishGuard Background Service Worker — v4.0
  *
  * Why this exists:
  * Content scripts run in the page's security context. When a page is HTTPS,
@@ -27,16 +27,47 @@ async function checkBackendHealth() {
             chrome.storage.local.set({
                 backendStatus: "online",
                 mlLoaded: data.ml_model_loaded,
+                phishoutReady: data.phishout_ready,
+                phishoutModel: data.phishout_model,
                 lastHealthCheck: Date.now(),
             });
         } else {
             backendOnline = false;
-            chrome.storage.local.set({ backendStatus: "offline" });
+            chrome.storage.local.set({ backendStatus: "offline", phishoutReady: false });
         }
     } catch {
         backendOnline = false;
-        chrome.storage.local.set({ backendStatus: "offline" });
+        chrome.storage.local.set({ backendStatus: "offline", phishoutReady: false });
     }
+}
+
+function mapScanResult(result, url) {
+    return {
+        ...result,
+        url,
+        threat_level_pct: result.risk_score,
+        is_dangerous: result.verdict === "PHISHING",
+        red_flags: result.reasons || [],
+    };
+}
+
+function persistLastScan(result, url) {
+    chrome.storage.local.set({
+        lastScan: {
+            url,
+            verdict: result.verdict,
+            threat: result.risk_score,
+            mlConfidence: result.phishing_probability,
+            redFlags: result.reasons || [],
+            structuralScore: result.structural_score,
+            semanticScore: result.semantic_score,
+            semanticRuleScore: result.semantic_rule_score,
+            webpageAvailable: result.webpage_analysis_available,
+            fusionMode: result.fusion_mode,
+            modelType: result.model_type,
+            time: Date.now(),
+        },
+    });
 }
 
 // Check health on startup and every 30 seconds
@@ -45,15 +76,19 @@ setInterval(checkBackendHealth, 30_000);
 
 // ── Main scan function ────────────────────────────────────────────────────
 async function scanUrl(url) {
+    if (!/^https?:\/\//i.test(url)) {
+        return { error: "This page cannot be scanned. Only HTTP and HTTPS pages are supported.", is_dangerous: false };
+    }
+
     // Check cache first
     const cached = scanCache.get(url);
     if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
         console.log(`[PhishGuard BG] Cache hit for: ${url}`);
+        persistLastScan(cached.result, url);
         return { ...cached.result, fromCache: true };
     }
 
     if (!backendOnline) {
-        // Try one more health check before giving up
         await checkBackendHealth();
         if (!backendOnline) {
             return { error: "Backend offline", is_dangerous: false };
@@ -61,44 +96,41 @@ async function scanUrl(url) {
     }
 
     try {
-        const res = await fetch(`${API_BASE}/scan`, {
-            method: "POST",
+        // Use the full PhishOut pipeline endpoint
+        const res = await fetch(`${API_BASE}/phishout/scan`, {
+            method:  "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ url }),
-            signal: AbortSignal.timeout(10_000),
+            body:    JSON.stringify({ url }),
+            signal:  AbortSignal.timeout(30_000), // longer timeout — page fetch included
         });
 
         if (!res.ok) {
-            console.error(`[PhishGuard BG] API error: ${res.status}`);
-            return { error: `API error ${res.status}`, is_dangerous: false };
+            console.error(`[PhishGuard BG] PhishOut API error: ${res.status}`);
+            backendOnline = false;
+            chrome.storage.local.set({ backendStatus: "offline", phishoutReady: false });
+            return { error: `PhishOut backend returned an error (${res.status}).`, is_dangerous: false };
         }
 
-        const result = await res.json();
+        const result = mapScanResult(await res.json(), url);
 
         // Cache the result
         scanCache.set(url, { result, timestamp: Date.now() });
+        persistLastScan(result, url);
 
-        // Store last scan in storage for popup
-        chrome.storage.local.set({
-            lastScan: {
-                url,
-                verdict: result.verdict,
-                threat: result.threat_level_pct,
-                mlConfidence: result.ml_confidence,
-                redFlags: result.red_flags,
-                time: Date.now(),
-            },
-        });
-
-        console.log(`[PhishGuard BG] Scan complete for ${url}: ${result.verdict} (${result.threat_level_pct}%)`);
+        console.log(
+            `[PhishGuard BG] PhishOut scan: ${url} → ${result.verdict} ` +
+            `(risk=${result.risk_score}, struct=${result.structural_score}, ` +
+            `sem=${result.semantic_score}, page=${result.webpage_analysis_available})`
+        );
         return result;
 
     } catch (err) {
         console.error(`[PhishGuard BG] Fetch error:`, err);
         backendOnline = false;
-        return { error: err.message, is_dangerous: false };
+        return { error: "PhishOut backend is unavailable. Start the backend server and try again.", is_dangerous: false };
     }
 }
+
 
 // ── Message listener ──────────────────────────────────────────────────────
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -109,7 +141,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 
     if (message.type === "GET_STATUS") {
-        chrome.storage.local.get(["backendStatus", "mlLoaded", "lastScan"], sendResponse);
+        chrome.storage.local.get(["backendStatus", "mlLoaded", "phishoutReady", "phishoutModel", "lastScan"], sendResponse);
         return true;
     }
 });

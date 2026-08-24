@@ -1,0 +1,9 @@
+transformation,model,samples,clean_detected,perturbed_detected,evasion_count,evasion_rate,verdict_changes,mean_risk_score_change
+benign_content_padding,Original PhishOut,612,572,570,2,0.0034965034965034965,4,-0.3415032679738562
+benign_content_padding,E6 Adversarially-Trained PhishOut,612,569,568,1,0.0017574692442882249,1,-0.1830065359477124
+visible_text_obfuscation,Original PhishOut,612,572,541,31,0.05419580419580419,36,-3.5294117647058822
+visible_text_obfuscation,E6 Adversarially-Trained PhishOut,612,569,545,25,0.043936731107205626,30,-2.787581699346405
+cosmetic_dom_addition,Original PhishOut,612,572,572,0,0.0,0,0.0
+cosmetic_dom_addition,E6 Adversarially-Trained PhishOut,612,569,569,0,0.0,0,0.0
+url_lexical_query_addition,Original PhishOut,612,572,568,4,0.006993006993006993,6,-1.526143790849673
+url_lexical_query_addition,E6 Adversarially-Trained PhishOut,612,569,584,1,0.0017574692442882249,25,4.534313725490196

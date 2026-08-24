@@ -29,12 +29,23 @@ export default function FeatureBreakdown({ result }) {
     );
   }
 
-  const scores = result.feature_scores || {};
-  const labels = result.feature_labels || {};
+  const scores = result.structural_analysis || {};
+  const labels = {};
+  const norms = {
+    url_length: 300, hostname_length: 75, path_length: 200,
+    query_length: 150, url_depth: 10, num_params: 12,
+    sub_domain_count: 6, domain_entropy: 5, special_char_count: 25,
+    longest_word_length: 30, suspicious_keywords: 6,
+  };
 
   const rows = PRIORITY_KEYS
     .filter(k => k in scores)
-    .map(k => ({ key: k, label: labels[k] || k, val: scores[k] }));
+    .map(k => ({
+      key: k,
+      label: labels[k] || k,
+      raw: scores[k],
+      val: Math.min(Number(scores[k] || 0) / (norms[k] || 1), 1),
+    }));
 
   return (
     <div className="panel features-panel">
@@ -44,12 +55,12 @@ export default function FeatureBreakdown({ result }) {
       </div>
 
       <div className="features-list">
-        {rows.map(({ key, label, val }) => (
+        {rows.map(({ key, label, raw, val }) => (
           <div key={key} className="feature-row">
             <div className="feature-meta">
               <span className="feature-name">{label}</span>
               <span className="feature-val" style={{ color: val >= 0.6 ? 'var(--accent-red)' : val >= 0.3 ? 'var(--accent-yellow)' : 'var(--accent-green)' }}>
-                {(val * 100).toFixed(0)}%
+                {typeof raw === 'number' ? raw : String(raw)}
               </span>
             </div>
             <div className="feature-bar-bg">

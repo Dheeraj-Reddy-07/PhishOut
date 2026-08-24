@@ -18,7 +18,7 @@ export default function App() {
   const [result, setResult] = useState(null);
   const [scanHistory, setScanHistory] = useState([]);
   const [logs, setLogs] = useState([
-    { type: 'sys', msg: 'PhishGuard v2.0 initialized. Neural engine standing by.', time: timestamp() },
+    { type: 'sys', msg: 'PhishGuard v4.0 initialized. Learned-fusion engine standing by.', time: timestamp() },
     { type: 'info', msg: 'Awaiting target URL for threat analysis...', time: timestamp() },
   ]);
   const [backendStatus, setBackendStatus] = useState('checking');
@@ -35,9 +35,9 @@ export default function App() {
         if (res.ok) {
           const data = await res.json();
           setBackendStatus('online');
-          addLog(`Backend online. ML model loaded: ${data.ml_model_loaded}`, 'ok');
-          if (!data.ml_model_loaded) {
-            addLog('WARNING: Run "python train_model.py" in the backend folder to enable ML.', 'warn');
+          addLog(`Backend online. PhishOut ready: ${data.phishout_ready}`, 'ok');
+          if (!data.phishout_ready) {
+            addLog('WARNING: The PhishOut predictor is not loaded.', 'warn');
           }
         } else {
           setBackendStatus('offline');
@@ -60,7 +60,7 @@ export default function App() {
     addLog('Extracting URL features...', 'info');
 
     try {
-      const res = await fetch(`${API}/scan`, {
+      const res = await fetch(`${API}/phishout/scan`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url }),
@@ -75,17 +75,16 @@ export default function App() {
       setResult(data);
 
       // Log results
-      addLog(`ML Confidence: ${(data.ml_confidence * 100).toFixed(1)}%`, 'sys');
-      addLog(`Threat Level: ${data.threat_level_pct}% → Verdict: ${data.verdict}`, data.verdict === 'SAFE' ? 'ok' : data.verdict === 'SUSPICIOUS' ? 'warn' : 'err');
+      addLog(`PhishOut risk: ${data.risk_score}% → Verdict: ${data.verdict}`, data.verdict === 'SAFE' ? 'ok' : data.verdict === 'SUSPICIOUS' ? 'warn' : 'err');
 
-      if (data.red_flags.length === 0) {
+      if ((data.reasons || []).length === 0) {
         addLog('No rule-based flags detected. Target appears benign.', 'ok');
       } else {
-        data.red_flags.forEach(flag => addLog(`FLAG: ${flag}`, 'err'));
+        (data.reasons || []).forEach(flag => addLog(`FLAG: ${flag}`, 'err'));
       }
 
       setScanHistory(prev => [
-        { url, verdict: data.verdict, threat: data.threat_level_pct, time: timestamp() },
+        { url, verdict: data.verdict, threat: data.risk_score, time: timestamp() },
         ...prev.slice(0, 19),
       ]);
 

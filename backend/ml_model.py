@@ -305,3 +305,147 @@ def normalize_features(features: dict) -> dict:
         k: round(min(v / FEATURE_NORM.get(k, 1), 1.0), 3)
         for k, v in features.items()
     }
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Clean structural analysis interface for the PhishOut pipeline
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _structural_evidence(features: dict) -> list:
+    """
+    Derive a list of human-readable structural risk signals from feature values.
+    Called internally by analyze_structural(); also used by explanation_engine.
+    """
+    evidence = []
+
+    if features.get("has_ip"):
+        evidence.append("IP address used as hostname instead of a domain name.")
+    if features.get("has_at"):
+        evidence.append("@ symbol in URL — can redirect browser to a different host.")
+    if features.get("punycode_present"):
+        evidence.append("Punycode / IDN encoding in domain — visual spoofing technique.")
+    if features.get("is_shortening"):
+        evidence.append("URL shortener service used — hides the real destination.")
+    if features.get("https_token"):
+        evidence.append("'https' keyword embedded in domain name — false security signal.")
+    if features.get("double_extension"):
+        evidence.append("Double file extension in path (e.g., .pdf.html) — content spoofing.")
+    if features.get("hex_encoded"):
+        evidence.append("Hex-encoded characters in domain — obfuscation detected.")
+    if features.get("has_redirect_param"):
+        evidence.append("Open redirect parameter detected in URL.")
+    if features.get("prefix_suffix"):
+        evidence.append("Hyphen in domain name — common in phishing domains.")
+
+    tld = features.get("tld_risk_score", 0)
+    if tld >= 0.8:
+        evidence.append(f"Very high-risk top-level domain (TLD risk score: {tld:.2f}).")
+    elif tld >= 0.5:
+        evidence.append(f"Elevated-risk top-level domain (TLD risk score: {tld:.2f}).")
+
+    bis = features.get("brand_impersonation_score", 0)
+    if bis >= 0.7:
+        evidence.append(
+            f"Domain closely resembles a known brand (impersonation score: {bis:.2f})."
+        )
+    elif bis >= 0.5:
+        evidence.append(
+            f"Domain shows possible brand similarity (impersonation score: {bis:.2f})."
+        )
+
+    if features.get("subdomain_brand_match"):
+        evidence.append("Known brand name found in subdomain of a different domain.")
+
+    lev = features.get("levenshtein_min", 99)
+    if 0 < lev <= 2:
+        evidence.append(
+            f"Typosquatting detected — domain edit distance {lev} from a known brand."
+        )
+
+    kw = features.get("suspicious_keywords", 0)
+    if kw >= 3:
+        evidence.append(f"Multiple suspicious keywords in URL ({kw} found).")
+    elif kw >= 1:
+        evidence.append(f"Suspicious keyword(s) in URL ({kw} found).")
+
+    lps = features.get("login_path_score", 0)
+    if lps >= 0.67:
+        evidence.append(f"Login-themed URL path detected (score: {lps:.2f}).")
+
+    sdc = features.get("sub_domain_count", 0)
+    if sdc >= 3:
+        evidence.append(f"Excessive subdomain nesting ({sdc} levels) — obfuscation technique.")
+
+    url_len = features.get("url_length", 0)
+    if url_len > 100:
+        evidence.append(f"Unusually long URL ({url_len} chars) — obfuscation technique.")
+
+    return evidence
+
+
+def analyze_structural(url: str, model=None, scaler=None) -> dict:
+    """
+    Clean structural analysis interface for the PhishOut pipeline.
+
+    Extracts 32 URL features, runs the trained structural ML model (if
+    available), and returns a structured dict suitable for the fusion layer.
+
+    Args:
+        url:    Fully-qualified URL to analyse (must include scheme).
+        model:  Trained sklearn model. If None, uses rule-based score only.
+        scaler: Fitted StandardScaler. Required if model is provided.
+
+    Returns:
+        {
+            "features":            dict  — all 32 raw feature values,
+            "structural_score":    int   — 0–100 risk score,
+            "phishing_probability": float — model probability or rule estimate,
+            "structural_evidence": list  — human-readable signal strings,
+        }
+    """
+    features = extract_features(url)
+    evidence = _structural_evidence(features)
+
+    phish_prob = 0.0
+    if model is not None and scaler is not None:
+        try:
+            X = features_to_array(features)
+            X_s = scaler.transform(X)
+            proba = model.predict_proba(X_s)[0]
+            phish_prob = float(proba[1])
+        except Exception:
+            # Fall through to rule-based estimate
+            phish_prob = _rule_based_prob(features)
+    else:
+        phish_prob = _rule_based_prob(features)
+
+    structural_score = int(round(phish_prob * 100))
+    structural_score = max(0, min(100, structural_score))
+
+    return {
+        "features": features,
+        "structural_score": structural_score,
+        "phishing_probability": round(phish_prob, 4),
+        "structural_evidence": evidence,
+    }
+
+
+def _rule_based_prob(features: dict) -> float:
+    """
+    Lightweight rule-based phishing probability estimate.
+    Used only when no trained model is available.
+    """
+    score = 0
+    if features.get("has_ip"):          score += 20
+    if features.get("has_at"):          score += 20
+    if features.get("is_shortening"):   score += 15
+    if features.get("punycode_present"): score += 15
+    if features.get("tld_risk_score", 0) >= 0.8: score += 20
+    if features.get("brand_impersonation_score", 0) >= 0.7: score += 25
+    score += features.get("suspicious_keywords", 0) * 5
+    lev = features.get("levenshtein_min", 99)
+    if 0 < lev <= 1: score += 20
+    elif lev == 2:   score += 10
+    score = max(0, min(100, score))
+    return score / 100.0
+

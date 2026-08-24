@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PhishGuard | Threat Intel</title>
+  <title>PhishGuard | PhishOut Threat Intelligence</title>
+  <meta name="description" content="PhishOut — Adversarially Robust Phishing Detection using Hybrid Structural and Semantic Analysis">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -19,38 +20,77 @@
   <div class="container">
     <header class="header">
       <div class="logo-glitch" data-text="PHISHGUARD">PHISHGUARD</div>
-      <p class="subtitle">Fake Login Page Threat Detection Engine</p>
+      <p class="subtitle">PhishOut · Hybrid Structural &amp; Semantic Phishing Detection</p>
     </header>
 
     <main class="dashboard-grid">
-      
+
       <!-- Input Section -->
       <section class="panel input-section">
         <h2>Initiate URL Scan</h2>
         <div class="input-group">
-          <input type="text" id="url-input" placeholder="Enter target URL (e.g., faceboook.com)..." autocomplete="off" />
+          <input type="text" id="url-input" placeholder="Enter target URL (e.g., paypa1.com/login)..." autocomplete="off" />
           <button id="scan-btn">ANALYZE</button>
         </div>
-        <div id="status-text" class="status-hidden">Decoding target vectors...</div>
+        <div id="status-text" class="status-hidden">Running PhishOut pipeline...</div>
       </section>
 
       <!-- Gauge / Results Section -->
       <section class="panel gauge-section">
-        <h2>Threat Assessment</h2>
+        <h2>PhishOut Risk Score</h2>
         <div class="chart-container">
            <canvas id="threat-gauge"></canvas>
         </div>
         <div id="threat-percentage">--%</div>
+        <div id="verdict-badge" class="verdict-badge verdict-idle">AWAITING SCAN</div>
       </section>
 
-      <!-- Diagnostics / Red Flags Terminal -->
+      <!-- Diagnostics / Terminal -->
       <section class="panel terminal-section">
         <h2>Diagnostics Monitor</h2>
         <div id="terminal-output" class="terminal-window">
-          <p class="sys-msg">> System initialized ready for scanning...</p>
+          <p class="sys-msg">&gt; PhishOut v4.0 — System initialized, ready for scanning...</p>
         </div>
       </section>
-      
+
+      <!-- PhishOut Analysis Panel -->
+      <section class="panel phishout-panel" id="phishout-panel">
+        <h2>PhishOut Analysis</h2>
+
+        <!-- Component scores -->
+        <div class="score-row">
+          <div class="score-block">
+            <div class="score-label">STRUCTURAL MODEL</div>
+            <div class="score-bar-wrap">
+              <div class="score-bar" id="struct-bar" style="width:0%"></div>
+            </div>
+            <div class="score-value" id="struct-score">--</div>
+          </div>
+          <div class="score-block">
+            <div class="score-label">SEMANTIC MODEL</div>
+            <div class="score-bar-wrap">
+              <div class="score-bar semantic" id="sem-bar" style="width:0%"></div>
+            </div>
+            <div class="score-value" id="sem-score">--</div>
+          </div>
+        </div>
+
+        <!-- Webpage analysis status -->
+        <div id="webpage-status" class="webpage-status">
+          <span id="webpage-icon">⬤</span>
+          <span id="webpage-label">Webpage Analysis: —</span>
+          <span id="fusion-mode-label"></span>
+        </div>
+
+        <!-- Reasons / Evidence -->
+        <div id="reasons-container" class="reasons-container">
+          <div class="reasons-header">DETECTED INDICATORS</div>
+          <div id="reasons-list" class="reasons-list">
+            <div class="reason-placeholder">No scan performed yet.</div>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 

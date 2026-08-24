@@ -7,3 +7,6 @@ python-Levenshtein
 scikit-learn
 joblib
 numpy
+pandas
+datasets
+pyarrow

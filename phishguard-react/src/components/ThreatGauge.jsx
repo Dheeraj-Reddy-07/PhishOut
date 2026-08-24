@@ -23,9 +23,9 @@ export default function ThreatGauge({ result }) {
   const frameRef = useRef(null);
   const currentRef = useRef(0);
 
-  const targetPct = result?.threat_level_pct ?? 0;
+  const targetPct = result?.risk_score ?? 0;
   const verdict = result?.verdict ?? 'READY';
-  const confidence = result?.ml_confidence ?? null;
+  const confidence = result?.phishing_probability ?? null;
 
   useEffect(() => {
     if (frameRef.current) cancelAnimationFrame(frameRef.current);

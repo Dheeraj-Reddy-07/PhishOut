@@ -1,0 +1,105 @@
+{
+  "research_question": "Does E6 adversarial training generalize to an unseen URL percent-encoding attack?",
+  "transformation": "url_percent_encode_character",
+  "training_used": false,
+  "validation_used": false,
+  "test_evaluation": "single final evaluation on existing 1,533-row test split; 612 phishing rows transformed",
+  "clean_test": {
+    "original_phishout": {
+      "model": "Original PhishOut",
+      "samples": 1533,
+      "accuracy": 0.954337899543379,
+      "precision": 0.9501661129568106,
+      "recall": 0.934640522875817,
+      "f1": 0.942339373970346,
+      "roc_auc": 0.9883793546372585,
+      "detection_rate": 0.934640522875817,
+      "confusion_matrix": {
+        "tn": 891,
+        "fp": 30,
+        "fn": 40,
+        "tp": 572
+      }
+    },
+    "e6_adversarially_trained_phishout": {
+      "model": "E6 Adversarially-Trained PhishOut",
+      "samples": 1533,
+      "accuracy": 0.9523809523809523,
+      "precision": 0.9499165275459098,
+      "recall": 0.9297385620915033,
+      "f1": 0.9397192402972749,
+      "roc_auc": 0.9883509683279754,
+      "detection_rate": 0.9297385620915033,
+      "confusion_matrix": {
+        "tn": 891,
+        "fp": 30,
+        "fn": 43,
+        "tp": 569
+      }
+    }
+  },
+  "unseen_adversarial_subset": {
+    "original_phishout": {
+      "model": "Original PhishOut unseen adversarial subset",
+      "samples": 612,
+      "accuracy": 0.9395424836601307,
+      "precision": 1.0,
+      "recall": 0.9395424836601307,
+      "f1": 0.9688289806234204,
+      "roc_auc": null,
+      "detection_rate": 0.9395424836601307,
+      "confusion_matrix": {
+        "tn": 0,
+        "fp": 0,
+        "fn": 37,
+        "tp": 575
+      }
+    },
+    "e6_adversarially_trained_phishout": {
+      "model": "E6 unseen adversarial subset",
+      "samples": 612,
+      "accuracy": 0.9428104575163399,
+      "precision": 1.0,
+      "recall": 0.9428104575163399,
+      "f1": 0.9705634987384356,
+      "roc_auc": null,
+      "detection_rate": 0.9428104575163399,
+      "confusion_matrix": {
+        "tn": 0,
+        "fp": 0,
+        "fn": 35,
+        "tp": 577
+      }
+    }
+  },
+  "evasion": {
+    "original_phishout": {
+      "samples": 612,
+      "clean_detected": 572,
+      "perturbed_detected": 575,
+      "evasion_count": 2,
+      "evasion_rate": 0.0034965034965034965,
+      "verdict_changes": 14,
+      "mean_risk_score_change": 1.3709150326797386
+    },
+    "e6_adversarially_trained_phishout": {
+      "samples": 612,
+      "clean_detected": 569,
+      "perturbed_detected": 577,
+      "evasion_count": 1,
+      "evasion_rate": 0.0017574692442882249,
+      "verdict_changes": 17,
+      "mean_risk_score_change": 1.5931372549019607
+    }
+  },
+  "pairing": {
+    "sample_count": 612,
+    "same_sample_ids": true,
+    "duplicate_clean_ids": 0,
+    "duplicate_perturbed_ids": 0,
+    "labels_preserved": true,
+    "clean_test_training_overlap": 0
+  },
+  "raw_source": "D:\\Downloads\\phish360_parquet",
+  "original_models_untouched": true
+}

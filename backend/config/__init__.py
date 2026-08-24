@@ -1,0 +1,1 @@
+# PhishOut configuration package

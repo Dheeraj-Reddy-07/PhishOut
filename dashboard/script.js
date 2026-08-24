@@ -1,178 +1,213 @@
+/* ─── Matrix Rain ─────────────────────────────────────────────────────── */
 const canvas = document.getElementById('matrix-canvas');
-const ctx = canvas.getContext('2d');
+const ctx    = canvas.getContext('2d');
 
-// Adjust canvas to window size
-canvas.width = window.innerWidth;
+canvas.width  = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// Matrix letters
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()";
-const matrix = letters.split('');
-const fontSize = 16;
-const columns = canvas.width / fontSize;
-const drops = [];
+const _letters  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*()".split('');
+const _fontSize = 14;
+const _cols     = Math.floor(canvas.width / _fontSize);
+const _drops    = Array(_cols).fill(1);
 
-for(let x = 0; x < columns; x++)
-  drops[x] = 1;
-
-function drawMatrix() {
-  ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-  ctx.fillStyle = "#0F0"; // Green text
-  ctx.font = fontSize + "px 'JetBrains Mono'";
-  
-  for(let i = 0; i < drops.length; i++) {
-    const text = matrix[Math.floor(Math.random() * matrix.length)];
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-    
-    if(drops[i] * fontSize > canvas.height && Math.random() > 0.975)
-      drops[i] = 0;
-    
-    drops[i]++;
-  }
+function _drawMatrix() {
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#0F0";
+    ctx.font = `${_fontSize}px 'JetBrains Mono'`;
+    _drops.forEach((y, i) => {
+        ctx.fillText(_letters[Math.floor(Math.random() * _letters.length)], i * _fontSize, y * _fontSize);
+        if (y * _fontSize > canvas.height && Math.random() > 0.975) _drops[i] = 0;
+        _drops[i]++;
+    });
 }
+setInterval(_drawMatrix, 42);
+window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 
-setInterval(drawMatrix, 40);
-
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-// --- CHART.JS INITIATION ---
-const ctxChart = document.getElementById('threat-gauge').getContext('2d');
-
-const gradientRed = ctxChart.createLinearGradient(0, 0, 0, 400);
-gradientRed.addColorStop(0, '#ff003c');
-gradientRed.addColorStop(1, '#8A0020');
+/* ─── Chart.js Gauge ──────────────────────────────────────────────────── */
+const ctxChart  = document.getElementById('threat-gauge').getContext('2d');
+const gradRed   = ctxChart.createLinearGradient(0,0,0,400);
+gradRed.addColorStop(0,'#ff003c'); gradRed.addColorStop(1,'#8A0020');
 
 const gaugeChart = new Chart(ctxChart, {
     type: 'doughnut',
     data: {
-        labels: ['Threat Level', 'Safe'],
-        datasets: [{
-            data: [0, 100], // initial
-            backgroundColor: [
-                '#00ff41',
-                '#111111'
-            ],
-            borderWidth: 0,
-            hoverOffset: 4
-        }]
+        labels: ['Risk', 'Safe'],
+        datasets: [{ data:[0,100], backgroundColor:['#00ff41','#111111'], borderWidth:0 }]
     },
     options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: '80%',
-        rotation: 270, // Start from bottom half
-        circumference: 180, // Half circle
-        plugins: {
-            legend: { display: false },
-            tooltip: { enabled: false }
-        },
-        animation: {
-            animateRotate: true,
-            animateScale: true
-        }
+        responsive: true, maintainAspectRatio: false,
+        cutout: '80%', rotation: 270, circumference: 180,
+        plugins: { legend:{ display:false }, tooltip:{ enabled:false } },
+        animation: { animateRotate:true, animateScale:true }
     }
 });
 
-
-// --- LOGIC INTERACTION ---
-
-const scanBtn = document.getElementById('scan-btn');
-const urlInput = document.getElementById('url-input');
-const statusText = document.getElementById('status-text');
+/* ─── DOM refs ────────────────────────────────────────────────────────── */
+const scanBtn        = document.getElementById('scan-btn');
+const urlInput       = document.getElementById('url-input');
+const statusText     = document.getElementById('status-text');
 const terminalOutput = document.getElementById('terminal-output');
-const threatPctDisplay = document.getElementById('threat-percentage');
+const threatPct      = document.getElementById('threat-percentage');
+const verdictBadge   = document.getElementById('verdict-badge');
 
-function logToTerminal(message, type = 'log') {
-    const p = document.createElement('p');
-    p.className = type === 'sys' ? 'sys-msg' : (type === 'err' ? 'err-msg' : 'log-msg');
-    p.textContent = `[${new Date().toLocaleTimeString()}] > ${message}`;
+const structBar      = document.getElementById('struct-bar');
+const semBar         = document.getElementById('sem-bar');
+const structScore    = document.getElementById('struct-score');
+const semScore       = document.getElementById('sem-score');
+const webpageStatus  = document.getElementById('webpage-status');
+const webpageIcon    = document.getElementById('webpage-icon');
+const webpageLabel   = document.getElementById('webpage-label');
+const fusionLabel    = document.getElementById('fusion-mode-label');
+const reasonsList    = document.getElementById('reasons-list');
+
+/* ─── Terminal helpers ────────────────────────────────────────────────── */
+function log(msg, type = 'log') {
+    const p    = document.createElement('p');
+    p.className = type === 'sys' ? 'sys-msg' : type === 'err' ? 'err-msg' : type === 'ok' ? 'ok-msg' : 'log-msg';
+    p.textContent = `[${new Date().toLocaleTimeString()}] > ${msg}`;
     terminalOutput.appendChild(p);
     terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 
-function typeEffect(element, text, speed = 20, callback) {
-    let i = 0;
-    element.innerHTML = "";
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            terminalOutput.scrollTop = terminalOutput.scrollHeight;
-            setTimeout(type, speed);
-        } else if (callback) {
-            callback();
-        }
+/* ─── Gauge update ────────────────────────────────────────────────────── */
+function updateGauge(score, verdict) {
+    let color = '#00ff41';
+    threatPct.className = '';
+    verdictBadge.className = 'verdict-badge';
+
+    if (verdict === 'PHISHING') {
+        color = gradRed;
+        threatPct.classList.add('dangerous');
+        verdictBadge.classList.add('verdict-phishing');
+    } else if (verdict === 'SUSPICIOUS') {
+        color = '#ffbb00';
+        threatPct.classList.add('warn');
+        verdictBadge.classList.add('verdict-suspicious');
+    } else {
+        verdictBadge.classList.add('verdict-safe');
     }
-    type();
+
+    gaugeChart.data.datasets[0].data = [score, 100 - score];
+    gaugeChart.data.datasets[0].backgroundColor[0] = color;
+    gaugeChart.update();
+
+    threatPct.textContent = `${score}%`;
+    verdictBadge.textContent = verdict;
 }
 
+/* ─── Score bar update ────────────────────────────────────────────────── */
+function updateScoreBar(barEl, labelEl, score) {
+    barEl.style.width = `${score}%`;
+    labelEl.textContent = `${score}/100`;
 
-scanBtn.addEventListener('click', async () => {
-    const targetUrl = urlInput.value.trim();
-    if (!targetUrl) {
-        logToTerminal("Error: Target URL cannot be empty.", "err");
+    // Colour the bar by severity
+    barEl.classList.remove('danger','warn');
+    if (score >= 60) barEl.classList.add('danger');
+    else if (score >= 30) barEl.classList.add('warn');
+}
+
+/* ─── Webpage status update ───────────────────────────────────────────── */
+function updateWebpageStatus(available, mode) {
+    webpageStatus.classList.remove('webpage-ok','webpage-fail');
+    if (available) {
+        webpageStatus.classList.add('webpage-ok');
+        webpageLabel.textContent = 'Webpage Analysis: Available';
+    } else {
+        webpageStatus.classList.add('webpage-fail');
+        webpageLabel.textContent = 'Webpage Analysis: Unavailable';
+    }
+    fusionLabel.textContent = mode === 'combined' ? 'HYBRID' : 'URL ONLY';
+}
+
+/* ─── Reasons render ──────────────────────────────────────────────────── */
+function renderReasons(reasons, semEvidence) {
+    reasonsList.innerHTML = '';
+    if (!reasons || reasons.length === 0) {
+        reasonsList.innerHTML = '<div class="reason-placeholder">No risk indicators detected.</div>';
         return;
     }
 
-    // UI state change
+    // Mark last few items as semantic if they're in sem evidence
+    const semSet = new Set(semEvidence || []);
+
+    reasons.forEach(r => {
+        const div = document.createElement('div');
+        // Heuristic: if reason mentions "webpage" or is in semantic evidence → info/semantic
+        const isInfo     = r.toLowerCase().includes('webpage could not');
+        const isSemantic = !isInfo && (semSet.has(r) || r.includes('detected on page') ||
+                           r.includes('form') || r.includes('urgency') ||
+                           r.includes('payment') || r.includes('iframe'));
+        div.className = `reason-item ${isInfo ? 'info' : isSemantic ? 'semantic' : 'structural'}`;
+        div.textContent = `▸ ${r}`;
+        reasonsList.appendChild(div);
+    });
+}
+
+/* ─── Main scan function ──────────────────────────────────────────────── */
+scanBtn.addEventListener('click', async () => {
+    const targetUrl = urlInput.value.trim();
+    if (!targetUrl) { log('Error: Target URL cannot be empty.', 'err'); return; }
+
+    // UI — scanning state
     scanBtn.disabled = true;
-    scanBtn.textContent = "SCANNING...";
+    scanBtn.textContent = 'SCANNING...';
     statusText.classList.add('glitch-anim');
-    logToTerminal(`Initiating scan sequence for: ${targetUrl}`, "sys");
+    log(`Initiating PhishOut pipeline for: ${targetUrl}`, 'sys');
+    log('Running structural analysis...', 'sys');
 
     try {
-        const response = await fetch('http://localhost:8000/scan', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ url: targetUrl })
+        const response = await fetch('http://localhost:8000/phishout/scan', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({ url: targetUrl }),
         });
 
-        if (!response.ok) throw new Error("API Connection failed or invalid domain.");
-
+        if (!response.ok) throw new Error(`API error ${response.status}`);
         const data = await response.json();
-        
-        // Update UI chart
-        gaugeChart.data.datasets[0].data = [data.threat_level_pct, 100 - data.threat_level_pct];
-        
-        // Update Colors based on threat level
-        let chartColor = '#00ff41'; // Safe green
-        threatPctDisplay.classList.remove('dangerous');
-        
-        if(data.threat_level_pct > 0 && data.threat_level_pct <= 40) {
-            chartColor = '#ffbb00'; // Warning yellow
-        } else if (data.threat_level_pct > 40) {
-            chartColor = gradientRed; // Danger red
-            threatPctDisplay.classList.add('dangerous');
+
+        // ── Update gauge ──────────────────────────────────────────────
+        updateGauge(data.risk_score, data.verdict);
+
+        // ── Update component score bars ───────────────────────────────
+        updateScoreBar(structBar, structScore, data.structural_score);
+        // Delay semantic bar slightly for visual effect
+        setTimeout(() => {
+            updateScoreBar(semBar, semScore, data.semantic_score);
+        }, 200);
+
+        // ── Webpage status ────────────────────────────────────────────
+        updateWebpageStatus(data.webpage_analysis_available, data.fusion_mode);
+
+        // ── Reasons ───────────────────────────────────────────────────
+        renderReasons(data.reasons, data.semantic_evidence);
+
+        // ── Terminal output ───────────────────────────────────────────
+        log(`Scan complete.`, 'sys');
+        log(`Verdict: ${data.verdict}  |  Risk: ${data.risk_score}/100`, data.verdict === 'SAFE' ? 'ok' : 'err');
+        log(`Structural model: ${data.structural_score}/100  |  Semantic model: ${data.semantic_score}/100  |  Webpage: ${data.webpage_analysis_available ? 'OK' : 'FAIL'}`, 'sys');
+        if (data.semantic_rule_score !== undefined) {
+            log(`Semantic rule diagnostic: ${data.semantic_rule_score}/100`, 'sys');
         }
+        log(`Fusion mode: ${data.fusion_mode.toUpperCase()}  |  Model: ${data.model_type}`, 'sys');
 
-        gaugeChart.data.datasets[0].backgroundColor[0] = chartColor;
-        gaugeChart.update();
-
-        threatPctDisplay.textContent = `${data.threat_level_pct}%`;
-        threatPctDisplay.style.color = chartColor;
-
-        logToTerminal(`Scan complete. Threat Level: ${data.threat_level_pct}%`, "sys");
-
-        if (data.red_flags.length === 0) {
-            logToTerminal("No anomalies detected. Target appears benign.", "log");
+        if (data.reasons.length === 0) {
+            log('No risk indicators detected. Target appears benign.', 'ok');
         } else {
-            data.red_flags.forEach(flag => {
-                logToTerminal(`FLAG: ${flag}`, "err");
-            });
+            data.reasons.slice(0, 5).forEach(r => log(`FLAG: ${r}`, 'err'));
+            if (data.reasons.length > 5) log(`...and ${data.reasons.length - 5} more indicator(s).`, 'sys');
         }
 
     } catch (error) {
-        logToTerminal(`Exception caught: ${error.message}`, "err");
+        log(`Exception: ${error.message}`, 'err');
+        verdictBadge.textContent = 'ERROR';
+        verdictBadge.className   = 'verdict-badge verdict-phishing';
     } finally {
         scanBtn.disabled = false;
-        scanBtn.textContent = "ANALYZE";
+        scanBtn.textContent = 'ANALYZE';
         statusText.classList.remove('glitch-anim');
     }
 });
+
+/* ─── Enter key support ───────────────────────────────────────────────── */
+urlInput.addEventListener('keydown', e => { if (e.key === 'Enter') scanBtn.click(); });

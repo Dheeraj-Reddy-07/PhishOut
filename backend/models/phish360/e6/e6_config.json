@@ -1,0 +1,32 @@
+{
+  "training_source": "existing train_features.parquet phishing rows only",
+  "raw_source": "D:\\Downloads\\phish360_parquet",
+  "architecture": "32 structural + 12 semantic -> learned score-level fusion",
+  "augmentation": "one deterministic E5 variant per phishing training sample, round-robin across four transformations",
+  "thresholds": {
+    "safe_max_risk_score": 15,
+    "phishing_min_risk_score": 57,
+    "source": "original frozen Phase 2 threshold reference"
+  },
+  "validation_used_for": "calibrating new component probabilities and fitting new fusion model; no test data used",
+  "transformations": [
+    "benign_content_padding",
+    "visible_text_obfuscation",
+    "cosmetic_dom_addition",
+    "url_lexical_query_addition"
+  ],
+  "clean_training_samples": 7732,
+  "phishing_training_samples": 3113,
+  "adversarial_training_samples": 3113,
+  "training_transformation_counts": {
+    "benign_content_padding": 779,
+    "visible_text_obfuscation": 778,
+    "cosmetic_dom_addition": 778,
+    "url_lexical_query_addition": 778
+  },
+  "leakage": {
+    "test_sample_id_overlap": 0,
+    "test_url_overlap": 0,
+    "test_registered_domain_overlap": 0
+  }
+}

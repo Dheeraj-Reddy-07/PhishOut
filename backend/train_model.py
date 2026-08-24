@@ -1,6 +1,12 @@
 """
-PhishGuard Model Trainer — v3.0
-Uses a curated real-world URL dataset + GradientBoosting with calibration.
+PhishGuard ML Model Trainer
+===========================
+*** OBSOLETE - Keep for reference only ***
+This script trained the original 250-URL baseline model.
+See docs/PROJECT_PLAN.md for current direction.
+
+Original purpose:
+Trains the phishing detection model using engineered URL features.et + GradientBoosting with calibration.
 Achieves ~95%+ accuracy on held-out test set.
 
 Run: python train_model.py

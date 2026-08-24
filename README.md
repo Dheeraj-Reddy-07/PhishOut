@@ -1,123 +1,110 @@
-# 🛡️ PhishGuard — AI-Powered Phishing Detection System
+# PhishOut
 
-> A Cyber-Noir themed, full-stack phishing detection platform featuring a machine learning backend, React dashboard, and Chrome browser extension.
+Research-focused phishing webpage detection using hybrid structural URL analysis and semantic HTML analysis. The system produces one fused risk score and includes a FastAPI service, React dashboard, static dashboard, and Chrome Manifest V3 extension.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/Python-3.10+-green.svg)
-![React](https://img.shields.io/badge/React-18-blue.svg)
-![FastAPI](https://img.shields.io/badge/FastAPI-latest-teal.svg)
+## Highlights
 
----
+- 32 structural features and 12 semantic features combined through learned fusion
+- Risk score from 0 to 100 with calibrated SAFE, SUSPICIOUS, and PHISHING thresholds
+- URL-only fallback when webpage retrieval is unavailable
+- Feature-robustness evaluation using plus or minus 5 percent perturbations
+- Browser extension warnings and scan history in the dashboards
 
-## 🔍 Overview
+## Repository Layout
 
-PhishGuard is a comprehensive phishing URL detection system that combines:
-
-- 🤖 **Machine Learning** — Ensemble classifier trained on 32 advanced lexical, structural, and security features
-- ⚡ **FastAPI Backend** — High-performance REST API for real-time URL analysis
-- 🖥️ **React Dashboard** — Cyber-Noir themed UI with live threat gauges and scan history
-- 🔌 **Chrome Extension** — Automatically alerts users on suspicious login pages
-
----
-
-## 📁 Project Structure
-
-```
-EHPROJECT/
-├── backend/          # FastAPI + ML model (Python)
-├── dashboard/        # Static HTML/CSS/JS dashboard (Cyber-Noir theme)
-├── extension/        # Chrome browser extension
-└── phishguard-react/ # React + Vite modern dashboard
+```text
+backend/           FastAPI service, feature extraction, models, and research scripts
+dashboard/         Static HTML/CSS/JavaScript dashboard
+extension/         Chrome Manifest V3 extension
+phishguard-react/  React and Vite dashboard
+docs/              Research reports and paper-ready result tables
 ```
 
----
+## Requirements
 
-## 🚀 Getting Started
+- Python 3.10 or newer
+- Node.js 18 or newer
+- Google Chrome for the extension
 
-### Prerequisites
+## Run the Backend
 
-- Python 3.10+
-- Node.js 18+
-- Google Chrome (for extension)
-
----
-
-### 1️⃣ Backend Setup
-
-```bash
+```powershell
 cd backend
-pip install -r requirements.txt
-python train_model.py       # Train the ML model
-uvicorn main:app --reload   # Start FastAPI server at http://localhost:8000
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload
 ```
 
-**API Endpoints:**
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/predict` | Analyze a URL for phishing |
-| `GET`  | `/health`  | Health check |
+The API is available at `http://localhost:8000`.
 
----
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `GET` | `/health` | Backend and predictor status |
+| `POST` | `/phishout/scan` | Primary structural and semantic PhishOut scan |
+| `POST` | `/scan` | Legacy structural-only scan |
+| `POST` | `/scan_extended` | Legacy scan with webpage analysis |
 
-### 2️⃣ React Dashboard Setup
+Example request:
 
-```bash
+```powershell
+Invoke-RestMethod -Method Post -Uri http://localhost:8000/phishout/scan -ContentType 'application/json' -Body '{"url":"https://example.com"}'
+```
+
+## Run the React Dashboard
+
+```powershell
 cd phishguard-react
 npm install
-npm run dev     # Starts at http://localhost:5173
+npm run dev
 ```
 
----
+Open the Vite URL shown in the terminal, normally `http://localhost:5173`. Set `VITE_API_URL` when the backend is hosted somewhere other than `http://localhost:8000`.
 
-### 3️⃣ Chrome Extension Setup
+The legacy static dashboard can be opened from `dashboard/index.html` while the backend is running.
 
-1. Open Chrome → navigate to `chrome://extensions/`
-2. Enable **Developer Mode**
-3. Click **Load unpacked** → select the `extension/` folder
-4. The PhishGuard icon will appear in your toolbar
+## Load the Chrome Extension
 
----
+1. Start the backend on port 8000.
+2. Open `chrome://extensions/` in Chrome and enable Developer mode.
+3. Select **Load unpacked** and choose the repository's `extension` directory.
+4. Visit an HTTP or HTTPS page and use the PhishGuard popup to scan it.
 
-## 🧠 ML Model Features
+## Research Results
 
-The model analyzes **32 features** across three categories:
+The selected learned-fusion model was evaluated on the Phish360 test set:
 
-| Category | Features |
-|----------|----------|
-| **Lexical** | URL length, digit ratio, special chars, hyphen count, subdomain depth |
-| **Structural** | IP address usage, HTTPS presence, port anomalies, path depth |
-| **Security** | Domain age, WHOIS data, SSL certificate validity, redirect chains |
+| Model | Accuracy | F1 | ROC-AUC |
+| --- | ---: | ---: | ---: |
+| Structural-only | 89.37% | 86.50% | 0.9580 |
+| Semantic-only | 92.89% | 91.00% | 0.9791 |
+| Hybrid | 95.43% | 94.24% | 0.9908 |
+| Learned-Fusion PhishOut | 95.43% | 94.26% | 0.9884 |
 
-> **Model:** Ensemble (Random Forest + Gradient Boosting) — trained on real-world phishing datasets
+Calibrated thresholds are SAFE below 15, SUSPICIOUS from 15 through 56, and PHISHING at 57 or above. The worst feature-level F1 degradation was approximately 0.74%. E5, E6, and E7 robustness results are documented in [docs/FINAL_RESULTS.md](docs/FINAL_RESULTS.md).
 
----
+The Phish360 dataset is not included in this repository. Follow [docs/phish360_dataset.md](docs/phish360_dataset.md) for dataset details and use the local processing scripts where appropriate.
 
-## 🎨 UI Design
+## Validation
 
-- **Theme:** Cyber-Noir (dark, neon accents, glassmorphism)
-- **Components:** ScanPanel, ThreatGauge, ScanHistory
-- **Font:** Inter / Monospace terminal-style elements
+```powershell
+cd phishguard-react
+npm run lint
+npm run build
+```
 
----
+Backend smoke tests are in `backend/test_phishout.py`. Start the API first, then run the script from the backend directory:
 
-## 🛠️ Tech Stack
+```powershell
+cd backend
+python test_phishout.py
+```
 
-| Layer | Technology |
-|-------|-----------|
-| ML Model | Scikit-learn, Pandas, NumPy |
-| Backend | FastAPI, Uvicorn, Python |
-| Frontend | React 18, Vite, Vanilla CSS |
-| Extension | Chrome Manifest V3, Service Workers |
-| Storage | JSON / LocalStorage |
+## Documentation
 
----
+- [Project plan](docs/PROJECT_PLAN.md)
+- [Final research results](docs/FINAL_RESULTS.md)
+- [PhishOut architecture](docs/phishout_architecture.md)
+- [Task tracker](docs/TASKS.md)
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License.
-
----
-
-## 👤 Author
-
-**Affan Khan** — EH Project, 2026
+MIT

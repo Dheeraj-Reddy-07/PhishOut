@@ -1,0 +1,49 @@
+{
+  "model_type": "semantic_only",
+  "features": [
+    "password_fields",
+    "text_email_fields",
+    "forms",
+    "external_links",
+    "iframes",
+    "scripts",
+    "login_indicators",
+    "credential_indicators",
+    "payment_indicators",
+    "urgency_indicators",
+    "brand_indicators",
+    "text_length"
+  ],
+  "n_features": 12,
+  "train_size": 7732,
+  "validation_size": 1369,
+  "test_size": 1533,
+  "validation_metrics": {
+    "model": "Semantic-Only (Validation)",
+    "accuracy": 0.9284,
+    "precision": 0.9108,
+    "recall": 0.904,
+    "f1": 0.9074,
+    "roc_auc": 0.9805,
+    "confusion_matrix": {
+      "tn": 791,
+      "fp": 47,
+      "fn": 51,
+      "tp": 480
+    }
+  },
+  "test_metrics": {
+    "model": "Semantic-Only (Test)",
+    "accuracy": 0.9289,
+    "precision": 0.9199,
+    "recall": 0.9003,
+    "f1": 0.91,
+    "roc_auc": 0.9791,
+    "confusion_matrix": {
+      "tn": 873,
+      "fp": 48,
+      "fn": 61,
+      "tp": 551
+    }
+  }
+}

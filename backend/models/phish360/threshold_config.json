@@ -1,0 +1,11 @@
+{
+  "safe_max_probability": 0.15,
+  "phishing_min_probability": 0.5700000000000001,
+  "safe_max_risk_score": 15,
+  "phishing_min_risk_score": 57,
+  "validation_f1": 0.9408396946564885,
+  "validation_precision": 0.9535783365570599,
+  "validation_recall": 0.928436911487759,
+  "calibration_set_size": 1369,
+  "calibration_method": "grid_search_maximize_f1"
+}

@@ -1,0 +1,5 @@
+transformation,samples,clean_detected_denominator,evasion_count,evasion_rate,verdict_changes,mean_risk_score_change
+benign_content_padding,612,572,2,0.0034965034965034965,4,-0.3415032679738562
+visible_text_obfuscation,612,572,31,0.05419580419580419,36,-3.5179738562091503
+cosmetic_dom_addition,612,572,0,0.0,0,0.0
+url_lexical_query_addition,612,572,4,0.006993006993006993,6,-1.5326797385620916

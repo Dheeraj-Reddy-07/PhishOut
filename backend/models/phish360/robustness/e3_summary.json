@@ -1,0 +1,178 @@
+{
+  "experiment_type": "E3_feature_level_robustness",
+  "base_paper": "IEEE ICPCSN 2025 - Feature Robustness and Adversarial Resilience Ranking",
+  "methodology_adaptation": "\u00b15% feature perturbation adapted to PhishOut 44-feature architecture",
+  "dataset": "Phish360 test set",
+  "test_set_size": 1533,
+  "n_features_evaluated": 44,
+  "n_perturbation_experiments": 88,
+  "perturbation_level": "\u00b15%",
+  "clean_baseline": {
+    "structural": {
+      "accuracy": 0.8937,
+      "precision": 0.8773,
+      "recall": 0.8529,
+      "f1": 0.865,
+      "roc_auc": 0.958,
+      "pr_auc": 0.9371,
+      "fpr": 0.0793,
+      "confusion_matrix": {
+        "tn": 848,
+        "fp": 73,
+        "fn": 90,
+        "tp": 522
+      }
+    },
+    "semantic": {
+      "accuracy": 0.9289,
+      "precision": 0.9199,
+      "recall": 0.9003,
+      "f1": 0.91,
+      "roc_auc": 0.9791,
+      "pr_auc": 0.9712,
+      "fpr": 0.0521,
+      "confusion_matrix": {
+        "tn": 873,
+        "fp": 48,
+        "fn": 61,
+        "tp": 551
+      }
+    },
+    "fusion": {
+      "accuracy": 0.9543,
+      "precision": 0.9457,
+      "recall": 0.9395,
+      "f1": 0.9426,
+      "roc_auc": 0.9884,
+      "pr_auc": 0.9806,
+      "fpr": 0.0358,
+      "confusion_matrix": {
+        "tn": 888,
+        "fp": 33,
+        "fn": 37,
+        "tp": 575
+      }
+    },
+    "hybrid": {
+      "accuracy": 0.9543,
+      "precision": 0.9487,
+      "recall": 0.9363,
+      "f1": 0.9424,
+      "roc_auc": 0.9908,
+      "pr_auc": 0.986,
+      "fpr": 0.0337,
+      "confusion_matrix": {
+        "tn": 890,
+        "fp": 31,
+        "fn": 39,
+        "tp": 573
+      }
+    }
+  },
+  "most_fragile_5": [
+    {
+      "feature": "domain_entropy",
+      "worst_f1_drop": 0.0074
+    },
+    {
+      "feature": "hostname_length",
+      "worst_f1_drop": 0.0045
+    },
+    {
+      "feature": "consonant_ratio",
+      "worst_f1_drop": 0.0036
+    },
+    {
+      "feature": "longest_word_length",
+      "worst_f1_drop": 0.0024
+    },
+    {
+      "feature": "levenshtein_min",
+      "worst_f1_drop": 0.0024
+    }
+  ],
+  "most_robust_5": [
+    {
+      "feature": "levenshtein_ratio",
+      "worst_f1_drop": -0.0019
+    },
+    {
+      "feature": "brand_indicators",
+      "worst_f1_drop": 0.0
+    },
+    {
+      "feature": "urgency_indicators",
+      "worst_f1_drop": 0.0
+    },
+    {
+      "feature": "payment_indicators",
+      "worst_f1_drop": 0.0
+    },
+    {
+      "feature": "credential_indicators",
+      "worst_f1_drop": 0.0
+    }
+  ],
+  "structural_vs_semantic": {
+    "avg_structural_f1_drop": 0.0008,
+    "avg_semantic_f1_drop": 0.0001,
+    "most_fragile_structural": [
+      {
+        "feature": "domain_entropy",
+        "worst_f1_drop": 0.0074
+      },
+      {
+        "feature": "hostname_length",
+        "worst_f1_drop": 0.0045
+      },
+      {
+        "feature": "consonant_ratio",
+        "worst_f1_drop": 0.0036
+      }
+    ],
+    "most_fragile_semantic": [
+      {
+        "feature": "text_length",
+        "worst_f1_drop": 0.0008
+      },
+      {
+        "feature": "password_fields",
+        "worst_f1_drop": 0.0
+      },
+      {
+        "feature": "text_email_fields",
+        "worst_f1_drop": 0.0
+      }
+    ],
+    "most_robust_structural": [
+      {
+        "feature": "levenshtein_ratio",
+        "worst_f1_drop": -0.0019
+      },
+      {
+        "feature": "url_depth",
+        "worst_f1_drop": 0.0
+      },
+      {
+        "feature": "num_params",
+        "worst_f1_drop": 0.0
+      }
+    ],
+    "most_robust_semantic": [
+      {
+        "feature": "password_fields",
+        "worst_f1_drop": 0.0
+      },
+      {
+        "feature": "text_email_fields",
+        "worst_f1_drop": 0.0
+      },
+      {
+        "feature": "forms",
+        "worst_f1_drop": 0.0
+      }
+    ]
+  },
+  "ranking_definition": "Features ranked by worst-case F1 degradation under \u00b15% perturbation",
+  "higher_loss_more_fragile": true
+}

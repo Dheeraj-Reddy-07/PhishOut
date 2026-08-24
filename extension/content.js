@@ -1,12 +1,12 @@
 /**
- * PhishGuard Content Script — v3.0
+ * PhishGuard Content Script — v4.0
  *
  * Instead of directly fetching localhost (blocked by mixed-content policy),
  * we send a message to the background service worker which performs the fetch.
  * This script handles: detection, overlay injection, and debouncing.
  */
 
-console.log("[PhishGuard] Content script v3.0 active.");
+console.log("[PhishGuard] Content script v4.0 active.");
 
 // ── State ────────────────────────────────────────────────────────────────
 let _scanned = false;       // Has this page URL been scanned already?
@@ -19,6 +19,9 @@ function injectWarningOverlay(result) {
     _overlayActive = true;
 
     const { threat_level_pct = 0, verdict = "PHISHING", red_flags = [] } = result;
+    const escapeHtml = value => String(value).replace(/[&<>'"]/g, character => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", "\"": "&quot;",
+    }[character]));
 
     // Inject animation styles
     const style = document.createElement("style");
@@ -207,7 +210,7 @@ function injectWarningOverlay(result) {
     overlay.id = "pg-overlay";
 
     const flagsHtml = red_flags.length > 0
-        ? `<div class="pg-flags">${red_flags.map(f => `<div class="pg-flag-item">${f}</div>`).join("")}</div>`
+        ? `<div class="pg-flags">${red_flags.map(f => `<div class="pg-flag-item">${escapeHtml(f)}</div>`).join("")}</div>`
         : "";
 
     overlay.innerHTML = `
@@ -217,7 +220,7 @@ function injectWarningOverlay(result) {
             <div class="pg-badge">⚠ PhishGuard Threat Detection</div>
             <span class="pg-icon">🛡</span>
             <h1 class="pg-title">Credential Harvesting Detected</h1>
-            <div class="pg-url">${window.location.href.substring(0, 80)}...</div>
+            <div class="pg-url">${escapeHtml(window.location.href.substring(0, 80))}...</div>
 
             <div class="pg-meter-wrap">
                 <div class="pg-meter-bar" id="pg-bar" style="width:0%"></div>
@@ -234,7 +237,7 @@ function injectWarningOverlay(result) {
                 <button class="pg-btn-primary" id="pg-back-btn">◀ GO BACK TO SAFETY</button>
                 <button class="pg-btn-ghost" id="pg-ignore-btn">Proceed at own risk</button>
             </div>
-            <div class="pg-footer">PHISHGUARD v3.0 · ML + RULE ENGINE · REAL-TIME ANALYSIS</div>
+            <div class="pg-footer">PHISHGUARD v4.0 · PHISHOUT LEARNED FUSION · REAL-TIME ANALYSIS</div>
         </div>
     `;
 
@@ -281,18 +284,23 @@ function triggerScan() {
     chrome.runtime.sendMessage({ type: "SCAN_URL", url }, (response) => {
         if (chrome.runtime.lastError) {
             console.error("[PhishGuard] Could not reach background:", chrome.runtime.lastError.message);
+            _scanned = false;
             return;
         }
-        if (!response) return;
+        if (!response) {
+            _scanned = false;
+            return;
+        }
 
         if (response.error) {
             console.warn("[PhishGuard] Scan error:", response.error);
+            _scanned = false;
             return;
         }
 
         console.log(`[PhishGuard] Result: ${response.verdict} (${response.threat_level_pct}%)`);
 
-        if (response.is_dangerous) {
+        if (response.verdict === "PHISHING") {
             injectWarningOverlay(response);
         }
     });
@@ -397,15 +405,33 @@ if (document.body) {
 // ── SPA navigation detection ──────────────────────────────────────────────
 // Handle single-page apps that change URL without a full page reload
 let _lastUrl = window.location.href;
+function resetForNavigation() {
+    if (window.location.href === _lastUrl) return;
+    _lastUrl = window.location.href;
+    document.getElementById("pg-overlay")?.remove();
+    document.getElementById("pg-styles")?.remove();
+    _scanned = false;
+    _overlayActive = false;
+    console.log(`[PhishGuard] SPA navigation detected → ${_lastUrl}`);
+    setTimeout(checkAndScan, 1000);
+}
+
 const _urlObserver = new MutationObserver(() => {
     if (window.location.href !== _lastUrl) {
-        _lastUrl = window.location.href;
-        _scanned = false;  // Reset scan state on URL change
-        _overlayActive = false;
-        console.log(`[PhishGuard] SPA navigation detected → ${_lastUrl}`);
-        setTimeout(checkAndScan, 1000); // Give the new page time to render
+        resetForNavigation();
     }
 });
+
+window.addEventListener("popstate", resetForNavigation);
+window.addEventListener("hashchange", resetForNavigation);
+for (const method of ["pushState", "replaceState"]) {
+    const original = history[method];
+    history[method] = function (...args) {
+        const result = original.apply(this, args);
+        resetForNavigation();
+        return result;
+    };
+}
 
 // Observe head/title changes which typically accompany SPA navigation
 if (document.head) {

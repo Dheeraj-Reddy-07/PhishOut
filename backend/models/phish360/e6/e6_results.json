@@ -1,0 +1,286 @@
+{
+  "clean_test": {
+    "original_phishout": {
+      "model": "Original PhishOut",
+      "samples": 1533,
+      "accuracy": 0.954337899543379,
+      "precision": 0.9501661129568106,
+      "recall": 0.934640522875817,
+      "f1": 0.942339373970346,
+      "roc_auc": 0.9883793546372585,
+      "detection_rate": 0.934640522875817,
+      "confusion_matrix": {
+        "tn": 891,
+        "fp": 30,
+        "fn": 40,
+        "tp": 572
+      }
+    },
+    "adversarially_trained_phishout": {
+      "model": "E6 Adversarially-Trained PhishOut",
+      "samples": 1533,
+      "accuracy": 0.9523809523809523,
+      "precision": 0.9499165275459098,
+      "recall": 0.9297385620915033,
+      "f1": 0.9397192402972749,
+      "roc_auc": 0.9883509683279754,
+      "detection_rate": 0.9297385620915033,
+      "confusion_matrix": {
+        "tn": 891,
+        "fp": 30,
+        "fn": 43,
+        "tp": 569
+      }
+    }
+  },
+  "adversarial_test": {
+    "benign_content_padding": {
+      "original_phishout": {
+        "transformation": "benign_content_padding",
+        "samples": 612,
+        "clean_detected": 572,
+        "perturbed_detected": 570,
+        "evasion_count": 2,
+        "evasion_rate": 0.0034965034965034965,
+        "verdict_changes": 4,
+        "mean_risk_score_change": -0.3415032679738562
+      },
+      "adversarially_trained_phishout": {
+        "transformation": "benign_content_padding",
+        "samples": 612,
+        "clean_detected": 569,
+        "perturbed_detected": 568,
+        "evasion_count": 1,
+        "evasion_rate": 0.0017574692442882249,
+        "verdict_changes": 1,
+        "mean_risk_score_change": -0.1830065359477124
+      },
+      "original_adversarial_metrics": {
+        "model": "Original PhishOut adversarial subset",
+        "samples": 612,
+        "accuracy": 0.9313725490196079,
+        "precision": 1.0,
+        "recall": 0.9313725490196079,
+        "f1": 0.9644670050761421,
+        "roc_auc": null,
+        "detection_rate": 0.9313725490196079,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 42,
+          "tp": 570
+        }
+      },
+      "e6_adversarial_metrics": {
+        "model": "E6 adversarial subset",
+        "samples": 612,
+        "accuracy": 0.9281045751633987,
+        "precision": 1.0,
+        "recall": 0.9281045751633987,
+        "f1": 0.9627118644067797,
+        "roc_auc": null,
+        "detection_rate": 0.9281045751633987,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 44,
+          "tp": 568
+        }
+      }
+    },
+    "visible_text_obfuscation": {
+      "original_phishout": {
+        "transformation": "visible_text_obfuscation",
+        "samples": 612,
+        "clean_detected": 572,
+        "perturbed_detected": 541,
+        "evasion_count": 31,
+        "evasion_rate": 0.05419580419580419,
+        "verdict_changes": 36,
+        "mean_risk_score_change": -3.5294117647058822
+      },
+      "adversarially_trained_phishout": {
+        "transformation": "visible_text_obfuscation",
+        "samples": 612,
+        "clean_detected": 569,
+        "perturbed_detected": 545,
+        "evasion_count": 25,
+        "evasion_rate": 0.043936731107205626,
+        "verdict_changes": 30,
+        "mean_risk_score_change": -2.787581699346405
+      },
+      "original_adversarial_metrics": {
+        "model": "Original PhishOut adversarial subset",
+        "samples": 612,
+        "accuracy": 0.8839869281045751,
+        "precision": 1.0,
+        "recall": 0.8839869281045751,
+        "f1": 0.9384215091066782,
+        "roc_auc": null,
+        "detection_rate": 0.8839869281045751,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 71,
+          "tp": 541
+        }
+      },
+      "e6_adversarial_metrics": {
+        "model": "E6 adversarial subset",
+        "samples": 612,
+        "accuracy": 0.8905228758169934,
+        "precision": 1.0,
+        "recall": 0.8905228758169934,
+        "f1": 0.9420916162489196,
+        "roc_auc": null,
+        "detection_rate": 0.8905228758169934,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 67,
+          "tp": 545
+        }
+      }
+    },
+    "cosmetic_dom_addition": {
+      "original_phishout": {
+        "transformation": "cosmetic_dom_addition",
+        "samples": 612,
+        "clean_detected": 572,
+        "perturbed_detected": 572,
+        "evasion_count": 0,
+        "evasion_rate": 0.0,
+        "verdict_changes": 0,
+        "mean_risk_score_change": 0.0
+      },
+      "adversarially_trained_phishout": {
+        "transformation": "cosmetic_dom_addition",
+        "samples": 612,
+        "clean_detected": 569,
+        "perturbed_detected": 569,
+        "evasion_count": 0,
+        "evasion_rate": 0.0,
+        "verdict_changes": 0,
+        "mean_risk_score_change": 0.0
+      },
+      "original_adversarial_metrics": {
+        "model": "Original PhishOut adversarial subset",
+        "samples": 612,
+        "accuracy": 0.934640522875817,
+        "precision": 1.0,
+        "recall": 0.934640522875817,
+        "f1": 0.9662162162162162,
+        "roc_auc": null,
+        "detection_rate": 0.934640522875817,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 40,
+          "tp": 572
+        }
+      },
+      "e6_adversarial_metrics": {
+        "model": "E6 adversarial subset",
+        "samples": 612,
+        "accuracy": 0.9297385620915033,
+        "precision": 1.0,
+        "recall": 0.9297385620915033,
+        "f1": 0.9635901778154107,
+        "roc_auc": null,
+        "detection_rate": 0.9297385620915033,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 43,
+          "tp": 569
+        }
+      }
+    },
+    "url_lexical_query_addition": {
+      "original_phishout": {
+        "transformation": "url_lexical_query_addition",
+        "samples": 612,
+        "clean_detected": 572,
+        "perturbed_detected": 568,
+        "evasion_count": 4,
+        "evasion_rate": 0.006993006993006993,
+        "verdict_changes": 6,
+        "mean_risk_score_change": -1.526143790849673
+      },
+      "adversarially_trained_phishout": {
+        "transformation": "url_lexical_query_addition",
+        "samples": 612,
+        "clean_detected": 569,
+        "perturbed_detected": 584,
+        "evasion_count": 1,
+        "evasion_rate": 0.0017574692442882249,
+        "verdict_changes": 25,
+        "mean_risk_score_change": 4.534313725490196
+      },
+      "original_adversarial_metrics": {
+        "model": "Original PhishOut adversarial subset",
+        "samples": 612,
+        "accuracy": 0.9281045751633987,
+        "precision": 1.0,
+        "recall": 0.9281045751633987,
+        "f1": 0.9627118644067797,
+        "roc_auc": null,
+        "detection_rate": 0.9281045751633987,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 44,
+          "tp": 568
+        }
+      },
+      "e6_adversarial_metrics": {
+        "model": "E6 adversarial subset",
+        "samples": 612,
+        "accuracy": 0.954248366013072,
+        "precision": 1.0,
+        "recall": 0.954248366013072,
+        "f1": 0.9765886287625418,
+        "roc_auc": null,
+        "detection_rate": 0.954248366013072,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 0,
+          "fn": 28,
+          "tp": 584
+        }
+      }
+    }
+  },
+  "config": {
+    "training_source": "existing train_features.parquet phishing rows only",
+    "raw_source": "D:\\Downloads\\phish360_parquet",
+    "architecture": "32 structural + 12 semantic -> learned score-level fusion",
+    "augmentation": "one deterministic E5 variant per phishing training sample, round-robin across four transformations",
+    "thresholds": {
+      "safe_max_risk_score": 15,
+      "phishing_min_risk_score": 57,
+      "source": "original frozen Phase 2 threshold reference"
+    },
+    "validation_used_for": "calibrating new component probabilities and fitting new fusion model; no test data used",
+    "transformations": [
+      "benign_content_padding",
+      "visible_text_obfuscation",
+      "cosmetic_dom_addition",
+      "url_lexical_query_addition"
+    ],
+    "clean_training_samples": 7732,
+    "phishing_training_samples": 3113,
+    "adversarial_training_samples": 3113,
+    "training_transformation_counts": {
+      "benign_content_padding": 779,
+      "visible_text_obfuscation": 778,
+      "cosmetic_dom_addition": 778,
+      "url_lexical_query_addition": 778
+    },
+    "leakage": {
+      "test_sample_id_overlap": 0,
+      "test_url_overlap": 0,
+      "test_registered_domain_overlap": 0
+    }
+  }
+}
