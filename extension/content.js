@@ -1,12 +1,12 @@
 /**
- * PhishGuard Content Script — v4.0
+ * PhishOut Content Script — v4.0
  *
  * Instead of directly fetching localhost (blocked by mixed-content policy),
  * we send a message to the background service worker which performs the fetch.
  * This script handles: detection, overlay injection, and debouncing.
  */
 
-console.log("[PhishGuard] Content script v4.0 active.");
+console.log("[PhishOut] Content script v4.0 active.");
 
 // ── State ────────────────────────────────────────────────────────────────
 let _scanned = false;       // Has this page URL been scanned already?
@@ -213,13 +213,28 @@ function injectWarningOverlay(result) {
         ? `<div class="pg-flags">${red_flags.map(f => `<div class="pg-flag-item">${escapeHtml(f)}</div>`).join("")}</div>`
         : "";
 
+    // Determine title and description based on verdict
+    let titleText = "";
+    let descText = "";
+    
+    if (verdict === "PHISHING") {
+        titleText = "Phishing Detected";
+        descText = "PhishOut's ML engine has flagged this page as a phishing site. Do not enter credentials.";
+    } else if (verdict === "SUSPICIOUS") {
+        titleText = "Suspicious Page";
+        descText = "PhishOut has detected suspicious signals. Review carefully before entering credentials.";
+    } else {
+        titleText = "Warning";
+        descText = "PhishOut has detected potential security issues on this page.";
+    }
+
     overlay.innerHTML = `
         <div class="pg-scanlines"></div>
         <div class="pg-grid"></div>
         <div id="pg-card">
-            <div class="pg-badge">⚠ PhishGuard Threat Detection</div>
+            <div class="pg-badge">⚠ PhishOut Threat Detection</div>
             <span class="pg-icon">🛡</span>
-            <h1 class="pg-title">Credential Harvesting Detected</h1>
+            <h1 class="pg-title">${escapeHtml(titleText)}</h1>
             <div class="pg-url">${escapeHtml(window.location.href.substring(0, 80))}...</div>
 
             <div class="pg-meter-wrap">
@@ -230,14 +245,13 @@ function injectWarningOverlay(result) {
             ${flagsHtml}
 
             <p class="pg-desc">
-                PhishGuard's ML engine has flagged this page as a potential phishing site.
-                Submitting your credentials here may result in account compromise.
+                ${escapeHtml(descText)}
             </p>
             <div class="pg-actions">
                 <button class="pg-btn-primary" id="pg-back-btn">◀ GO BACK TO SAFETY</button>
                 <button class="pg-btn-ghost" id="pg-ignore-btn">Proceed at own risk</button>
             </div>
-            <div class="pg-footer">PHISHGUARD v4.0 · PHISHOUT LEARNED FUSION · REAL-TIME ANALYSIS</div>
+            <div class="pg-footer">PHISHOUT v4.0 · PHISHOUT LEARNED FUSION · REAL-TIME ANALYSIS</div>
         </div>
     `;
 
@@ -264,7 +278,7 @@ function injectWarningOverlay(result) {
         overlay.remove();
         document.getElementById("pg-styles")?.remove();
         _overlayActive = false;
-        console.warn("[PhishGuard] User chose to bypass warning.");
+        console.warn("[PhishOut] User chose to bypass warning.");
     });
 }
 
@@ -279,11 +293,11 @@ function triggerScan() {
         url.startsWith("about:") || url.startsWith("data:")) return;
 
     _scanned = true;
-    console.log(`[PhishGuard] Sending scan request to background for: ${url}`);
+    console.log(`[PhishOut] Sending scan request to background for: ${url}`);
 
     chrome.runtime.sendMessage({ type: "SCAN_URL", url }, (response) => {
         if (chrome.runtime.lastError) {
-            console.error("[PhishGuard] Could not reach background:", chrome.runtime.lastError.message);
+            console.error("[PhishOut] Could not reach background:", chrome.runtime.lastError.message);
             _scanned = false;
             return;
         }
@@ -293,12 +307,12 @@ function triggerScan() {
         }
 
         if (response.error) {
-            console.warn("[PhishGuard] Scan error:", response.error);
+            console.warn("[PhishOut] Scan error:", response.error);
             _scanned = false;
             return;
         }
 
-        console.log(`[PhishGuard] Result: ${response.verdict} (${response.threat_level_pct}%)`);
+        console.log(`[PhishOut] Result: ${response.verdict} (${response.threat_level_pct}%)`);
 
         if (response.verdict === "PHISHING") {
             injectWarningOverlay(response);
@@ -412,7 +426,7 @@ function resetForNavigation() {
     document.getElementById("pg-styles")?.remove();
     _scanned = false;
     _overlayActive = false;
-    console.log(`[PhishGuard] SPA navigation detected → ${_lastUrl}`);
+    console.log(`[PhishOut] SPA navigation detected → ${_lastUrl}`);
     setTimeout(checkAndScan, 1000);
 }
 

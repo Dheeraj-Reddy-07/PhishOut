@@ -1,0 +1,673 @@
+[
+  {
+    "url": "https://www.google.com",
+    "risk_score": 2,
+    "structural_score": 3,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Form(s) detected on page (1).",
+      "Login-related content detected (1 occurrences)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.microsoft.com",
+    "risk_score": 8,
+    "structural_score": 2,
+    "semantic_score": 18,
+    "verdict": "SAFE",
+    "reasons": [
+      "Login/credential form detected (1 form(s), 1 credential keyword(s)).",
+      "Login-related content detected (1 occurrences).",
+      "Unusually high number of external links (23) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.apple.com",
+    "risk_score": 15,
+    "structural_score": 3,
+    "semantic_score": 33,
+    "verdict": "SUSPICIOUS",
+    "reasons": [
+      "Form(s) detected on page (1).",
+      "Login-related content detected (6 occurrences).",
+      "Strong urgency / deception language on page (5 occurrences).",
+      "Payment / financial content detected (23 occurrences).",
+      "Unusually high number of external links (26) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.amazon.com",
+    "risk_score": 4,
+    "structural_score": 3,
+    "semantic_score": 5,
+    "verdict": "SAFE",
+    "reasons": [
+      "Iframe(s) detected (1) \u2014 can embed hidden content."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.wikipedia.org",
+    "risk_score": 3,
+    "structural_score": 3,
+    "semantic_score": 3,
+    "verdict": "SAFE",
+    "reasons": [
+      "Form(s) detected on page (1).",
+      "Unusually high number of external links (377) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.netflix.com",
+    "risk_score": 7,
+    "structural_score": 3,
+    "semantic_score": 14,
+    "verdict": "SAFE",
+    "reasons": [
+      "High density of login-related language on page (10 occurrences).",
+      "Urgency-related language detected (1 occurrences)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.adobe.com",
+    "risk_score": 3,
+    "structural_score": 3,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Domain shows possible brand similarity (impersonation score: 0.67).",
+      "Webpage could not be fetched \u2014 decision based primarily on URL structure."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://www.ibm.com",
+    "risk_score": 10,
+    "structural_score": 2,
+    "semantic_score": 21,
+    "verdict": "SAFE",
+    "reasons": [
+      "Domain shows possible brand similarity (impersonation score: 0.62).",
+      "Login/credential form detected (1 form(s), 4 credential keyword(s)).",
+      "Login-related content detected (1 occurrences).",
+      "Urgency-related language detected (1 occurrences).",
+      "High script count (64) \u2014 complex client-side behaviour."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.oracle.com",
+    "risk_score": 2,
+    "structural_score": 2,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Webpage could not be fetched \u2014 URL structure was analysed only."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://www.intel.com",
+    "risk_score": 2,
+    "structural_score": 2,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Domain shows possible brand similarity (impersonation score: 0.64).",
+      "Webpage could not be fetched \u2014 decision based primarily on URL structure."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://accounts.google.com",
+    "risk_score": 5,
+    "structural_score": 3,
+    "semantic_score": 8,
+    "verdict": "SAFE",
+    "reasons": [
+      "Suspicious keyword(s) in URL (1 found).",
+      "Login-related content detected (6 occurrences)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://account.microsoft.com",
+    "risk_score": 5,
+    "structural_score": 3,
+    "semantic_score": 9,
+    "verdict": "SAFE",
+    "reasons": [
+      "Suspicious keyword(s) in URL (1 found).",
+      "Login-related content detected (4 occurrences).",
+      "Urgency-related language detected (1 occurrences)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://github.com/login",
+    "risk_score": 32,
+    "structural_score": 18,
+    "semantic_score": 54,
+    "verdict": "SUSPICIOUS",
+    "reasons": [
+      "Suspicious keyword(s) in URL (1 found).",
+      "Password input field(s) detected on page (1).",
+      "Login/credential form detected (1 form(s), 2 credential keyword(s)).",
+      "High density of login-related language on page (8 occurrences).",
+      "Urgency-related language detected (1 occurrences)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.reddit.com/login",
+    "risk_score": 4,
+    "structural_score": 7,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Suspicious keyword(s) in URL (1 found).",
+      "Form(s) detected on page (1)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.linkedin.com/login",
+    "risk_score": 20,
+    "structural_score": 7,
+    "semantic_score": 39,
+    "verdict": "SUSPICIOUS",
+    "reasons": [
+      "Suspicious keyword(s) in URL (1 found).",
+      "Password input field(s) detected on page (2).",
+      "High density of login-related language on page (20 occurrences).",
+      "Urgency-related language detected (2 occurrences)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.facebook.com/login",
+    "risk_score": 13,
+    "structural_score": 13,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Suspicious keyword(s) in URL (1 found).",
+      "Webpage could not be fetched \u2014 decision based primarily on URL structure."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://www.amazon.com/ap/signin",
+    "risk_score": 11,
+    "structural_score": 18,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Suspicious keyword(s) in URL (1 found).",
+      "Form(s) detected on page (1)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://login.live.com",
+    "risk_score": 3,
+    "structural_score": 3,
+    "semantic_score": 3,
+    "verdict": "SAFE",
+    "reasons": [
+      "Suspicious keyword(s) in URL (1 found).",
+      "Login-related content detected (2 occurrences)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://login.yahoo.com",
+    "risk_score": 2,
+    "structural_score": 3,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Suspicious keyword(s) in URL (1 found).",
+      "Login-related content detected (1 occurrences)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://stackoverflow.com",
+    "risk_score": 3,
+    "structural_score": 3,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Webpage could not be fetched \u2014 URL structure was analysed only."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://www.npmjs.com",
+    "risk_score": 2,
+    "structural_score": 2,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Webpage could not be fetched \u2014 URL structure was analysed only."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://www.python.org",
+    "risk_score": 11,
+    "structural_score": 2,
+    "semantic_score": 24,
+    "verdict": "SAFE",
+    "reasons": [
+      "Login/credential form detected (1 form(s), 2 credential keyword(s)).",
+      "Login-related content detected (1 occurrences).",
+      "Urgency-related language detected (2 occurrences).",
+      "Unusually high number of external links (66) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://developer.mozilla.org",
+    "risk_score": 3,
+    "structural_score": 3,
+    "semantic_score": 3,
+    "verdict": "SAFE",
+    "reasons": [
+      "Login-related content detected (1 occurrences).",
+      "Unusually high number of external links (36) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://pypi.org",
+    "risk_score": 13,
+    "structural_score": 3,
+    "semantic_score": 27,
+    "verdict": "SAFE",
+    "reasons": [
+      "Login/credential form detected (2 form(s), 2 credential keyword(s)).",
+      "Login-related content detected (3 occurrences).",
+      "Urgency-related language detected (1 occurrences).",
+      "Unusually high number of external links (35) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://gitlab.com",
+    "risk_score": 14,
+    "structural_score": 4,
+    "semantic_score": 28,
+    "verdict": "SAFE",
+    "reasons": [
+      "Domain closely resembles a known brand (impersonation score: 0.80).",
+      "Typosquatting detected \u2014 domain edit distance 2 from a known brand.",
+      "Login-related content detected (5 occurrences).",
+      "Urgency-related language detected (3 occurrences).",
+      "Unusually high number of external links (18) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.docker.com",
+    "risk_score": 20,
+    "structural_score": 2,
+    "semantic_score": 48,
+    "verdict": "SUSPICIOUS",
+    "reasons": [
+      "Login/credential form detected (1 form(s), 3 credential keyword(s)).",
+      "High density of login-related language on page (8 occurrences).",
+      "Strong urgency / deception language on page (8 occurrences).",
+      "Unusually high number of external links (24) \u2014 possible cloaking.",
+      "High script count (62) \u2014 complex client-side behaviour."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://kubernetes.io",
+    "risk_score": 7,
+    "structural_score": 3,
+    "semantic_score": 14,
+    "verdict": "SAFE",
+    "reasons": [
+      "Urgency-related language detected (1 occurrences).",
+      "Iframe(s) detected (1) \u2014 can embed hidden content.",
+      "Unusually high number of external links (22) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://nodejs.org",
+    "risk_score": 3,
+    "structural_score": 3,
+    "semantic_score": 3,
+    "verdict": "SAFE",
+    "reasons": [
+      "Unusually high number of external links (33) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.instagram.com",
+    "risk_score": 1,
+    "structural_score": 2,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "High script count (79) \u2014 complex client-side behaviour."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.facebook.com",
+    "risk_score": 3,
+    "structural_score": 3,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Webpage could not be fetched \u2014 URL structure was analysed only."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://www.linkedin.com",
+    "risk_score": 11,
+    "structural_score": 2,
+    "semantic_score": 25,
+    "verdict": "SAFE",
+    "reasons": [
+      "Form(s) detected on page (2).",
+      "High density of login-related language on page (10 occurrences).",
+      "Urgency-related language detected (3 occurrences).",
+      "Iframe(s) detected (1) \u2014 can embed hidden content."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.tiktok.com",
+    "risk_score": 3,
+    "structural_score": 3,
+    "semantic_score": 3,
+    "verdict": "SAFE",
+    "reasons": [
+      "Unusually high number of external links (51) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.pinterest.com",
+    "risk_score": 2,
+    "structural_score": 3,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "High script count (64) \u2014 complex client-side behaviour."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://medium.com",
+    "risk_score": 4,
+    "structural_score": 4,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Webpage could not be fetched \u2014 URL structure was analysed only."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://www.quora.com",
+    "risk_score": 3,
+    "structural_score": 3,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Webpage could not be fetched \u2014 URL structure was analysed only."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://www.sbi.co.in",
+    "risk_score": 6,
+    "structural_score": 3,
+    "semantic_score": 10,
+    "verdict": "SAFE",
+    "reasons": [
+      "Login-related content detected (1 occurrences).",
+      "Payment / financial content detected (4 occurrences)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.hdfcbank.com",
+    "risk_score": 13,
+    "structural_score": 3,
+    "semantic_score": 27,
+    "verdict": "SAFE",
+    "reasons": [
+      "Domain shows possible brand similarity (impersonation score: 0.67).",
+      "High density of login-related language on page (94 occurrences).",
+      "Urgency-related language detected (2 occurrences).",
+      "Payment / financial content detected (4 occurrences).",
+      "Unusually high number of external links (306) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.icicibank.com",
+    "risk_score": 15,
+    "structural_score": 3,
+    "semantic_score": 33,
+    "verdict": "SUSPICIOUS",
+    "reasons": [
+      "Domain closely resembles a known brand (impersonation score: 0.85).",
+      "Typosquatting detected \u2014 domain edit distance 2 from a known brand.",
+      "High density of login-related language on page (23 occurrences).",
+      "Strong urgency / deception language on page (14 occurrences).",
+      "Payment / financial content detected (30 occurrences).",
+      "Unusually high number of external links (55) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.axisbank.com",
+    "risk_score": 15,
+    "structural_score": 3,
+    "semantic_score": 33,
+    "verdict": "SUSPICIOUS",
+    "reasons": [
+      "Domain closely resembles a known brand (impersonation score: 0.85).",
+      "High density of login-related language on page (109 occurrences).",
+      "Strong urgency / deception language on page (9 occurrences).",
+      "Payment / financial content detected (18 occurrences).",
+      "Unusually high number of external links (239) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.flipkart.com",
+    "risk_score": 7,
+    "structural_score": 3,
+    "semantic_score": 13,
+    "verdict": "SAFE",
+    "reasons": [
+      "Form(s) detected on page (1).",
+      "Login-related content detected (1 occurrences).",
+      "Payment / financial content detected (4 occurrences).",
+      "Unusually high number of external links (17) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.phonepe.com",
+    "risk_score": 15,
+    "structural_score": 3,
+    "semantic_score": 33,
+    "verdict": "SUSPICIOUS",
+    "reasons": [
+      "High density of login-related language on page (11 occurrences).",
+      "Urgency-related language detected (3 occurrences).",
+      "Payment / financial content detected (36 occurrences).",
+      "Unusually high number of external links (63) \u2014 possible cloaking.",
+      "High script count (42) \u2014 complex client-side behaviour."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://paytm.com",
+    "risk_score": 13,
+    "structural_score": 3,
+    "semantic_score": 27,
+    "verdict": "SAFE",
+    "reasons": [
+      "Domain closely resembles a known brand (impersonation score: 0.70).",
+      "High density of login-related language on page (7 occurrences).",
+      "Urgency-related language detected (2 occurrences).",
+      "Payment / financial content detected (34 occurrences).",
+      "Unusually high number of external links (92) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.airtel.in",
+    "risk_score": 1,
+    "structural_score": 2,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.jio.com",
+    "risk_score": 9,
+    "structural_score": 2,
+    "semantic_score": 20,
+    "verdict": "SAFE",
+    "reasons": [
+      "Domain shows possible brand similarity (impersonation score: 0.62).",
+      "Form(s) detected on page (1).",
+      "Strong urgency / deception language on page (4 occurrences).",
+      "Brand name mentioned on page while domain appears to impersonate it (1 mention(s)).",
+      "High script count (37) \u2014 complex client-side behaviour."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.google.com/search?q=machine+learning+phishing+detection",
+    "risk_score": 3,
+    "structural_score": 5,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.youtube.com/results?search_query=machine+learning",
+    "risk_score": 10,
+    "structural_score": 16,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "High script count (36) \u2014 complex client-side behaviour."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://github.com/search?q=phishing+detection&type=repositories",
+    "risk_score": 10,
+    "structural_score": 7,
+    "semantic_score": 14,
+    "verdict": "SAFE",
+    "reasons": [
+      "High density of login-related language on page (7 occurrences).",
+      "Urgency-related language detected (1 occurrences)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://www.amazon.in/s?k=laptop",
+    "risk_score": 4,
+    "structural_score": 4,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Domain closely resembles a known brand (impersonation score: 0.85).",
+      "Webpage could not be fetched \u2014 decision based primarily on URL structure."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://www.google.com/maps/search/restaurants+near+tirupati",
+    "risk_score": 8,
+    "structural_score": 13,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://github.com/Dheeraj-Reddy-07/PhishOut",
+    "risk_score": 17,
+    "structural_score": 17,
+    "semantic_score": 0,
+    "verdict": "SUSPICIOUS",
+    "reasons": [
+      "Webpage could not be fetched \u2014 URL structure was analysed only."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/tagged/python",
+    "risk_score": 23,
+    "structural_score": 23,
+    "semantic_score": 0,
+    "verdict": "SUSPICIOUS",
+    "reasons": [
+      "Webpage could not be fetched \u2014 URL structure was analysed only."
+    ],
+    "fetch_status": "Failed (Structure only)"
+  },
+  {
+    "url": "https://www.reddit.com/r/technology/",
+    "risk_score": 8,
+    "structural_score": 13,
+    "semantic_score": 0,
+    "verdict": "SAFE",
+    "reasons": [
+      "Form(s) detected on page (1)."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference",
+    "risk_score": 12,
+    "structural_score": 18,
+    "semantic_score": 3,
+    "verdict": "SAFE",
+    "reasons": [
+      "Unusually high number of external links (18) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Machine_learning",
+    "risk_score": 5,
+    "structural_score": 5,
+    "semantic_score": 6,
+    "verdict": "SAFE",
+    "reasons": [
+      "Form(s) detected on page (1).",
+      "Login-related content detected (5 occurrences).",
+      "Unusually high number of external links (527) \u2014 possible cloaking."
+    ],
+    "fetch_status": "Success"
+  }
+]

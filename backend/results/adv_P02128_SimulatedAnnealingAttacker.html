@@ -1,0 +1,1265 @@
+﻿<html lang="en"><head><style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style><style type="text/css">.uib-time input{width:50px;}</style><style type="text/css">[uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom > .tooltip-arrow,[uib-popover-popup].popover.top-left > .arrow,[uib-popover-popup].popover.top-right > .arrow,[uib-popover-popup].popover.bottom-left > .arrow,[uib-popover-popup].popover.bottom-right > .arrow,[uib-popover-popup].popover.left-top > .arrow,[uib-popover-popup].popover.left-bottom > .arrow,[uib-popover-popup].popover.right-top > .arrow,[uib-popover-popup].popover.right-bottom > .arrow,[uib-popover-html-popup].popover.top-left > .arrow,[uib-popover-html-popup].popover.top-right > .arrow,[uib-popover-html-popup].popover.bottom-left > .arrow,[uib-popover-html-popup].popover.bottom-right > .arrow,[uib-popover-html-popup].popover.left-top > .arrow,[uib-popover-html-popup].popover.left-bottom > .arrow,[uib-popover-html-popup].popover.right-top > .arrow,[uib-popover-html-popup].popover.right-bottom > .arrow,[uib-popover-template-popup].popover.top-left > .arrow,[uib-popover-template-popup].popover.top-right > .arrow,[uib-popover-template-popup].popover.bottom-left > .arrow,[uib-popover-template-popup].popover.bottom-right > .arrow,[uib-popover-template-popup].popover.left-top > .arrow,[uib-popover-template-popup].popover.left-bottom > .arrow,[uib-popover-template-popup].popover.right-top > .arrow,[uib-popover-template-popup].popover.right-bottom > .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}</style><style type="text/css">.uib-datepicker-popup.dropdown-menu{display:block;float:none;margin:0;}.uib-button-bar{padding:10px 9px 2px;}</style><style type="text/css">.uib-datepicker .uib-title{width:100%;}.uib-day button,.uib-month button,.uib-year button{min-width:100%;}.uib-left,.uib-right{width:100%}</style><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">.uib-position-measure{display:block !important;visibility:hidden !important;position:absolute !important;top:-9999px !important;left:-9999px !important;}.uib-position-scrollbar-measure{position:absolute !important;top:-9999px !important;width:50px !important;height:50px !important;overflow:scroll !important;}.uib-position-body-scrollbar-measure{overflow:scroll !important;}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
+<title>iObeya</title>
+<link href="assets/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="assets/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="assets/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="assets/favicon/site.webmanifest" rel="manifest"/>
+<link color="#5bbad5" href="assets/favicon/safari-pinned-tab.svg" rel="mask-icon"/>
+<meta content="#2b5797" name="msapplication-TileColor"/>
+<meta content="#ffffff" name="theme-color"/>
+<script type="text/javascript">
+        var startTime = (new Date()).getTime();
+        var defaultServerUrl = 'https://orange.iobeya.com';
+        var IOBEYA_ENV = {}; //determine env (dev, deployed, test)
+        var injector;
+        var DUMP = {
+            id: function (obj) {
+                return obj.id;
+            },
+            arrayIds: function (array) {
+                var ids = [];
+                array.forEach(function (item) {
+                    if (item) {
+                        ids.push(item.id);
+                    }
+                });
+                return "[" + ids + "]";
+            }
+        };
+        if (!window.console) {  // IE9 !!
+            var console = {
+                log: function () {
+                },
+                warn: function () {
+                },
+                error: function () {
+                },
+                time: function () {
+                },
+                info: function () {
+                },
+                debug: function () {
+                }
+            };
+        }
+    </script>
+<script src="https://orange.iobeya.com/s/externalmodules/modules.js" type="text/javascript"></script>
+<script src="https://orange.iobeya.com/s/externalmodules/svg-templates.js" type="text/javascript"></script>
+<script src="https://orange.iobeya.com/s/externalmodules/documentations.js" type="text/javascript"></script>
+<style type="text/css">
+      body {
+        margin: 0;
+        background-image: linear-gradient(to bottom, #003e97, #001d5e);
+      }
+      .loading-screen {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to bottom, #003e97, #001d5e);
+      }
+      .loading-screen-loader {
+        width: 5%;
+        height: 5vw;
+        position: absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right: 0;
+        margin: auto;
+      }
+      .circle-loader-container .circle {
+        background-color:#FFFFFF;
+        float:left;
+        height: 20%;
+        margin: 40% 5%;
+        width: 20%;
+        animation-name:bounce_circle;
+        animation-duration:2.4s;
+        animation-iteration-count:infinite;
+        border-radius: 50%;
+      }
+      .circle-loader-container .circle1{
+        animation-delay:-0.6s;
+      }
+      .circle-loader-container .circle2{
+        animation-delay:-0.4s;
+      }
+      .circle-loader-container .circle3{
+        animation-delay:-0.2s;
+      }
+      @-webkit-keyframes bounce_circle {
+        0%{transform : scale(0);}
+        20%{transform : scale(1);}
+        40%{transform : scale(0);}
+        100%{transform : scale(0);}
+      }
+      @keyframes bounce_circle {
+        0%{transform : scale(0);}
+        20%{transform : scale(1);}
+        40%{transform : scale(0);}
+        100%{transform : scale(0);}
+      }
+    </style>
+<style>[touch-action="none"]{ -ms-touch-action: none; touch-action: none; }
+[touch-action="auto"]{ -ms-touch-action: auto; touch-action: auto; }
+[touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x; }
+[touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y; }
+[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; }
+</style><link href="/s/download/resources/gui-base/4.5.19.83329/public/css/iobeya-gui-components.css" rel="stylesheet" type="text/css"/><link href="/s/download/resources/gui-base/4.5.19.83329/public/css/iobeya-style-guide.css" rel="stylesheet" type="text/css"/><link href="assets/iobeya.css" rel="stylesheet" type="text/css"/><link href="/s/download/resources/jiracard-addon/4.5.11.168/public/css/index.css" rel="stylesheet" type="text/css"/><link href="/s/download/resources/kanban-addon/4.5.19.83329/public/css/index.css" rel="stylesheet" type="text/css"/><link href="/s/download/resources/agile-addon/4.5.3.11/public/css/index.css" rel="stylesheet" type="text/css"/><link href="/s/download/resources/instant-meeting/4.5.19.83329/public/instant-meeting.css" rel="stylesheet" type="text/css"/><link href="/s/download/resources/client-html-plugin/4.5.19.83329/public/assets/custom-logo.css" rel="stylesheet" type="text/css"/><link href="/s/download/resources/activity-card/4.5.19.83329/public/css/index.css" rel="stylesheet" type="text/css"/><link href="/s/download/resources/invitation-addon/4.5.19.83329/public/css/index.css" rel="stylesheet" type="text/css"/></head>
+<body disable-zoom-wheel="" iob-performance="https://orange.iobeya.com/s/servlet/public/mon" ios7-landscape-fix="" lang-tag="" selection-control="" tabindex="-1"><canvas style="height: 0px; width: 0px; position: absolute;"></canvas>
+<svg height="0" style="position:absolute" width="0">
+<symbol id="icon-ui-icon-add-bold-mono" viewbox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 8H8v5H5V8H0V5h5V0h3v5h5v3z" fill-rule="evenodd"></path>
+</symbol>
+<symbol id="icon-ui-icon-add-collection-mono" viewbox="0 0 19 17" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path d="M15 13v-2h2v2h2v2h-2v2h-2v-2h-2v-2h2zm-3.974 1.516l-2.703 1.407a.717.717 0 0 1-.646 0L.23 12.046c-.307-.17-.307-.646 0-.816l1.394-.713c.102-.035.204-.035.272 0l5.339 2.788c.238.102.476.17.748.17.238 0 .51-.034.748-.17l2.743-1.432a4.98 4.98 0 0 0-.448 2.643zM7.677.076a.651.651 0 0 1 .612 0l7.481 3.877c.307.17.307.646 0 .816L8.323 8.646a.722.722 0 0 1-.646 0L.23 4.77c-.306-.17-.306-.645 0-.816L7.677.076zm8.06 7.481c.306.17.306.647.034.817L8.323 12.25a.72.72 0 0 1-.646 0L.23 8.374c-.307-.17-.307-.646 0-.817l1.394-.713c.102-.035.204-.035.272 0l5.339 2.788c.238.102.476.17.748.17.238 0 .51-.033.748-.17l5.34-2.788a.37.37 0 0 1 .271 0l1.395.713z" id="aba"></path>
+</defs>
+<use fill-rule="evenodd" xlink:href="#aba"></use>
+</symbol>
+<symbol id="icon-ui-icon-add-mono" viewbox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path d="M86 46h-3v3h-1v-3h-3v-1h3v-3h1v3h3v1zm-3.5 6a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13zm0-14a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15z" id="aca"></path>
+</defs>
+<use fill-rule="evenodd" transform="translate(-75 -38)" xlink:href="#aca"></use>
+</symbol>
+<symbol id="icon-ui-icon-align-bottom-mono" viewbox="0 0 16 11" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 10h16v1H0zM2 0h5v9H2zM9 4h5v5H9z"></path>
+</symbol>
+<symbol id="icon-ui-icon-align-center-mono" viewbox="0 0 11 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 8H6V6h2V1H6V0H5v1H3v5h2v2H0v5h5v1h1v-1h5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-align-left-mono" viewbox="0 0 13 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h1v14H0zM2 1h5v5H2zM2 8h11v5H2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-align-middle-mono" viewbox="0 0 16 9" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 4h-2V2H9v2H7V0H2v4H0v1h2v4h5V5h2v2h5V5h2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-align-right-mono" viewbox="0 0 13 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 0h1v14h-1zM6 1h5v5H6zM0 8h11v5H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-align-top-mono" viewbox="0 0 16 11" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h16v1H0zM9 2h5v5H9zM2 2h5v9H2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-animation-autofocus-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zM7 13V9H3l9-5-5 9z"></path>
+</symbol>
+<symbol id="icon-ui-icon-animation-autofocus-reversed-mono" viewbox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 12V7H0l12-7-7 12z"></path>
+</symbol>
+<symbol id="icon-ui-icon-animation-cancel-control-mono" viewbox="0 0 19 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.499 11a4.5 4.5 0 1 1 0 9.001 4.5 4.5 0 0 1 0-9.001m0 3.606L11.892 13l-.892.896 1.606 1.604L11 17.109l.892.891 1.607-1.605L15.106 18l.894-.891-1.607-1.609L16 13.896 15.106 13l-1.607 1.606m0-4.606C10.467 10 8 12.467 8 15.5s2.467 5.5 5.499 5.5C16.532 21 19 18.533 19 15.5S16.532 10 13.499 10z"></path>
+<path d="M13 9.025V8c0-.628-.531-1.143-1.182-1.143-.623 0-1.125.478-1.166 1.069l-.016-.005V6.857c0-.629-.531-1.143-1.183-1.143-.648 0-1.182.514-1.182 1.143V5.715c0-.629-.531-1.143-1.183-1.143-.648 0-1.182.515-1.182 1.143V1.143C5.908.515 5.377 0 4.727 0c-.649 0-1.182.515-1.182 1.143V8.826c0 .14-.132.263-.27.305a.362.362 0 0 1-.386-.129C2.02 7.905 2.074 6.821.82 6.821a.825.825 0 0 0-.708.391.78.78 0 0 0-.01.788l3.704 7.706a.592.592 0 0 0 .516.294h2.703c-.012-.166-.025-.331-.025-.5a6.497 6.497 0 0 1 6-6.475z"></path>
+</symbol>
+<symbol id="icon-ui-icon-animation-control-mono" viewbox="0 0 13 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.818 6.857c-.623 0-1.125.478-1.166 1.069l-.016-.005V6.857c0-.628-.531-1.143-1.183-1.143-.648 0-1.182.516-1.182 1.143V5.714c0-.628-.531-1.143-1.183-1.143-.648 0-1.182.515-1.182 1.143V1.143C5.908.515 5.377 0 4.726 0c-.648 0-1.181.515-1.181 1.143V8.826c0 .14-.132.263-.27.304a.361.361 0 0 1-.386-.128C2.02 7.906 2.074 6.822.82 6.822a.824.824 0 0 0-.708.39.78.78 0 0 0-.01.788l3.704 7.707a.59.59 0 0 0 .516.293h6.904c.98 0 1.774-.767 1.774-1.714V8c0-.628-.531-1.143-1.182-1.143z"></path>
+</symbol>
+<symbol id="icon-ui-icon-animation-getback-control-mono" viewbox="0 0 15.663 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.037 16h7s2.631-7.09 3.436-9.264c.812-2.188-1.188-2.688-1.936-.625-.539 1.486-.938 1.688-.938 1.688s-.825-.002-.688-.875c.188-1.188.438-2.624.811-4.812.233-1.355-1.938-1.562-2.124-.438-.188 1.125-.626 4.125-.75 4.812-.126.688-.92 1.249-1-.438a101.209 101.209 0 0 1-.126-5c0-1.5-2.374-1.312-2.374.062 0 .961.075 4.874.062 5.625-.014.75-.346.987-.812-.062-.5-1.125-1.031-2.457-1.5-3.562-.686-1.625-2.55-.51-2.125.625.374.993 1.275 3.187 2 4.875.374.864.845 2.579-.311 1.689-.813-.626-1.125-1.251-2.063-1.876S-.284 9.145.08 9.591c.812 1 2.241 2.573 3.166 4.083C3.933 14.799 5.037 16 5.037 16z"></path>
+</symbol>
+<symbol id="icon-ui-icon-animation-ideation-bulb-mono" viewbox="0 0 8 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9H2c0-2-2-2-2-5 0-2.2 1.8-4 4-4s4 1.8 4 4c0 3-2 3-2 5zm0 2v-1H2v1c0 .6.4 1 1 1h2c.6 0 1-.4 1-1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-animation-ideation-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 8c0 4.4-3.6 8-8 8s-8-3.6-8-8 3.6-8 8-8 8 3.6 8 8zm-6.5 4h-3c0 .6.4 1 1 1h1c.6 0 1-.4 1-1zM11 7c0-1.7-1.3-3-3-3S5 5.3 5 7c0 2 1.5 2 1.5 4h3c0-2 1.5-2 1.5-4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-animation-ideation-reversed-mono" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 20H9c0-4-3-4-3-8 0-3.3 2.7-6 6-6s6 2.7 6 6c0 4-3 4-3 8zM12 .5c0-.3-.2-.5-.5-.5s-.5.2-.5.5v3c0 .3.2.5.5.5s.5-.2.5-.5v-3zm-7.8 3c-.2-.2-.5-.2-.7 0-.2.2-.2.5 0 .7l2.1 2.1c.2.2.5.2.7 0 .2-.2.2-.5 0-.7L4.2 3.5zM.5 11c-.3 0-.5.2-.5.5s.2.5.5.5h3c.3 0 .5-.2.5-.5s-.2-.5-.5-.5h-3zm17.2-5.4c-.2.2-.2.5 0 .7.2.2.5.2.7 0l2.1-2.1c.2-.2.2-.5 0-.7-.2-.2-.5-.2-.7 0l-2.1 2.1zm2.8 5.4c-.3 0-.5.2-.5.5s.2.5.5.5h3c.3 0 .5-.2.5-.5s-.2-.5-.5-.5h-3zM15 22v-1H9v1c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-animation-stop-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 11h6V5H5zm3 4a7 7 0 0 0 7-7 7 7 0 0 0-7-7 7 7 0 0 0-7 7 7 7 0 0 0 7 7zm0 1a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" fill-rule="evenodd"></path>
+</symbol>
+<symbol id="icon-ui-icon-animation-vote-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 8c0 4.4-3.6 8-8 8s-8-3.6-8-8 3.6-8 8-8 8 3.6 8 8zM6 7v4l4 1 2-4-3-1s1-1 1-2V4H9c0 1-2 3-3 3zM5 7H4v4h1V7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-animation-vote-reversed-mono" viewbox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 5v6l7 1 2-6-4-1s1-2 1-4V0H8c0 1.6-3.5 5-5 5zM2 5H0v6h2V5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-archive-mono" viewbox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 4v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V4H1zm9 4H6c-.6 0-1-.4-1-1s.4-1 1-1h4c.6 0 1 .4 1 1s-.4 1-1 1zm5-5H1c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h14c.6 0 1 .4 1 1v1c0 .6-.4 1-1 1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-arrange-group-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 1v14H1V1h14m1-1H0v16h16V0zm-6 6V3H3v7h3v3h7V6h-3zM4 9V4h5v2H6v3H4zm5-2v2H7V7h2zm3 5H7v-2h3V7h2v5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-arrange-ungroup-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 5V0H0v11h5v5h11V5h-5zm-6 5H1V1h9v4H5v5zm5-4v4H6V6h4zm5 9H6v-4h5V6h4v9z"></path>
+</symbol>
+<symbol id="icon-ui-icon-arrow-collapse-mono" viewbox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
+<style>.st0{fill:#1a171b}.st1{fill-rule:evenodd;clip-rule:evenodd}.st2,.st3{fill:none;stroke:#fff;stroke-miterlimit:10}.st3{stroke:#000}.st4{opacity:.75}.st5{fill:#fff}.st6{fill:#979797}.st7{clip-path:url(#SVGID_2_);enable-background:new}.st8{clip-path:url(#SVGID_4_)}.st9{clip-path:url(#SVGID_6_)}.st10{clip-path:url(#SVGID_8_)}.st11{clip-path:url(#SVGID_10_);enable-background:new}.st12{clip-path:url(#SVGID_12_)}.st13{clip-path:url(#SVGID_14_)}.st14{clip-path:url(#SVGID_16_)}.st15{clip-path:url(#SVGID_18_);enable-background:new}.st16{clip-path:url(#SVGID_20_)}.st17{clip-path:url(#SVGID_22_)}.st18{clip-path:url(#SVGID_24_)}</style>
+<path d="M0 5l5-5 5 5-1 1-4-4-4 4-1-1z" id="axscene"></path>
+</symbol>
+<symbol id="icon-ui-icon-arrow-down-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.5 5.5L8 10V0H6v10L1.5 5.5 0 7l7 7 7-7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-arrow-expand-mono" viewbox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
+<style>.st0{fill:#1a171b}.st1{fill-rule:evenodd;clip-rule:evenodd}.st2,.st3{fill:none;stroke:#fff;stroke-miterlimit:10}.st3{stroke:#000}.st4{opacity:.75}.st5{fill:#979797}.st6{clip-path:url(#SVGID_2_);enable-background:new}.st7{clip-path:url(#SVGID_4_)}.st8{clip-path:url(#SVGID_6_)}.st9{clip-path:url(#SVGID_8_)}.st10{clip-path:url(#SVGID_10_);enable-background:new}.st11{clip-path:url(#SVGID_12_)}.st12{clip-path:url(#SVGID_14_)}.st13{clip-path:url(#SVGID_16_)}.st14{clip-path:url(#SVGID_18_);enable-background:new}.st15{clip-path:url(#SVGID_20_)}.st16{clip-path:url(#SVGID_22_)}.st17{clip-path:url(#SVGID_24_)}</style>
+<path d="M1 0l4 4 4-4 1 1-5 5-5-5 1-1z" id="azscene"></path>
+</symbol>
+<symbol id="icon-ui-icon-arrow-left-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.5 12.5L4 8h10V6H4l4.5-4.5L7 0 0 7l7 7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-arrow-right-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.5 12.5L10 8H0V6h10L5.5 1.5 7 0l7 7-7 7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-arrow-top-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.5 8.5L8 4v10H6V4L1.5 8.5 0 7l7-7 7 7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-audience-group-mono" viewbox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path d="M13 7a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zm6.5 4.7c.3.5.5 1.4.5 1.9v.7c0 .9-.6 1.7-1.4 1.7H7.4c-.8 0-1.4-.8-1.4-1.7v-.7c0-.5.2-1.4.5-1.9.8-1.2 1.7-1.9 3-2.3 0 0 .98-.484 3.5-.498 2.52.014 3.5.498 3.5.498 1.3.4 2.2 1.1 3 2.3zM6 8.5a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm-1 5.8c0 .647.212 1.234.551 1.7h-4.32C.55 16 0 15.359 0 14.567v-.58c.008-.416.146-1.194.401-1.58.65-.98 1.428-1.62 2.547-1.981 0 0 .844-.426 3.05-.426.22 0 .408.009.6.017a7.487 7.487 0 0 0-.93 1.129C5.24 11.856 5 12.94 5 13.6v.7z" id="bda"></path>
+</defs>
+<use fill-rule="evenodd" xlink:href="#bda"></use>
+</symbol>
+<symbol id="icon-ui-icon-audience-user-mono" viewbox="0 0 14 16" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path d="M10.5 3.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0zM0 14.3c0 .9.6 1.7 1.4 1.7h11.1c.8 0 1.4-.8 1.4-1.7v-.7c0-.5-.2-1.4-.5-1.9-.8-1.2-1.7-1.9-3-2.3 0 0-1-.5-3.6-.5s-3.6.5-3.6.5c-1.3.4-2.2 1.2-3 2.3 0 .5-.2 1.4-.2 1.9v.7z" id="bea"></path>
+</defs>
+<use fill-rule="evenodd" xlink:href="#bea"></use>
+</symbol>
+<symbol id="icon-ui-icon-back-mono" viewbox="0 0 18 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 5H9V0L0 7l9 7V9h9z"></path>
+</symbol>
+<symbol id="icon-ui-icon-board-settings-mono" viewbox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 11v1H0V0h15v2h-1V1H1v10h3zm10.55-1.729L16 10.557l-1.826 2.056-1.049-.931a4.16 4.16 0 0 1-1.25.704V14h-2.75v-1.614a4.106 4.106 0 0 1-1.25-.704l-1.049.931L5 10.557l1.449-1.286a4.164 4.164 0 0 1-.074-.771c0-.263.027-.52.074-.77L5 6.444l1.826-2.057 1.049.931a4.103 4.103 0 0 1 1.25-.703V3h2.75v1.615c.458.162.882.399 1.25.703l1.049-.931L16 6.444 14.55 7.73c.047.25.075.507.075.77 0 .264-.028.521-.075.771zM12.944 8.5A2.447 2.447 0 0 0 10.5 6.056 2.446 2.446 0 0 0 8.056 8.5a2.446 2.446 0 0 0 2.444 2.444A2.446 2.446 0 0 0 12.944 8.5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-bulk-creation-mono" viewbox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1v12H0V0h13v1H1z"></path>
+<path d="M3 3v12H2V2h13v1H3z"></path>
+<path d="M17 4v8l-5 5H4V4zm-1 7V5H5v11h6v-5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-calendar-mono" viewbox="0 0 16 18" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M14 16H2V7h12v9zM11 0v2H5V0H3v2H0v16h16V2h-3V0h-2zm1 12h-2v2h2v-2zm-3 0H7v2h2v-2zm0-3H7v2h2V9zm3 0h-2v2h2V9zm-6 3H4v2h2v-2zm0-3H4v2h2V9z" fill-rule="evenodd"></path>
+</symbol>
+<symbol id="icon-ui-icon-camera-mono" viewbox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.2 8c0 1.2-1 2.3-2.2 2.3S5.8 9.2 5.8 8c0-1.2 1-2.2 2.2-2.2s2.2 1 2.2 2.2zM13 2c1.7 0 3 1.3 3 3v6c0 1.6-1.4 3-3 3H3c-1.6 0-3-1.4-3-3V5c0-1.7 1.3-3 3-3h1c0-1 1-2 2-2h4c1 0 2 1.1 2 2h1zm-1 6c0-2.2-1.8-4-4-4S4 5.8 4 8s1.8 4 4 4 4-1.8 4-4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-card-mono" viewbox="0 0 18 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 15V1c0-.6.4-1 1-1h16c.6 0 1 .4 1 1v14c0 .6-.4 1-1 1H1c-.6 0-1-.4-1-1zm17-.5V12H1v2.5c0 .3.2.5.5.5h15c.3 0 .5-.2.5-.5zM16 4H2v1h14V4zm-2 3H4v1h10V7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-category-arrow-right-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon-mono-02</title>
+<path d="M8 0L6.59 1.41 12.17 7H0v2h12.17l-5.58 5.59L8 16l8-8-8-8z"></path>
+</symbol>
+<symbol id="icon-ui-icon-change-type-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 8c0-.383-.041-.756-.109-1.12L16 5.01l-2.656-2.992-1.525 1.355A5.992 5.992 0 0 0 10 2.35V0H6v2.35a5.97 5.97 0 0 0-1.818 1.022L2.656 2.018 0 5.01l2.107 1.87A6.084 6.084 0 0 0 2 8c0 .384.039.758.107 1.121L0 10.992l2.656 2.99 1.525-1.354A5.992 5.992 0 0 0 6 13.652V16h4v-2.348a6.017 6.017 0 0 0 1.818-1.023l1.525 1.354L16 10.992l-2.109-1.871C13.959 8.758 14 8.384 14 8zm-6 4c-2.207 0-4-1.795-4-4s1.793-4 4-4c2.205 0 4 1.795 4 4s-1.795 4-4 4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-chart-type-area-mono" viewbox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.697 6.802l4.884 1.953 2.532-4.22L10 6 5 2l-3.698 8.876z"></path>
+<path d="M5 8l-5 6h16V0l-6 10z"></path>
+</symbol>
+<symbol id="icon-ui-icon-chart-type-bar-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 11h4v5H0zM6 3h4v13H6zM12 0h4v16h-4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-chart-type-bar-orientation-horizontal-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 0h4v4H2zM2 6h10v4H2zM2 12h14v4H2zM0 0h1v16H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-chart-type-bar-orientation-vertical-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 10h4v4H0zM6 4h4v10H6zM12 0h4v14h-4zM0 15h16v1H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-chart-type-line-mono" viewbox="0 0 20 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 0a2 2 0 0 0-2 2c0 .429.138.825.368 1.151L13.87 7.037A2.045 2.045 0 0 0 13.5 7c-.729 0-1.361.395-1.711.978L8.942 7.54A1.998 1.998 0 0 0 5 8c0 .198.038.386.091.566l-2.12 1.696A1.971 1.971 0 0 0 2 10a2 2 0 1 0 2 2c0-.198-.038-.386-.091-.566l2.12-1.696C6.317 9.9 6.645 10 7 10c.729 0 1.361-.395 1.711-.978l2.848.438c.208.882.995 1.54 1.941 1.54a2 2 0 0 0 2-2 1.99 1.99 0 0 0-.368-1.151l2.498-3.887c.12.023.243.038.37.038a2 2 0 1 0 0-4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-chart-type-pie-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.5 7.5V.025A7.988 7.988 0 0 0 .025 7.5H7.5zM.025 8.5a7.954 7.954 0 0 0 1.981 4.787L6.793 8.5H.025z"></path>
+<path d="M8.5.025v8.182l-5.787 5.787A7.968 7.968 0 0 0 8 16a8 8 0 0 0 8-8C16 3.75 12.684.285 8.5.025z"></path>
+</symbol>
+<symbol id="icon-ui-icon-chart-type-stacked-bar-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 13h4v3H0zM6 10h4v6H6zM0 8h4v4H0zM6 3h4v6H6zM12 9h4v7h-4z"></path>
+<g>
+<path d="M12 0h4v8h-4z"></path>
+</g>
+</symbol>
+<symbol id="icon-ui-icon-chart-type-stacked-bar-orientation-horizontal-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 0h3v4H2zM2 6h5v4H2zM0 0h1v16H0zM6 0h2v4H6zM8 6h5v4H8zM2 12h7v4H2zM10 12h6v4h-6z"></path>
+</symbol>
+<symbol id="icon-ui-icon-chart-type-stacked-bar-orientation-vertical-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 11h4v3H0zM6 9h4v5H6zM0 8h4v2H0zM6 3h4v5H6zM12 7h4v7h-4zM12 0h4v6h-4zM0 15h16v1H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-check-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon</title>
+<path d="M8 0a8 8 0 1 0 8 8 8 8 0 0 0-8-8zm-.86 12.14L3.79 8.79l1.13-1.13L7 9.72l4-5.14 1.27 1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-checklist-mono" viewbox="0 0 18 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 0v1H1v12h12V8h1v6H0V0h13zM4.2 6.1L2.8 7.4 7 11.5 18 1.4 16.6 0 6.9 8.8 4.2 6.1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-clock-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 0C3.581 0 0 3.582 0 8s3.581 8 8 8 8-3.582 8-8-3.581-8-8-8zm0 15c-3.859 0-7-3.14-7-7s3.141-7 7-7 7 3.14 7 7-3.141 7-7 7z"></path>
+<path d="M8 4H7v5h5V8H8z"></path>
+</symbol>
+<symbol id="icon-ui-icon-close-mono" viewbox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 1.486L10.514 0 6 4.515 1.485 0 0 1.486 4.513 6 0 10.515 1.485 12 6 7.485 10.514 12 12 10.515 7.485 6z"></path>
+</symbol>
+<symbol id="icon-ui-icon-collection-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path d="M7.677.076a.651.651 0 0 1 .612 0l7.481 3.877c.307.17.307.646 0 .816L8.323 8.646a.722.722 0 0 1-.646 0L.23 4.77c-.306-.17-.306-.645 0-.816L7.677.076zm8.06 7.481c.306.17.306.647.034.817L8.323 12.25a.72.72 0 0 1-.646 0L.23 8.374c-.307-.17-.307-.646 0-.817l1.394-.713c.102-.035.204-.035.272 0l5.339 2.788c.238.102.476.17.748.17.238 0 .51-.033.748-.17l5.34-2.788a.37.37 0 0 1 .271 0l1.395.713zm0 3.673c.306.17.306.647.034.816l-7.448 3.877a.717.717 0 0 1-.646 0L.23 12.046c-.307-.17-.307-.646 0-.816l1.394-.713c.102-.035.204-.035.272 0l5.339 2.788c.238.102.476.17.748.17.238 0 .51-.034.748-.17l5.34-2.788a.37.37 0 0 1 .271 0l1.395.713z" id="caa"></path>
+</defs>
+<use fill-rule="evenodd" xlink:href="#caa"></use>
+</symbol>
+<symbol id="icon-ui-icon-color-hexadecimal-mono" viewbox="0 0 8 10" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.393 7.141H2.562L1.882 10H.68l.68-2.859H0l.244-1.096H1.62l.54-2.243H.871l.244-1.096h1.307L3.085 0h1.202l-.661 2.706h1.83L6.118 0H7.32l-.663 2.706H8l-.279 1.096H6.397l-.54 2.243h1.272L6.85 7.141H5.595L4.915 10H3.713l.68-2.859zM2.774 6.045h1.797l.531-2.243H3.304l-.53 2.243z"></path>
+</symbol>
+<symbol id="icon-ui-icon-color-reset-mono" viewbox="0 0 18 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.647 0l-.708.707 2.148 2.148L10.5 2.85C4.711 2.85 0 9 0 14h1C1 9 5.261 3.77 10.5 3.77l5.585-.004-2.146 2.189.708.729L18 3.342 14.647 0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-create-board-template-mono" viewbox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.5 3C7.461 3 5 5.462 5 8.5S7.461 14 10.5 14a5.5 5.5 0 0 0 0-11zM14 9h-3v3h-1V9H7V8h3V5h1v3h3v1zM1 11V1h13v1h1V0H0v12h4v-1H1zm4.141-7H5V2h2v.444A7.017 7.017 0 0 0 5.141 4zm-1.476 6H2V2h2v3.912c0 .801-.5 1.673-.5 2.588 0 .515.06 1.016.165 1.5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-delete-circle-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 15c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"></path>
+<path d="M11 4L8 7 5 4 4 5l3 3-3 3 1 1 3-3 3 3 1-1-3-3 3-3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-delete-mono" viewbox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 1l-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1-5-5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-description-mono" viewbox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 2H0V0h16v2zm0 3H0v2h16V5zm-6 5H0v2h10v-2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-dialog-import-ticket" viewbox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<style>.chcls-1{fill:#666}</style>
+</defs>
+<title>Plan de travail 1</title>
+<path class="chcls-1" d="M26.52 6h-15A1.48 1.48 0 0 0 10 7.48V9l4.5 4.5L10 18v4.52A1.48 1.48 0 0 0 11.48 24H22l6-6V7.48A1.48 1.48 0 0 0 26.52 6zM22 22.5v-3a1.48 1.48 0 0 1 1.48-1.5h3z"></path>
+<path class="chcls-1" d="M7 7.5L5.71 8.79l3.86 3.85H1v1.72h8.57l-3.86 3.85L7 19.5l6-6-6-6z"></path>
+</symbol>
+<symbol id="icon-ui-icon-disrupted-link-mono" viewbox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 9.514a3.506 3.506 0 0 1 2.503-3.356A3.504 3.504 0 0 1 6 2.514c.271 0 .539.032.802.096A3.991 3.991 0 0 1 10 1.014a3.95 3.95 0 0 1 2.008.561L1.874 12.594C.766 12.006 0 10.854 0 9.514zm13.964-3.973c.024-.174.036-.35.036-.527 0-.378-.067-.738-.169-1.083L16.54.985 15.436-.031 1.6 15.015l1.104 1.009L5.479 13H12c2.206 0 4-1.787 4-3.993a3.989 3.989 0 0 0-2.036-3.466z"></path>
+</symbol>
+<symbol id="icon-ui-icon-distribute-horizontal-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 0h1v14h-1zM0 0h1v14H0zM5 5h4v4H5zM3 10h8v4H3zM2 0h10v4H2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-distribute-vertical-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h14v1H0zM0 13h14v1H0zM5 5h4v4H5zM10 3h4v8h-4zM0 2h4v10H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-documentation-mono" viewbox="0 0 14 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 12.99h9v1H3zM12 .01H1c-.55 0-1 .45-1 1v10.98h12V.01z"></path>
+<path d="M13 3v12H2.52c-.83.01-1.52-.68-1.52-1.51s.67-1.5 1.5-1.5H0V15c0 .55.45 1 1 1h13V3h-1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-dot-mono" viewbox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+<circle cx="3" cy="3" r="3"></circle>
+</symbol>
+<symbol id="icon-ui-icon-download-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon-download-mono</title>
+<path d="M0 16h16v-2H0zm14-9h-4V0H6v7H2l6 6z"></path>
+</symbol>
+<symbol id="icon-ui-icon-due-date-mono" viewbox="0 0 16 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 16H2V7h12v9zM11 0v2H5V0H3v2H0v16h16V2h-3V0h-2zm1 10H8v4h4v-4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-duplicate-mono" viewbox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 1V0H0v13h1V1z"></path>
+<path d="M2 2v13h8l5-5V2H2zm7 7v5H3V3h11v6H9z"></path>
+</symbol>
+<symbol id="icon-ui-icon-edit-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.894 1.089c.332.337.573.649.727.934.152.287.253.526.298.718.071.237.096.451.071.644L9.465 7.873l-5.207 5.126L0 14l.908-4.375L10.642.01c.191-.026.402.001.643.072.193.05.424.145.7.289.271.146.575.384.909.718zM4.44 12.069a2.372 2.372 0 0 0-.145-.499c-.115-.333-.377-.729-.777-1.185a3.923 3.923 0 0 0-.625-.52 2.138 2.138 0 0 0-.55-.271 1.461 1.461 0 0 0-.504-.11l-.391.429-.328 1.427c.115.073.248.157.389.253a3.494 3.494 0 0 1 1.068 1.221l1.432-.314.431-.431z"></path>
+</symbol>
+<symbol id="icon-ui-icon-email-mono" viewbox="0 0 14 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 3v8a.9.9 0 0 1-1 1H1a.9.9 0 0 1-1-1V3l7 4zm0-2L7 5 0 1a.9.9 0 0 1 1-1h12a.9.9 0 0 1 1 1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-erase-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm4 11l-1 1-3-3-3 3-1-1 3-3-3-3 1-1 3 3 3-3 1 1-3 3 3 3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-exchange-mono" viewbox="0 0 16 11" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.867 0H2.133L0 5v6h16V5l-2.133-5zM11 4a3 3 0 1 1-6 0H1.514l1.281-3h10.412l1.279 3H11z"></path>
+</symbol>
+<symbol id="icon-ui-icon-exclamation-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM7 3h2v6H7V3zm2.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-expose-mono" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 6v12H4V6h15m1-1H3v14h17V5z"></path>
+<path d="M9 17H6v-2h3zM6 7h3v3H6zM13 17h-3v-2h3zM10 7h3v3h-3zM14 7h3v3h-3zM6 11h3v3H6zM10 11h3v3h-3zM14 11h3v3h-3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-externalsource-directory-mono" viewbox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 3v10a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1h3.586c.265 0 .52.105.707.293l1.414 1.414A1 1 0 0 0 7.414 2H15a1 1 0 0 1 1 1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-externalsource-picture-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0v16h16V0H0zm3.5 3a1.5 1.5 0 1 1-.001 3.001A1.5 1.5 0 0 1 3.5 3zM14 13H2v-1l2.5-4L7 11l3.5-5 3.5 5v2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-externalsource-remotefilesystem-mono" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="8.477" cy="15.827" r="2.5"></circle>
+<path d="M17.483 13.952c-.316-1.565-.779-3.061-1.355-4.368a2.731 2.731 0 0 1-.658.372c.565 1.297 1.013 2.788 1.313 4.347-1.544.709-3.336 1.143-5.208 1.254.008.09.027.177.027.269 0 .162-.024.317-.048.472 1.913-.111 3.755-.536 5.362-1.248.145.907.234 1.826.272 2.734.116-.018.232-.036.353-.036.136 0 .268.017.398.04a24.07 24.07 0 0 0-.314-3.077c1.084-.559 2.036-1.249 2.807-2.043a2.238 2.238 0 0 1-.616-.452 9.82 9.82 0 0 1-2.333 1.736zM15.296 19.96a7.754 7.754 0 0 1-1.888-.398 8.755 8.755 0 0 1-2.724-1.525 3.136 3.136 0 0 1-.598.455 9.407 9.407 0 0 0 3.078 1.779 8.39 8.39 0 0 0 2.259.457 2.23 2.23 0 0 1-.131-.728c0-.014.003-.026.004-.04z"></path>
+<circle cx="14.477" cy="7.399" r="2"></circle>
+<path d="M12 0C5.373 0 0 5.373 0 12c0 1.463.275 2.858.754 4.154l-.004.003.008.009C2.453 20.736 6.84 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm7.02 19.786a1.496 1.496 0 1 0-2.189 1.527A10.429 10.429 0 0 1 12 22.5c-1.581 0-3.076-.361-4.422-.99.367-.721.775-1.63 1.057-2.574-.053.003-.104.016-.158.016a3.11 3.11 0 0 1-.622-.063 15.843 15.843 0 0 1-.95 2.285 10.561 10.561 0 0 1-4.562-5.056c.812-.291 1.877-.455 3.023-.431.012-.254.056-.498.125-.733-1.278-.039-2.476.139-3.408.469A10.463 10.463 0 0 1 1.5 12c0-.459.04-.907.097-1.351.252.191.562.309.903.309a1.5 1.5 0 0 0 0-3c-.067 0-.131.011-.196.02a10.541 10.541 0 0 1 6.878-6.083c-.798 1.259-1.315 2.83-1.547 4.762-1.348.35-2.522.866-3.437 1.341.167.194.303.412.396.654.804-.41 1.812-.851 2.959-1.175-.117 1.556-.062 3.336.147 5.334.239-.062.486-.104.744-.106-.208-2.042-.252-3.858-.107-5.427 1.077-.235 2.239-.337 3.422-.206a2.75 2.75 0 0 1 .182-.739 11.042 11.042 0 0 0-3.512.143c.285-2.047.922-3.635 1.881-4.827.258-.042.517-.08.78-.103 1.172.974 1.912 2.209 2.349 3.309.233-.096.485-.149.745-.177-.392-1.02-1.015-2.171-1.992-3.169a10.46 10.46 0 0 1 7.151 2.999c-.461.493-1.383 1.141-2.422 1.658.132.26.222.541.265.84 1.176-.566 2.097-1.344 2.624-1.998a10.465 10.465 0 0 1 2.338 4.347 1.48 1.48 0 0 0-.709-.186 1.5 1.5 0 0 0 0 3c.407 0 .776-.164 1.046-.427.004.087.015.171.015.258 0 3.089-1.349 5.863-3.48 7.786z"></path>
+</symbol>
+<symbol id="icon-ui-icon-externalsource-sharepoint-mono" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 12.019a2.306 2.306 0 0 1-2.755 2.262 6.32 6.32 0 0 1-3.203 3.47c.012.095.02.191.02.29 0 1.273-.696 2.306-1.97 2.306-.54 0-1.092-.187-1.092-.498v-3.617c0-.31.552-.497 1.092-.497.787 0 1.312.394 1.729.996 1.204-.594 2.059-1.636 2.519-2.911-.528-.423-.909-1.072-.909-1.8 0-.721.31-1.364.828-1.786a5.245 5.245 0 0 0-2.595-2.86c-.416.601-.779.996-1.566.996C15.557 8.368 15 8.181 15 7.871V4.254c0-.311.552-.498 1.092-.498 1.273 0 2.138 1.032 2.138 2.306 0 .099-.092.195-.104.29 1.45.687 2.553 1.906 3.14 3.41.152-.032.288-.048.45-.048A2.287 2.287 0 0 1 24 12.019zM14 .682v22.803L0 21.051V3.116L14 .682zm-6.983 11.37c-.757-.676-2.325-1.164-1.83-2.46.711-.88 1.814-.33 2.679-.057L7.82 7.64c-1.038-.145-2.187-.334-3.128.262-1.61 1.072-1.549 3.816.111 4.819.773.553 2.11 1.28 1.43 2.421-.88.746-1.971-.057-2.709-.603.023.673.038 1.341.053 2.01 1.149.473 2.579.807 3.671.015 1.375-1.095 1.249-3.555-.231-4.512z"></path>
+</symbol>
+<symbol id="icon-ui-icon-file-upload-mono" viewbox="0 0 16 22" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon-file-upload-mono</title>
+<path d="M11 5V0l5 5zm5 2v15H0V0h10v6zm-3 6L8 7l-5 6h3v6h4v-6z"></path>
+</symbol>
+<symbol id="icon-ui-icon-filter-include-child-mono" viewbox="0 0 16 16.006" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 8h-3V4H3V0h11zM16 9h-3.922l-.006-.006-.005.006H9.533l-.005-.006L9.522 9H6v7h2.976l.005.006.006-.006H16V9zm-2.427 1l-5 5H7.481l5-5h1.092zM7 10h1.522L7 11.522V10zm0 2.936L9.936 10h1.131L7 14.067v-1.131zM14.987 10H15v1.202L11.202 15H9.987l5-5zm-2.371 5L15 12.616V15h-2.384z"></path>
+<path d="M10 5H8.533l-.005-.006L8.522 5H6.078l-.005-.006L6.067 5H3.533l-.005-.006L3.522 5H0v8h5V8h1.926l.005.005L6.937 8H10V5zM1 6h1.522L1 7.522V6zm3 6H2.937L4 10.936V12zm0-2.478L1.522 12H1v-.519l3-3v1.041zm-3 .545V8.936L3.937 6h1.13L1 10.067zM6.481 6h1.041l-1 1H5.481l1-1zM9 7H7.937l1-1H9v1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-filter-reverse-mono" viewbox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 0L9 2l3 2zM13 5l2 3 2-3zM15.5 5h-1V3.5c0-.551-.449-1-1-1H12v-1h1.5c1.103 0 2 .897 2 2V5zM0 0v7h8V0H0zm7 2.338L3.338 6H1.752l5-5H7v1.338zM1 3.752L3.752 1h1.586L1 5.338V3.752zM2.338 1L1 2.338V1h1.338zm2.414 5L7 3.752V6H4.752z"></path>
+<g>
+<path d="M9 9h8v7H9z"></path>
+</g>
+</symbol>
+<symbol id="icon-ui-icon-gauge-type-circular-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm-.355 8.304c-.15.492-.38.93-.69 1.315a3.57 3.57 0 0 1-1.185.941c-.48.243-1.05.389-1.71.44a1.1 1.1 0 0 1-.08-.445 1.679 1.679 0 0 1 .04-.359 3.29 3.29 0 0 0 1.105-.269c.33-.149.615-.339.855-.573.24-.233.432-.503.575-.809a3.12 3.12 0 0 0 .275-.979c-.14.24-.351.448-.635.624-.283.177-.638.265-1.065.265-.273 0-.537-.043-.79-.128a1.9 1.9 0 0 1-1.16-1.068A2.43 2.43 0 0 1 3 6.28c0-.372.068-.7.205-.984s.318-.522.545-.714.485-.337.775-.435S5.113 4 5.42 4c.38 0 .722.052 1.025.156a1.9 1.9 0 0 1 .77.487c.21.222.372.505.485.852.113.347.17.76.17 1.24 0 .554-.075 1.077-.225 1.569zM13.24 11H9.33a2.031 2.031 0 0 1 0-.807h1.5v-4.91l-1.45.626c-.094-.108-.167-.215-.22-.323s-.107-.234-.16-.38L11.66 4h.15v6.193h1.43c.02.146.03.279.03.399 0 .132-.01.269-.03.408z"></path>
+<path d="M5.45 4.814c-.4 0-.735.121-1.005.364-.27.243-.405.601-.405 1.074 0 .252.035.467.105.643.07.176.165.321.285.435.12.114.262.195.425.246a1.754 1.754 0 0 0 1.075-.02 1.256 1.256 0 0 0 .75-.728c.073-.176.11-.375.11-.596 0-.473-.118-.828-.355-1.064-.236-.236-.565-.354-.985-.354z"></path>
+</symbol>
+<symbol id="icon-ui-icon-gauge-type-horizontal-mono" viewbox="0 0 16 10" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 2V0H9v2H0v6h9v2h1V8h6V2h-6zm5 5h-5V3h5v4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-gauge-type-radial-mono" viewbox="0 0 16 11" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.201 2.01L8 0l-.201 2.01C3.475 2.118 0 5.649 0 10h4a3.99 3.99 0 0 1 3.394-3.939L7 10a1 1 0 0 0 2 0l-.394-3.939A3.99 3.99 0 0 1 12 10h4c0-4.351-3.475-7.882-7.799-7.99zM8 5V3c3.525 0 6.434 2.609 6.92 6h-2.021A5 5 0 0 0 8 5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-gauge-type-vertical-mono" viewbox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 5V0H2v5H0v1h2v10h6V6h2V5H8zM7 5H3V1h4v4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-grip-mono" viewbox="0 0 8 13" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 1.5C3 2.3 2.3 3 1.5 3S0 2.3 0 1.5.7 0 1.5 0 3 .7 3 1.5zM6.5 0C5.7 0 5 .7 5 1.5S5.7 3 6.5 3 8 2.3 8 1.5 7.3 0 6.5 0zm-5 5C.7 5 0 5.7 0 6.5S.7 8 1.5 8 3 7.3 3 6.5 2.3 5 1.5 5zm5 0C5.7 5 5 5.7 5 6.5S5.7 8 6.5 8 8 7.3 8 6.5 7.3 5 6.5 5zm-5 5c-.8 0-1.5.7-1.5 1.5S.7 13 1.5 13 3 12.3 3 11.5 2.3 10 1.5 10zm5 0c-.8 0-1.5.7-1.5 1.5S5.7 13 6.5 13 8 12.3 8 11.5 7.3 10 6.5 10z"></path>
+</symbol>
+<symbol id="icon-ui-icon-group-add-mono" viewbox="0 0 24 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.5 8c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5a4.5 4.5 0 0 0 0-9zm2.5 5h-2v2h-1v-2h-2v-1h2v-2h1v2h2v1z"></path>
+<circle cx="13" cy="3.5" r="3.5"></circle>
+<path d="M6 8.5c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zM13 12.5c0-1.32.4-2.55 1.07-3.58-.32-.02-.67-.03-1.07-.03-2.57 0-3.56.51-3.56.51-1.31.43-2.22 1.18-2.97 2.35-.3.45-.46 1.37-.47 1.86v.69c0 .94.64 1.7 1.44 1.7h6.59A6.445 6.445 0 0 1 13 12.5z"></path>
+<path d="M5 14.3v-.71c.01-.59.19-1.72.63-2.39.29-.45.62-.83.97-1.18-.19-.01-.38-.02-.6-.02-2.21 0-3.05.43-3.05.43-1.12.36-1.9 1-2.55 1.98-.26.39-.39 1.16-.4 1.58v.58C0 15.36.55 16 1.23 16h4.33c-.34-.47-.56-1.05-.56-1.7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-group-mono" viewbox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+<style>.st0{fill:#1a171b}.djst1{fill-rule:evenodd;clip-rule:evenodd}.st2,.st3{fill:none;stroke:#fff;stroke-miterlimit:10}.st3{stroke:#000}.st4{opacity:.75}.st5{fill:#979797}.st6{clip-path:url(#SVGID_2_);enable-background:new}.st7{clip-path:url(#SVGID_4_)}.st8{clip-path:url(#SVGID_6_)}.st9{clip-path:url(#SVGID_8_)}.st10{clip-path:url(#SVGID_10_);enable-background:new}.st11{clip-path:url(#SVGID_12_)}.st12{clip-path:url(#SVGID_14_)}.st13{clip-path:url(#SVGID_16_)}.st14{clip-path:url(#SVGID_18_);enable-background:new}.st15{clip-path:url(#SVGID_20_)}.st16{clip-path:url(#SVGID_22_)}.st17{clip-path:url(#SVGID_24_)}</style>
+<g id="djscene">
+<circle class="djst1" cx="13" cy="3.5" r="3.5"></circle>
+<path class="djst1" d="M19.5 11.7c-.8-1.2-1.7-1.9-3-2.3 0 0-.98-.48-3.5-.5-2.52.01-3.5.5-3.5.5-1.3.4-2.2 1.1-3 2.3-.3.5-.5 1.4-.5 1.9v.7c0 .9.6 1.7 1.4 1.7h11.2c.8 0 1.4-.8 1.4-1.7v-.7c0-.5-.2-1.4-.5-1.9z"></path>
+<path d="M6 8.5c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zM5 14.3v-.7c0-.66.24-1.74.67-2.45.29-.43.6-.8.93-1.13-.19-.01-.38-.02-.6-.02-2.21 0-3.05.43-3.05.43-1.12.36-1.9 1-2.55 1.98-.26.39-.39 1.16-.4 1.58v.58C0 15.36.55 16 1.23 16h4.32c-.34-.47-.55-1.05-.55-1.7z"></path>
+</g>
+</symbol>
+<symbol id="icon-ui-icon-group-remove-mono" viewbox="0 0 24 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.5 8c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5a4.5 4.5 0 0 0 0-9zm2.5 5h-5v-1h5v1z"></path>
+<circle cx="13" cy="3.5" r="3.5"></circle>
+<path d="M6 8.5c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zM13 12.5c0-1.32.4-2.55 1.07-3.58-.32-.02-.67-.03-1.07-.03-2.57 0-3.56.51-3.56.51-1.31.43-2.22 1.18-2.97 2.35-.3.45-.46 1.37-.47 1.86v.69c0 .94.64 1.7 1.44 1.7h6.59A6.445 6.445 0 0 1 13 12.5z"></path>
+<path d="M5 14.3v-.71c.01-.59.19-1.72.63-2.39.29-.45.62-.83.97-1.18-.19-.01-.38-.02-.6-.02-2.21 0-3.05.43-3.05.43-1.12.36-1.9 1-2.55 1.98-.26.39-.39 1.16-.4 1.58v.58C0 15.36.55 16 1.23 16h4.33c-.34-.47-.56-1.05-.56-1.7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-help-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.893.002a7.651 7.651 0 0 1 3.132.573 8.186 8.186 0 0 1 2.551 1.67 7.982 7.982 0 0 1 1.741 2.506c.431.961.656 1.998.681 3.112a7.659 7.659 0 0 1-.577 3.129 8.147 8.147 0 0 1-1.686 2.574 8.001 8.001 0 0 1-2.52 1.755 7.91 7.91 0 0 1-3.111.678 8.036 8.036 0 0 1-3.13-.608 8.073 8.073 0 0 1-2.556-1.671 7.875 7.875 0 0 1-1.737-2.503 7.899 7.899 0 0 1-.679-3.111 7.584 7.584 0 0 1 .574-3.129 7.93 7.93 0 0 1 1.689-2.558A8.33 8.33 0 0 1 4.783.664a7.403 7.403 0 0 1 3.11-.662zm2.659 7.215c.284-.37.426-.797.426-1.279 0-.826-.295-1.458-.884-1.897-.567-.415-1.296-.621-2.191-.621-.698 0-1.267.14-1.703.422-.74.46-1.134 1.257-1.179 2.391V6.3h1.802v-.067c0-.282.087-.577.261-.884.151-.261.445-.391.882-.391s.723.108.853.326c.174.22.261.459.261.721 0 .196-.087.414-.261.652a1.152 1.152 0 0 1-.326.33c-.025.021-.199.143-.527.359a3.6 3.6 0 0 0-.785.687c-.109.154-.179.33-.212.525a9.99 9.99 0 0 0-.084.751v.132h1.768v-.066c0-.152.007-.251.019-.294.006-.043.029-.098.046-.166.065-.216.22-.412.46-.588l.46-.294c.215-.174.401-.327.555-.457.153-.132.271-.251.359-.359zm-2.716 5.366c.325 0 .592-.102.798-.309.212-.208.316-.465.316-.772.019-.326-.072-.594-.278-.802-.207-.206-.477-.309-.805-.309h-.031c-.308 0-.561.097-.768.293a1.096 1.096 0 0 0-.343.751c0 .33.103.597.31.803.206.206.462.323.769.343h.032z"></path>
+</symbol>
+<symbol id="icon-ui-icon-hyperlink-external-mono" viewbox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M1063.8 123h-3v1h2.2l-6.3 6.3.8.7 6.3-6.3v2.3h1v-4z"></path>
+<path d="M1063.8 133c0 .6-.4 1-1 1h-8c-.6 0-1-.4-1-1v-8c0-.6.4-1 1-1h4v-1h-4c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-4h-1v4zM11 0H8v1h2.3L4 7.3l.7.7L11 1.7V4h1V0z"></path>
+<path d="M11 10c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V2c0-.6.4-1 1-1h4V0H2C.9 0 0 .9 0 2v8c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V6h-1v4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-hyperlink-mono" viewbox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.236 13.764a4.22 4.22 0 0 1 0-5.966l1.79-1.79a.844.844 0 0 1 1.193 1.193l-1.79 1.79a2.533 2.533 0 0 0 3.58 3.58l1.79-1.79a.844.844 0 0 1 1.193 1.193l-1.79 1.79a4.218 4.218 0 0 1-5.966 0zm8.989-8.909l-.08-.08a.787.787 0 0 0-1.114 0L4.775 9.031a.787.787 0 0 0 0 1.114l.08.08a.787.787 0 0 0 1.114 0l4.256-4.256a.789.789 0 0 0 0-1.114zm1.75 4.137l1.79-1.79a4.22 4.22 0 0 0-5.966-5.966l-1.79 1.79a.844.844 0 0 0 1.193 1.193l1.79-1.79a2.533 2.533 0 0 1 3.58 3.58l-1.79 1.79a.844.844 0 0 0 1.193 1.193z"></path>
+</symbol>
+<symbol id="icon-ui-icon-image-dnd" viewbox="0 0 48 36" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0v36h48V0H0zm44 32H4V4h40v28zm-22-7l-5.5-5.5L7 29h34v-5l-9-9-10 10zM10 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z" fill="#b3b3b3"></path>
+</symbol>
+<symbol id="icon-ui-icon-info-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 13a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0v4a1 1 0 0 1-1 1zM6.5 4a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-instant-meeting-mono" viewbox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path d="M1 0h3v1H1zm2 3h8v1H3zM0 7h4v1H0zm7-7h9l-1 8H6z" id="dqa"></path>
+</defs>
+<use fill-rule="evenodd" transform="translate(0 2)" xlink:href="#dqa"></use>
+</symbol>
+<symbol id="icon-ui-icon-item-selected-mono" viewbox="0 0 12 10" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.602 10L0 5.356l1.23-1.333 2.512 3.24L10.916 0 12 1.496z"></path>
+</symbol>
+<symbol id="icon-ui-icon-like-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 13l8.2 1L14 7 9 6a14.7 14.7 0 0 0 1-5V0h-.9c0 1.9-4.3 6-6.1 6zM0 6h2v7H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-adjust-curve-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 0c-1.801 0-3.479.056-4.75.451A1.977 1.977 0 0 0 10 0a2 2 0 0 0-2 2 1.99 1.99 0 0 0 1.043 1.746c.093.604.313 1.278.679 2.037 1.435 2.979 1.175 5.13.235 6.471A1.974 1.974 0 0 0 9 12a1.997 1.997 0 0 0-1.995 1.95c-2.105.256-4.603-.833-6.165-3.596l-.84.511C1.611 13.715 4.124 15 6.408 15a5.9 5.9 0 0 0 .834-.064 1.994 1.994 0 1 0 3.438-2.014c1.156-1.592 1.573-4.145-.087-7.591a6.929 6.929 0 0 1-.491-1.341A1.995 1.995 0 0 0 12 2a1.99 1.99 0 0 0-.134-.705C12.903 1.05 14.303 1.01 16 1.01V0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-adjust-ortho-mono" viewbox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M17 1.5h-2.071A1.995 1.995 0 0 0 13 0c-.931 0-1.706.639-1.929 1.5H8v5.071c-.861.223-1.5.998-1.5 1.929s.639 1.706 1.5 1.929V14.5H5.929A1.995 1.995 0 0 0 4 13c-.931 0-1.706.639-1.929 1.5H0v1h2.071c.223.861.998 1.5 1.929 1.5s1.706-.639 1.929-1.5H9v-5.071A1.995 1.995 0 0 0 10.5 8.5c0-.931-.639-1.706-1.5-1.929V2.5h2.071c.223.861.998 1.5 1.929 1.5s1.706-.639 1.929-1.5H17v-1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-arrow-one-mono" viewbox="0 0 17.678 17.678" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.678 0L9.899 2.121l2.122 2.122L0 16.263l1.414 1.415L13.435 5.657l2.121 2.121z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-arrow-two-mono" viewbox="0 0 16.971 16.971" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.971 0L9.192 2.121l2.122 2.122-7.071 7.071-2.122-2.122L0 16.971l7.778-2.122-2.121-2.121 7.071-7.071 2.121 2.121z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-l-dashed-0-mono" viewbox="0 0 22 20" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 17v3c.733 0 1.426-.017 2.08-.05l-.155-2.996A37.76 37.76 0 0 1 0 17zM3.969 16.76l.435 2.969c1.984-.291 3.533-.832 4.736-1.654l-1.693-2.477c-.819.559-1.956.94-3.478 1.162zM8.548 14.471l2.524 1.621c.815-1.269 1.271-2.869 1.393-4.893l-2.994-.182c-.091 1.499-.393 2.628-.923 3.454zM12.831 1.947l1.706 2.468c.814-.563 1.949-.946 3.468-1.17L17.567.277c-1.986.293-3.535.839-4.736 1.67zM9.533 8.832l2.995.177c.088-1.5.387-2.632.913-3.46l-2.532-1.608c-.807 1.268-1.257 2.868-1.376 4.891zM19.92.05l.155 2.996A37.76 37.76 0 0 1 22 3V0c-.733 0-1.426.017-2.08.05z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-l-dashed-1-mono" viewbox="0 0 21.998 21.523" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 18.523v3c.733 0 1.426-.017 2.08-.05l-.155-2.996A37.76 37.76 0 0 1 0 18.523zM7.757 16.887l1.913 2.311c1.125-.931 1.892-2.139 2.343-3.691l-2.881-.838c-.282.969-.719 1.674-1.375 2.218zM3.588 18.335l.369 2.978c1.527-.189 2.786-.51 3.851-.98l-1.212-2.744c-.792.349-1.777.593-3.008.746zM9.954 7.657l2.891.803c.273-.985.701-1.702 1.343-2.254l-1.955-2.275c-1.1.945-1.845 2.164-2.279 3.726zM9.5 11.523c0 .6-.028 1.158-.083 1.659l2.981.33c.068-.61.102-1.28.102-1.989 0-.562.025-1.089.074-1.567l-2.985-.305a18.599 18.599 0 0 0-.089 1.872zM21.998 3.003L15.148 0l.253 2.28c-.454.138-.89.289-1.283.467l1.235 2.734c.119-.054.257-.099.387-.148l.233 2.1 6.025-4.43z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-l-dashed-2-mono" viewbox="0 0 22 23.005" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.649 17.565c-.119.054-.257.099-.387.148l-.238-2.142L0 20.003l6.849 3.002-.248-2.239c.454-.138.89-.289 1.283-.467l-1.235-2.734zM9.502 11.523c0 .582-.027 1.126-.08 1.617l2.983.319c.064-.597.096-1.249.096-1.937 0-.576.026-1.113.077-1.597l-2.982-.314a18.36 18.36 0 0 0-.094 1.912zM7.794 16.858l1.939 2.289c1.105-.937 1.857-2.147 2.299-3.7l-2.886-.821c-.277.976-.707 1.685-1.352 2.232zM9.965 7.626l2.888.812c.275-.978.703-1.689 1.345-2.239l-1.949-2.28c-1.1.94-1.846 2.152-2.284 3.707zM22 3.003L15.151 0l.253 2.279c-.45.136-.879.285-1.275.464l1.232 2.735c.117-.053.254-.097.382-.146l.233 2.1L22 3.003z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-l-solid-0-mono" viewbox="0 0 22 20" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 20v-3c8.128 0 9.5-2.16 9.5-7C9.5 1.701 14.497 0 22 0v3c-8.128 0-9.5 2.16-9.5 7 0 8.299-4.997 10-12.5 10z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-l-solid-1-mono" viewbox="0 0 21.998 21.523" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.998 3.003L15.148 0l.252 2.272c-4.07 1.23-5.9 4.12-5.9 9.251 0 4.84-1.372 7-9.5 7v3c7.503 0 12.5-1.701 12.5-10 0-3.921 1.172-5.44 3.238-6.205l.235 2.115 6.025-4.43z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-l-solid-2-mono" viewbox="0 0 22 23.005" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 3.003L15.151 0l.252 2.272c-4.07 1.23-5.901 4.121-5.901 9.251 0 3.921-1.172 5.44-3.238 6.205l-.239-2.157L0 20.003l6.849 3.002-.247-2.231c4.07-1.23 5.901-4.12 5.901-9.251 0-3.92 1.171-5.44 3.238-6.206l.235 2.116L22 3.003z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-m-dashed-0-mono" viewbox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 19v-2a38.1 38.1 0 0 0 1.463-.026l.075 1.999C1.047 18.991.535 19 0 19zM4.938 18.634l-.357-1.968c1.136-.207 2.043-.508 2.774-.923l.987 1.739c-.929.528-2.043.905-3.404 1.152zm6.041-3.882L9.2 13.839c.381-.743.62-1.653.73-2.785l1.99.194c-.135 1.387-.443 2.534-.941 3.504zm1.088-6.775l-1.991-.189c.132-1.386.436-2.533.928-3.504l1.784.904c-.377.743-.613 1.656-.721 2.789zm2.553-4.706l-.996-1.734c.926-.532 2.039-.914 3.4-1.165l.363 1.967c-1.135.21-2.04.515-2.767.932zM20.537 2.026L20.462.027A42.006 42.006 0 0 1 22 0v2a38.1 38.1 0 0 0-1.463.026z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-m-dashed-1-mono" viewbox="0 0 21.998 20.794" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 18.794v2c.535 0 1.047-.009 1.539-.027l-.075-1.999c-.468.019-.956.026-1.464.026zM8.448 16.697l1.444 1.383c.715-.747 1.232-1.645 1.581-2.745l-1.906-.604c-.255.802-.621 1.445-1.119 1.966zM4.086 18.543l.295 1.979c1.103-.165 2.042-.402 2.87-.727l-.729-1.862c-.687.268-1.483.467-2.436.61zM10.784 6.552l1.844.774c.31-.738.741-1.326 1.317-1.798L12.68 3.98c-.836.683-1.456 1.524-1.896 2.572zM10 11.294c0 .342-.009.67-.027.986l1.997.114c.02-.353.03-.719.03-1.1 0-.572.025-1.108.074-1.596l-1.99-.2A17.99 17.99 0 0 0 10 11.294zM21.998 2.776L15.959 0l.219 2.349c-.245.06-.483.124-.708.194l.593 1.91c.096-.03.203-.055.304-.083l.209 2.248 5.422-3.842z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-m-dashed-2-mono" viewbox="0 0 22 22.534" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.899 18.148c-.1.03-.211.057-.317.085l-.206-2.253L0 19.776l5.975 2.757-.209-2.28c.247-.06.487-.123.714-.193l-.581-1.912zM10.002 11.294c0 .482-.017.939-.053 1.371l1.993.166c.04-.484.06-.996.06-1.537 0-.461.016-.899.049-1.313l-1.994-.157a18.51 18.51 0 0 0-.055 1.47zM8.074 17.046l1.275 1.541c.859-.711 1.49-1.593 1.927-2.695l-1.859-.737c-.309.781-.749 1.4-1.343 1.891zM10.7 6.764l1.866.721c.304-.788.737-1.412 1.323-1.908L12.597 4.05c-.849.719-1.469 1.606-1.897 2.714zM22 2.776L15.961 0l.219 2.349c-.242.06-.478.123-.701.192l.59 1.911c.094-.029.2-.054.299-.082l.209 2.248L22 2.776z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-m-solid-0-mono" viewbox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 19v-2c7.664 0 10-1.752 10-7.5C10 1.589 14.592 0 22 0v2c-7.664 0-10 1.752-10 7.5C12 17.411 7.408 19 0 19z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-m-solid-1-mono" viewbox="0 0 21.999 20.588" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.999 2.571L16.597 0l.161 2.017C12.035 2.977 10 5.729 10 11.088c0 5.748-2.336 7.5-10 7.5v2c7.408 0 12-1.589 12-9.5 0-4.327 1.312-6.271 4.917-7.063l.154 1.94 4.928-3.394z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-m-solid-2-mono" viewbox="0 0 22 22.534" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 2.776L15.961 0l.218 2.348c-4.318 1.06-6.177 3.783-6.177 8.946 0 4.098-1.224 6.074-4.42 6.938l-.206-2.252L0 19.776l5.975 2.757-.209-2.28c4.358-1.051 6.235-3.776 6.235-8.959 0-4.078 1.209-6.052 4.366-6.923l.209 2.248L22 2.776z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-s-dashed-0-mono" viewbox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 18v-1c.339 0 .668-.004.989-.011l.022 1C.684 17.996.347 18 0 18zM3.827 17.797l-.123-.992a15.47 15.47 0 0 0 1.759-.314l.238.971c-.565.139-1.196.251-1.874.335zm4.578-1.436l-.538-.843a4.936 4.936 0 0 0 1.243-1.115l.785.62a6 6 0 0 1-1.49 1.338zm2.744-4.015l-.971-.24c.129-.521.22-1.107.271-1.741l.997.079a11.931 11.931 0 0 1-.297 1.902zm.399-4.671l-.997-.077a12.1 12.1 0 0 1 .29-1.902l.972.236a11.151 11.151 0 0 0-.265 1.743zm1.32-4.05l-.789-.614a6.01 6.01 0 0 1 1.479-1.349l.544.839a4.965 4.965 0 0 0-1.234 1.124zm3.631-2.106l-.241-.971c.564-.14 1.194-.255 1.874-.341l.126.992c-.642.081-1.234.189-1.759.32zM21.011 1.011l-.022-1C21.316.004 21.653 0 22 0v1c-.339 0-.668.004-.989.011z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-s-dashed-1-mono" viewbox="0 0 21.999 19.706" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 18.706v1c.347 0 .684-.004 1.011-.011l-.022-1c-.321.007-.65.011-.989.011zM8.089 17.074l.579.815a5.952 5.952 0 0 0 1.463-1.482l-.825-.565c-.33.482-.728.885-1.217 1.232zM10.275 13.371l.981.191c.116-.597.192-1.262.224-1.979l-.999-.045a12.482 12.482 0 0 1-.206 1.833zM3.811 18.497l.128.992a15.755 15.755 0 0 0 1.947-.369l-.253-.968c-.544.144-1.157.259-1.822.345zM10.62 8.624l.992.125a9.098 9.098 0 0 1 .392-1.772l-.946-.322a9.955 9.955 0 0 0-.438 1.969zM12.701 4.037l.683.73c.411-.384.89-.701 1.462-.97l-.425-.905a6.65 6.65 0 0 0-1.72 1.145zM21.999 2.193L17.521 0l.136 1.986c-.105.016-.217.028-.319.045l.167.986c.071-.012.149-.02.221-.031l.136 1.989 4.137-2.782z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-s-dashed-2-mono" viewbox="0 0 22 21.385" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.496 18.396c-.071.012-.149.02-.221.031l-.138-2.016L0 19.193l4.478 2.192-.134-1.958c.105-.016.217-.028.319-.045l-.167-.986zM10.107 14.085l.962.274c.179-.628.299-1.31.367-2.084l-.996-.088c-.062.701-.174 1.34-.333 1.898zM7.263 17.564l.441.897a6.489 6.489 0 0 0 1.779-1.264l-.714-.7a5.383 5.383 0 0 1-1.506 1.067zM10.564 9.153l.996.087c.061-.7.172-1.338.331-1.899l-.963-.271a11.45 11.45 0 0 0-.364 2.083zM12.506 4.227l.716.698a5.383 5.383 0 0 1 1.503-1.071l-.443-.896a6.37 6.37 0 0 0-1.776 1.269zM22 2.193L17.522 0l.136 1.986c-.104.016-.216.027-.317.045l.167.986c.07-.012.148-.02.219-.031l.136 1.988L22 2.193z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-s-solid-0-mono" viewbox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 18v-1c7.949 0 10.5-1.944 10.5-8 0-6.645 3.009-9 11.5-9v1c-7.949 0-10.5 1.944-10.5 8 0 6.645-3.009 9-11.5 9z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-s-solid-1-mono" viewbox="0 0 21.999 19.706" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.999 2.193L17.521 0l.136 1.986c-5.066.774-7.157 3.341-7.157 8.72 0 6.056-2.551 8-10.5 8v1c8.491 0 11.5-2.355 11.5-9 0-4.86 1.708-7.015 6.226-7.722l.136 1.99 4.137-2.781z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-curve-s-solid-2-mono" viewbox="0 0 22 21.385" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 2.193L17.522 0l.136 1.987c-5.066.774-7.157 3.341-7.157 8.72 0 4.86-1.708 7.015-6.226 7.722l-.138-2.018L0 19.193l4.478 2.192-.134-1.959c5.066-.774 7.157-3.341 7.157-8.72 0-4.86 1.707-7.015 6.226-7.722l.136 1.99L22 2.193z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-dashed-mono" viewbox="0 0 25 2" xmlns="http://www.w3.org/2000/svg">
+<path d="M25 2h-4V0h4v2zm-7 0h-4V0h4v2zm-7 0H7V0h4v2zM4 2H0V0h4v2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-l-dashed-0-mono" viewbox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 16h2v3H0zM3.875 16h3.75v3h-3.75zM13 19H9.5v-3h.5v-.5h3zM13 13.786h-3v-3.429h3v3.429zm0-5.143h-3V5.214h3v3.429zM13 3.5h-3V0h3.5v3H13zM15.125 0h3.25v3h-3.25zM20 0h2v3h-2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-l-dashed-1-mono" viewbox="0 0 22.476 21.26" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 18.26h2v3H0zM4 18.26h3v3H4zM9 18.26v3h4v-3h-3zM10 13.26h3v3h-3zM10 8.26h3v3h-3zM10 6.26h3v-4h-3zM22.476 3.74L16 0v2.26h-1v3h1v2.219z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-l-dashed-2-mono" viewbox="0 0 22.953 23.479" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.476 18.26v3h4v-3h-3zM10.476 13.26h3v3h-3zM10.476 8.26h3v3h-3zM10.476 6.26h3v-4h-3zM6.476 16L0 19.74l6.476 3.739V21.26h1v-3h-1zM22.953 3.74L16.476 0v2.26h-1v3h1v2.219z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-l-solid-0-mono" viewbox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 19H0v-3h10V0h12v3h-9z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-l-solid-1-mono" viewbox="0 0 22.476 21.26" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.476 3.74L16 0v2.26h-6v16H0v3h13v-16h3v2.219z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-l-solid-2-mono" viewbox="0 0 22.953 23.479" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.953 3.74L16.476 0v2.26h-6v16h-4V16L0 19.74l6.476 3.739V21.26h7v-16h3v2.219z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-m-dashed-0-mono" viewbox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 16h1.5v2H0zM4.167 16h2.667v2H4.167zM12 18H9.5v-2h.5v-.5h2zM12 12.9h-2v-2.6h2v2.6zm0-5.2h-2V5.1h2v2.6zM12 2.5h-2V0h2.5v2H12zM15.167 0h2.667v2h-2.667zM20.5 0H22v2h-1.5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-m-dashed-1-mono" viewbox="0 0 21.756 20.342" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 18.342h2v2H0zM4 18.342h3v2H4zM10 7.342h2v3h-2zM10 18.342H9v2h3v-3h-2zM10 12.342h2v3h-2zM10 5.342h2v-3h-2zM21.756 3.324L16 0v2.342h-2v2h2v2.305z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-m-dashed-2-mono" viewbox="0 0 21.455 22.614" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.699 16.033L0 19.324l5.699 3.29v-2.272h1v-2h-1zM9.699 7.342h2v3h-2zM9.699 18.342h-1v2h3v-3h-2zM9.699 12.342h2v3h-2zM9.699 5.342h2v-3h-2zM21.455 3.324L15.699 0v2.342h-2v2h2v2.305z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-m-solid-0-mono" viewbox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 18H0v-2h10V0h12v2H12z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-m-solid-1-mono" viewbox="0 0 21.756 20.342" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.756 3.324L16 0v2.342h-6v16H0v2h12v-16h4v2.305z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-m-solid-2-mono" viewbox="0 0 21.455 22.614" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.455 3.324L15.699 0v2.342h-6v16h-4v-2.309L0 19.324l5.699 3.29v-2.272h6v-16h4v2.305z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-s-dashed-0-mono" viewbox="0 0 22 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 16h1v1H0zM4.562 16h2.375v1H4.562zM12 17h-1.5v-1h.5v-.5h1zM12 12.269h-1v-2.154h1v2.154zm0-5.385h-1V4.73h1v2.154zM12 1.5h-1V0h1.5v1H12zM15.687 0h2.125v1h-2.125zM21 0h1v1h-1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-s-dashed-1-mono" viewbox="0 0 22.318 19.007" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 0v4.986l4.318-2.493zM0 18.007h1v1H0zM5 18.007h2v1H5zM11 18.007h-.5v1H12v-1.5h-1zM11 7.007h1v2h-1zM11 12.007h1v2h-1zM11 3.507h1v-.5h.5v-1H11zM14 2.007h2v1h-2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-s-dashed-2-mono" viewbox="0 0 22.635 20.986" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.318 18.007h1v1h-1zM11.318 18.007h-.5v1h1.5v-1.5h-1zM11.318 7.007h1v2h-1zM11.318 12.007h1v2h-1zM11.318 3.507h1v-.5h.5v-1h-1.5zM14.318 2.007h1v1h-1zM4.318 16L0 18.493l4.318 2.493v-1.979h1v-1h-1zM22.635 2.493L18.318 0v2.007h-1v1h1v1.979z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-s-solid-0-mono" viewbox="0 0 22 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 17H0v-1h11V0h11v1H12z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-s-solid-1-mono" viewbox="0 0 22.318 19.007" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.318 2.493L18 0v2.007h-7v16H0v1h12v-16h6v1.979z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-ortho-s-solid-2-mono" viewbox="0 0 22.635 20.986" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.635 2.493L18.318 0v2.007h-7v16h-7V16L0 18.493l4.318 2.493v-1.979h8v-16h6v1.979z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-l-dashed-0-mono" viewbox="0 0 24.523 22.622" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.082 19.318l2.524 1.622-1.081 1.682L0 21zM4.582 19.42l-2.523-1.622 1.954-3.039 2.523 1.622-1.954 3.039zm2.93-4.558L4.988 13.24l1.954-3.039 2.523 1.622-1.953 3.039zM10.442 10.304l-.241-.155-.249.143-.274-.479-1.76-1.131 2.419-3.762 2.219 3.883-1.816 1.038zM13.06 9.684l1.008 1.763-2.605 1.489-1.007-1.764zM14.186 17.702l-2.219-3.883 1.817-1.038.298-.463.241.155.249-.142.273.478 1.76 1.131zM17.582 12.42l-2.523-1.622 1.954-3.039 2.523 1.622-1.954 3.039zm2.93-4.558L17.988 6.24l1.954-3.039 2.523 1.622-1.953 3.039zM22 0l2.524 1.621-1.082 1.683-2.523-1.622z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-l-dashed-1-mono" viewbox="0 0 23.244 21.822" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.523 21.822L-.001 20.2l1.081-1.682 2.524 1.622zM4.581 18.62l-2.523-1.622L4.01 13.96l2.523 1.622zM7.512 14.062L4.988 12.44l1.953-3.038 2.524 1.622zM12.556 8.003L10.337 4.12 7.918 7.882l1.76 1.132.274.478.249-.143.241.155.298-.463zM10.455 10.373l2.604-1.488 1.008 1.763-2.605 1.488zM14.572 11.531l-.249.142-.241-.155-.298.463-1.817 1.038 2.219 3.883 2.419-3.762-1.76-1.131zM17.587 11.613l-2.524-1.622 1.963-3.054L19.55 8.56zM23.244 0l-6.648 3.426 1.902 1.222-.49.762 2.523 1.622.49-.762 1.866 1.2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-l-dashed-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.271 15.612L2.748 13.99l-.49.762L.356 13.53 0 21l6.647-3.426-1.866-1.2zM6.252 14.086L3.73 12.463 5.69 9.41l2.524 1.622zM11.312 8.003L9.092 4.12 6.674 7.883l1.76 1.131.273.478.249-.143.241.156.299-.464zM9.21 10.373l2.604-1.488 1.008 1.763-2.605 1.488zM13.327 11.531l-.248.142-.242-.156-.298.464-1.816 1.038 2.219 3.884 2.419-3.763-1.761-1.132zM16.342 11.613L13.82 9.99l1.962-3.054 2.524 1.622zM22 0l-6.648 3.426 1.901 1.222-.49.762 2.524 1.622.49-.762 1.866 1.2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-l-solid-0-mono" viewbox="0 0 24.523 22.622" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.523 22.622L0 21 10.337 4.92l4 7L22 0l2.523 1.622-10.337 16.08-4-7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-l-solid-1-mono" viewbox="0 0 23.245 21.822" xmlns="http://www.w3.org/2000/svg">
+<path d="M23.245 0l-6.649 3.426 1.902 1.222-4.161 6.472-4-7L0 20.2l2.523 1.622 7.663-11.92 4 7L21.021 6.27l1.867 1.2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-l-solid-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 0l-6.648 3.426 1.901 1.222-4.16 6.472-4-7-6.835 10.632L.356 13.53 0 21l6.647-3.426-1.866-1.2 4.161-6.472 4 7L19.777 6.27l1.866 1.2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-m-dashed-0-mono" viewbox="0 0 23.683 22.081" xmlns="http://www.w3.org/2000/svg">
+<path d="M.812 19.738l1.682 1.081-.81 1.262L0 21.001zM3.969 18.524l-1.683-1.081 1.476-2.295 1.683 1.081-1.476 2.295zm2.951-4.59l-1.683-1.082 1.476-2.295 1.683 1.082-1.476 2.295zM9.872 9.343l-.077-.049-.078.045-.086-.151-1.442-.926 1.703-2.649 1.562 2.734-1.489.85zM12.29 9.813l.837 1.464-1.736.993-.837-1.465zM13.791 16.468l-1.562-2.734 1.488-.85.094-.146.076.049.078-.045.086.151 1.443.926zM16.969 11.524l-1.683-1.081 1.476-2.295 1.683 1.081-1.476 2.295zm2.951-4.59l-1.683-1.082 1.476-2.295 1.683 1.082-1.476 2.295zM22-.001l1.682 1.08-.81 1.263-1.683-1.081z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-m-dashed-1-mono" viewbox="0 0 22.826 21.55" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.682 21.55l-1.683-1.08.811-1.262 1.683 1.081zM6.92 13.403L5.238 12.32l1.475-2.295 1.683 1.082zM3.969 17.993l-1.683-1.08 1.475-2.296 1.683 1.08zM9.892 5.082L8.189 7.731l1.442.927.086.15.078-.045.077.049.093-.145 1.489-.851zM10.554 10.273l1.737-.992.836 1.465-1.736.992zM13.965 12.212l-.078.044-.076-.048-.094.145-1.488.851 1.562 2.734 1.703-2.649-1.443-.927zM17.09 10.805l-1.682-1.082 1.598-2.484 1.682 1.082zM22.826 0l-5.909 3.045 1.97 1.266-.285.444 1.683 1.081.285-.443 1.939 1.246z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-m-dashed-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.229 16.305l-1.683-1.082-.29.452-1.942-1.249L0 21l5.85-3.015-1.912-1.228zM5.834 13.808l-1.682-1.081 1.604-2.498L7.44 11.31zM9.065 5.082L7.363 7.731l1.442.927.086.15.078-.045.076.049.094-.145 1.488-.851zM9.727 10.273l1.737-.992.837 1.465-1.737.992zM13.139 12.211l-.078.045-.076-.048-.094.145-1.488.851 1.562 2.734 1.702-2.649-1.442-.927zM16.264 10.804l-1.682-1.081 1.597-2.484 1.683 1.082zM22 0l-5.909 3.045 1.97 1.266-.285.444 1.682 1.081.286-.443 1.938 1.246z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-m-solid-0-mono" viewbox="0 0 23.683 22.081" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.683 22.081L0 21 9.892 5.613l4 7L22 0l1.683 1.081-9.892 15.387-4-7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-m-solid-1-mono" viewbox="0 0 22.826 21.55" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.826 0l-5.909 3.045 1.97 1.266-4.995 7.771-4-7L0 20.469l1.683 1.081L9.791 8.938l4 7L20.57 5.393l1.939 1.246z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-m-solid-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 0l-5.909 3.045 1.97 1.266-4.996 7.771-4-7-6.809 10.593-1.942-1.249L0 21l5.85-3.015-1.912-1.229 5.027-7.818 4 7 6.779-10.545 1.938 1.246z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-s-dashed-0-mono" viewbox="0 0 22.841 21.541" xmlns="http://www.w3.org/2000/svg">
+<path d="M.541 20.16l.841.541-.541.841L0 21.001zM3.209 17.857l-.841-.541 1.218-1.895.841.541-1.218 1.895zm3.045-4.737l-.841-.541 1.218-1.895.841.541-1.218 1.895zM9.482 8.387l-.087-.153-.095.148-.841-.541.987-1.534.905 1.584zM11.479 9.864l.752 1.317-.869.496-.752-1.317zM13.395 15.234l-.905-1.584.868-.496.088.153.095-.148.841.541zM16.209 10.857l-.841-.541 1.218-1.895.841.541-1.218 1.895zm3.045-4.737l-.841-.541 1.218-1.895.841.541-1.218 1.895zM22.001 0l.841.541-.541.841-.841-.541z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-s-dashed-1-mono" viewbox="0 0 22.409 21.278" xmlns="http://www.w3.org/2000/svg">
+<path d="M.84 21.277L0 20.735l.54-.84.842.54zM6.254 12.856l-.841-.541 1.219-1.895.841.541zM3.208 17.593l-.84-.541 1.218-1.895.841.541zM8.459 7.578l.841.541.095-.148.087.153.869-.496-.905-1.584zM11.362 11.414l-.752-1.316.868-.496.753 1.316zM13.446 13.044l-.088-.153-.868.496.905 1.584.987-1.534-.841-.541zM18.06 7.713l-.841-.54.92-1.431.841.54zM15.76 11.29l-.841-.54.92-1.431.841.54zM22.409 0l-4.432 2.284 1.688 1.085-.146.227.841.541.147-.227 1.664 1.07z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-s-dashed-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.913 17.419l-.841-.541-.147.227L.238 16.02 0 21l4.432-2.284-1.665-1.07zM4.293 15.272l-.841-.54.92-1.431.84.54zM6.592 11.695l-.841-.54.92-1.431.841.54zM8.05 7.578l.841.541.095-.148.087.153.869-.496-.905-1.584zM10.953 11.414l-.752-1.316.868-.496.752 1.316zM13.037 13.044l-.088-.153-.868.496.905 1.584.987-1.534-.841-.541zM17.651 7.713l-.84-.54.92-1.431.84.54zM15.351 11.29l-.84-.54.92-1.431.84.54zM22 0l-4.432 2.284 1.688 1.085-.146.227.841.541.147-.227 1.664 1.07z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-s-solid-0-mono" viewbox="0 0 22.841 21.541" xmlns="http://www.w3.org/2000/svg">
+<path d="M.841 21.541L0 21 9.446 6.307l4 7L22 0l.841.541-9.446 14.693-4-7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-s-solid-1-mono" viewbox="0 0 22.409 21.278" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.409 0l-4.432 2.284 1.688 1.085-6.219 9.675-4-7L0 20.737l.841.541L9.395 7.971l4.001 7 7.11-11.062 1.665 1.071z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-saw-s-solid-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 0l-4.432 2.284 1.688 1.085-6.219 9.675-4-7-7.111 11.061L.238 16.02 0 21l4.432-2.284-1.665-1.07 6.219-9.675 4 7 7.111-11.062 1.665 1.071z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-l-dashed-0-mono" viewbox="0 0 24.071 23.17" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.445 19.62l2.072 2.17-1.447 1.381L0 21.001zM4.988 20.386l-2.071-2.17 2.939-2.806 2.071 2.17-2.939 2.806zm4.409-4.209l-2.071-2.17 2.939-2.806 2.071 2.17-2.939 2.806zm4.409-4.208l-2.071-2.17 2.939-2.806 2.071 2.17-2.939 2.806zm4.409-4.209l-2.071-2.17 2.939-2.806 2.071 2.17-2.939 2.806zM22 0l2.072 2.17-1.447 1.382-2.071-2.17z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-l-dashed-1-mono" viewbox="0 0 23.021 22.1" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.072 22.1L0 19.93l1.447-1.381 2.072 2.17zM14.167 10.553l-2.071-2.17 3.042-2.905 2.072 2.17zM5.04 19.266l-2.072-2.17 3.043-2.905 2.071 2.17zM9.603 14.91l-2.071-2.17 3.042-2.905 2.072 2.17zM23.021 0l-7.266 1.767 1.56 1.635-.655.625 2.071 2.17.656-.625 1.531 1.604z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-l-dashed-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.39 17.003l-2.072-2.17-.655.625-1.56-1.635L0 21l7.266-1.767-1.532-1.605zM8.008 15.459l-2.072-2.17L9.17 10.2l2.072 2.17zM12.858 10.828l-2.071-2.17L14.02 5.57l2.072 2.17zM22 0l-7.267 1.767 1.561 1.635-.655.625 2.071 2.17.655-.625 1.532 1.604z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-l-solid-0-mono" viewbox="0 0 24.071 23.17" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 0l2.072 2.17L2.071 23.173l-2.072-2.17z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-l-solid-1-mono" viewbox="0 0 23.021 22.1" xmlns="http://www.w3.org/2000/svg">
+<path d="M23.021 0l-7.266 1.767 1.56 1.635L0 19.93l2.071 2.17L19.387 5.572l1.531 1.604z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-l-solid-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.897 7.176L22 0l-7.267 1.767 1.561 1.635L3.663 15.458l-1.56-1.635L0 21l7.266-1.767-1.532-1.605L18.365 5.572z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-m-dashed-0-mono" viewbox="0 0 23.381 22.446" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.085 19.965l1.38 1.446-1.084 1.036L0 21.001zM4.669 19.308l-1.381-1.446 2.203-2.103 1.381 1.446-2.203 2.103zm4.407-4.207l-1.381-1.446 2.203-2.103 1.381 1.446-2.203 2.103zm4.407-4.206l-1.381-1.446 2.203-2.104 1.381 1.446-2.203 2.104zm4.406-4.206l-1.381-1.447 2.204-2.103 1.381 1.447-2.204 2.103zM22 0l1.382 1.447-1.085 1.036-1.381-1.447z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-m-dashed-1-mono" viewbox="0 0 22.678 21.736" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.381 21.736L0 20.289l1.085-1.036L2.466 20.7zM9.481 14.004l-1.38-1.447 2.338-2.233 1.38 1.447zM4.804 18.468l-1.381-1.447L5.76 14.79l1.382 1.446zM14.159 9.54l-1.382-1.447 2.339-2.233 1.381 1.446zM22.678 0l-6.459 1.57 1.617 1.695-.381.364 1.38 1.446.382-.364 1.592 1.667z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-m-dashed-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.214 17.431l-1.381-1.448-.389.371-1.594-1.67L0 21l6.394-1.555-1.568-1.644zM7.063 15.664l-1.381-1.446 1.848-1.766L8.912 13.9zM14.46 8.605l-1.382-1.447 1.849-1.765 1.381 1.446zM10.762 12.136L9.38 10.689l1.85-1.765 1.38 1.447zM22 0l-6.459 1.57 1.617 1.695-.381.364 1.38 1.446.382-.364 1.592 1.667z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-m-solid-0-mono" viewbox="0 0 23.381 22.446" xmlns="http://www.w3.org/2000/svg">
+<path d="M22-.001l1.381 1.447L1.383 22.449 0 21.003z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-m-solid-1-mono" viewbox="0 0 22.678 21.736" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.678 0l-6.459 1.57 1.617 1.695L0 20.29l1.381 1.446L19.217 4.711l1.592 1.667z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-m-solid-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.131 6.378L22 0l-6.459 1.57 1.617 1.695-13.714 13.09-1.594-1.671L0 21l6.394-1.555-1.569-1.644 13.714-13.09z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-s-dashed-0-mono" viewbox="0 0 22.69 21.724" xmlns="http://www.w3.org/2000/svg">
+<path d="M.723 20.31l.69.723-.723.69L0 21zM3.616 18.931l-.69-.724 1.468-1.401.69.724-1.468 1.401zm3.67-3.503l-.69-.724 1.468-1.401.69.724-1.468 1.401zm3.671-3.504l-.69-.724 1.468-1.401.69.724-1.468 1.401zm3.669-3.503l-.69-.724 1.468-1.401.69.724-1.468 1.401zm3.671-3.503l-.69-.724 1.468-1.401.69.724-1.468 1.401zM22 0l.69.724-.723.69-.69-.724z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-s-dashed-1-mono" viewbox="0 0 22.336 21.372" xmlns="http://www.w3.org/2000/svg">
+<path d="M.69 21.371L0 20.648l.723-.69.69.723zM3.756 18.446l-.69-.724 1.562-1.49.69.723zM7.66 14.719l-.69-.724 1.562-1.49.69.724zM11.563 10.993l-.69-.724 1.562-1.49.69.724zM15.468 7.266l-.69-.723 1.562-1.49.69.723zM22.336 0l-4.845 1.178 1.386 1.451-.196.187.691.724.195-.187 1.367 1.431z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-s-dashed-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.673 18.204l-.69-.724-.196.187-1.385-1.452L0 21l4.844-1.178-1.366-1.432zM9.017 13.103l-.69-.724 1.335-1.274.69.723zM5.678 16.291l-.69-.723 1.336-1.275.69.723zM15.696 6.727l-.69-.723 1.336-1.275.69.723zM12.357 9.916l-.69-.724 1.336-1.275.69.724zM22 0l-4.845 1.178 1.386 1.451-.196.187.691.724.196-.187 1.366 1.431z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-s-solid-0-mono" viewbox="0 0 22.69 21.724" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.002.002l.69.724L.688 21.72l-.69-.724z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-s-solid-1-mono" viewbox="0 0 22.336 21.372" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.336 0l-4.845 1.178 1.386 1.451L0 20.648l.69.724L19.567 3.353l1.367 1.431z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-straight-s-solid-2-mono" viewbox="0 0 22 21" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.598 4.784L22 0l-4.845 1.178 1.386 1.451L2.787 17.667l-1.385-1.452L0 21l4.844-1.178-1.366-1.431L19.231 3.353z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-thickness-l-mono" viewbox="0 0 19.799 19.799" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 16.97L16.97 0l2.828 2.829-16.97 16.97z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-thickness-m-mono" viewbox="0 0 18.385 18.385" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 16.97L16.97 0l1.414 1.414-16.97 16.97z"></path>
+</symbol>
+<symbol id="icon-ui-icon-link-thickness-s-mono" viewbox="0 0 17.678 17.678" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 16.97L16.97 0l.708.707-16.97 16.97z"></path>
+</symbol>
+<symbol id="icon-ui-icon-lock-off-mono" viewbox="0 0 12 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 8V5c0-2.762-2.238-5-5-5S1 2.238 1 5h1a4 4 0 0 1 8 0v3H0v9h12V8h-1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-lock-on-mono" viewbox="0 0 12 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 7V5a5 5 0 0 0-5-5 5 5 0 0 0-5 5v2H0v9h12V7h-1zM2 5a4 4 0 0 1 8 0v2H2V5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-menu-help-mono" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.88 0a8.61 8.61 0 0 1 3.52.64c1.09.46 2.05 1.09 2.87 1.88.82.8 1.48 1.74 1.96 2.82.48 1.08.74 2.25.77 3.5.02 1.25-.19 2.43-.65 3.52a9.07 9.07 0 0 1-1.9 2.89c-.81.83-1.76 1.5-2.84 1.98-1.08.48-2.25.74-3.5.76-1.25 0-2.42-.23-3.52-.68-1.09-.46-2.06-1.08-2.88-1.88a8.785 8.785 0 0 1-1.95-2.82C.28 11.54.03 10.37 0 9.12-.03 7.87.19 6.69.65 5.6c.46-1.1 1.09-2.06 1.9-2.88A9.28 9.28 0 0 1 5.38.75 8.24 8.24 0 0 1 8.88 0zm3.53 8.34c.35-.48.52-1.04.52-1.67 0-1.08-.36-1.91-1.09-2.48-.7-.54-1.59-.81-2.69-.81-.86 0-1.56.18-2.09.55-.91.6-1.39 1.64-1.45 3.13v.09h2.21v-.1c0-.37.11-.75.32-1.16.2-.33.56-.5 1.1-.5s.89.14 1.05.43c.21.29.32.6.32.94 0 .26-.11.54-.32.85-.11.18-.24.32-.4.43-.03.03-.25.19-.65.47-.4.28-.72.58-.96.9-.14.2-.22.43-.26.69-.04.26-.07.58-.1.98v.17h2.17v-.09c0-.2.01-.33.02-.38.01-.06.04-.13.06-.22.08-.28.27-.54.56-.77l.56-.38c.26-.23.49-.43.68-.6.19-.17.34-.33.44-.47zM9 14.63c.33 0 .6-.11.81-.32.21-.21.32-.48.32-.79.02-.33-.07-.61-.28-.82a1.1 1.1 0 0 0-.81-.32H9c-.31 0-.57.1-.78.3-.21.2-.33.46-.35.77 0 .34.1.61.31.83.21.21.47.33.78.35H9z"></path>
+</symbol>
+<symbol id="icon-ui-icon-menu-mono" viewbox="0 0 18 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 2H0V0h18v2zm0 4H0v2h18V6zm0 6H0v2h18v-2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-menu-team-location-mono" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="9" r="3"></circle>
+<path d="M12 14.8c-2.7 0-5 1.5-5 4.3 0 1.2 9.9 1.2 9.9 0 0-2.8-2.2-4.3-4.9-4.3z"></path>
+<circle cx="19" cy="7" r="3"></circle>
+<path d="M18.8 12.6c-1.3 0-2.5.3-3.4 1 2.1.5 3.7 1.9 3.7 4.2v.2c2.5 0 4.9-.3 4.9-1 0-2.8-2.3-4.4-5.2-4.4z"></path>
+<circle cx="5" cy="7" r="3"></circle>
+<path d="M8.6 13.6c-.9-.6-2.1-1-3.4-1C2.3 12.6 0 14.2 0 17c0 .6 2.4.9 4.9 1v-.2c0-2.3 1.5-3.7 3.7-4.2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-mode-ink-mono" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 2l-3 4-3-3 4-3 2 2zM0 18l5-2 9-9-3-3-9 9-2 5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-mode-link-mono" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon</title>
+<path d="M16.36 1.82a1.82 1.82 0 1 1-1.82 1.82 1.82 1.82 0 0 1 1.82-1.82m0-1.82A3.64 3.64 0 1 0 20 3.64 3.64 3.64 0 0 0 16.36 0zM3.64 14.55a1.82 1.82 0 1 1-1.82 1.82 1.82 1.82 0 0 1 1.82-1.82m0-1.82a3.64 3.64 0 1 0 3.64 3.64 3.64 3.64 0 0 0-3.64-3.64zm10-4.55l-1.82-1.82-5.46 5.46 1.82 1.82z"></path>
+</symbol>
+<symbol id="icon-ui-icon-mode-move-mono" viewbox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.168 19.5h1.373c3.843 0 6.959-2.918 6.959-6.518V9.441c0-.702-.613-1.277-1.364-1.277-.719 0-1.297.534-1.345 1.195-.008-.001-.013-.004-.019-.005v-1.19c0-.702-.613-1.277-1.364-1.277-.748 0-1.364.575-1.364 1.277V6.887c0-.702-.613-1.277-1.364-1.277-.748 0-1.364.575-1.364 1.277v-5.11C7.316 1.075 6.703.5 5.952.5c-.747 0-1.362.575-1.362 1.277v8.587c0 .156-.152.294-.312.339a.424.424 0 0 1-.445-.143c-1.004-1.226-.94-2.437-2.387-2.437a.969.969 0 0 0-.817.437.844.844 0 0 0-.01.881l3.583 8.194c.493 1.128 1.665 1.865 2.966 1.865z"></path>
+</symbol>
+<symbol id="icon-ui-icon-mode-multiple-selection-mono" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 10h-2v4H5V7h7v3zm5 1h-6v8h6v-8zM0 4h2V2H0v2zm12 20h2v-2h-2v2zm-8 0h2v-2H4v2zm4 0h2v-2H8v2zm8 0h2v-2h-2v2zM0 24h2v-2H0v2zm20 0h2v-2h-2v2zM0 8h2V6H0v2zm0 4h2v-2H0v2zm0 8h2v-2H0v2zm0-4h2v-2H0v2zM6 2H4v2h2V2zm4 0H8v2h2V2zm4 0h-2v2h2V2zm6 14h2v-2h-2v2zm0-4h2v-2h-2v2zm0 8h2v-2h-2v2zm0-18.5c1.378 0 2.5 1.122 2.5 2.5S21.378 6.5 20 6.5 17.5 5.378 17.5 4s1.122-2.5 2.5-2.5M20 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+</symbol>
+<symbol id="icon-ui-icon-mosaic-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon</title>
+<path d="M4 4H0V0h4v4zm6-4H6v4h4V0zm6 0h-4v4h4V0zM4 6H0v4h4V6zm6 0H6v4h4V6zm6 0h-4v4h4V6zM4 12H0v4h4v-4zm6 0H6v4h4v-4zm6 0h-4v4h4v-4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-most-viewed-boards-mono" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 8H0V0h8v8zm10-8h-8v8h8V0zM8 10H0v8h8v-8zm10 0h-8v8h8v-8z"></path>
+</symbol>
+<symbol id="icon-ui-icon-move-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 5.711c.307-.134.644-.211 1-.211s.693.077 1 .211V3h2L8 0 5 3h2v2.711zM5.5 8c0-.356.077-.693.211-1H3V5L0 8l3 3V9h2.711A2.491 2.491 0 0 1 5.5 8zM9 10.289c-.307.134-.644.211-1 .211s-.693-.077-1-.211V13H5l3 3 3-3H9v-2.711zM16 8l-3-3v2h-2.711c.134.307.211.644.211 1s-.077.693-.211 1H13v2l3-3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-move-to-left-mono" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 10h-8V5l-8 6.5 8 6.5v-5h8v-3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-move-to-right-mono" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 13h8v5l8-6.5L12 5v5H4v3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-multiple-selection-edit-mono" viewbox="0 0 3 13" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h3v3H0V0zm0 5h3v3H0V5zm0 5h3v3H0v-3z" fill="#010202"></path>
+</symbol>
+<symbol id="icon-ui-icon-nav-next-mono" viewbox="0 0 8.5 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 12.5L5.5 7 0 1.5 1.5 0l7 7-7 7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-nav-previous-mono" viewbox="0 0 8.5 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.5 12.5L3 7l5.5-5.5L7 0 0 7l7 7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-note-l-mono" viewbox="0 0 18 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0v14h13.5L18 9.5V0H0zm13 13V9h4l-4 4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-note-m-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0v14h9.5L14 9.5V0H0zm9 13V9h4l-4 4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-note-s-mono" viewbox="0 0 15 10" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0v10h10.5L15 5.5V0H0zm10 9V5h4l-4 4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-notifications-admin-mono" viewbox="0 0 16 13.333" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.5 0c-.339 0-.5.271-.5.606v.484L1 5.061v-.213c0-.334-.161-.606-.5-.606-.339 0-.5.272-.5.606v3.03c0 .334.161.606.5.606.339 0 .5-.272.5-.606v-.151l14 4.493v.507c0 .334.161.607.5.607.339 0 .5-.273.5-.607V.606C16 .271 15.839 0 15.5 0zM14 4.242L2 6.061v-.304l12-3.333v1.818z"></path>
+<path d="M8.296 10.795l-.14.387c-.137.403-.43.736-.821.929a1.65 1.65 0 0 1-1.254.086l-1.53-.504a1.618 1.618 0 0 1-.949-.812 1.585 1.585 0 0 1-.088-1.235l.141-.393a.372.372 0 0 1 .471-.222.365.365 0 0 1 .226.465l-.14.387a.887.887 0 0 0 .574 1.12l1.529.503a.903.903 0 0 0 1.143-.561l.142-.394a.372.372 0 0 1 .472-.221.363.363 0 0 1 .224.465z"></path>
+</symbol>
+<symbol id="icon-ui-icon-notifications-mono" viewbox="0 0 14 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 14.18v.8H0v-.8c0-.85.15-.97.65-.98.31-.01.57-.3.57-.66V7.09c0-3.15 1.85-5 4.41-5.69C5.64.57 6.28 0 7 0c.72 0 1.37.57 1.38 1.4 2.56.69 4.41 2.54 4.41 5.69v5.46c0 .36.25.66.57.66.49.01.64.13.64.97M9 16H5c0 1 1.05 2 2 2 1 0 2-1 2-2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-notifications-new-mono" viewbox="0 0 14 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.28.88C8.1 1.56 8 2.27 8 3c0 3.28 1.97 6.09 4.79 7.33v2.22c0 .36.25.66.57.66.5.01.65.13.65.98v.8H0v-.8c0-.85.15-.97.65-.98.31-.01.57-.3.57-.66V7.09c0-3.15 1.85-5 4.41-5.69C5.64.57 6.28 0 7 0c.56 0 1.07.34 1.28.88zM9 16H5c0 1 1.05 2 2 2 1 0 2-1 2-2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-pagination-first-mono" viewbox="0 0 12 10" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 10L0 5l5-5 1 1-4 4 4 4zM11 10L6 5l5-5 1 1-4 4 4 4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-pagination-last-mono" viewbox="0 0 12 10" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9l4-4-4-4 1-1 5 5-5 5zM0 9l4-4-4-4 1-1 5 5-5 5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-preview-mono" viewbox="0 0 18 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 0A9.435 9.435 0 0 0 .62 5.068a2.025 2.025 0 0 0 0 1.864A9.435 9.435 0 0 0 9 12a9.44 9.44 0 0 0 8.379-5.067 2.023 2.023 0 0 0 0-1.866A9.437 9.437 0 0 0 9 0zm0 10c-2.242 0-4-1.762-4-4s1.758-4 4-4c2.238 0 4 1.762 4 4s-1.762 4-4 4zm.002-6C7.857 4 6.982 4.885 7 6.036 7.017 7.081 7.916 7.98 8.961 8 10.113 8.021 11 7.147 11 6c0-1.133-.866-2-1.998-2zM9 3.602"></path>
+</symbol>
+<symbol id="icon-ui-icon-readonly-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 13l-1 1L0 1l1-1 13 13zm-3.828-5.741l3.819-3.787c.024-.192 0-.406-.071-.644a3.103 3.103 0 0 0-.301-.718c-.151-.285-.392-.597-.725-.934-.335-.335-.639-.573-.909-.719a3.448 3.448 0 0 0-.699-.289c-.241-.072-.452-.098-.644-.072l-3.834 3.8 3.364 3.363zm-2.933 2.892l-2.982 2.935L0 14l.908-4.289 2.968-2.923 3.363 3.363zm-2.801 2.006a2.172 2.172 0 0 0-.144-.501c-.116-.333-.377-.728-.777-1.184a3.943 3.943 0 0 0-.625-.521 2.234 2.234 0 0 0-.549-.271 1.457 1.457 0 0 0-.503-.109L1.447 10l-.328 1.427c.115.073.248.157.39.253.141.096.287.215.428.359.284.29.497.576.64.862l1.432-.314.429-.43z"></path>
+</symbol>
+<symbol id="icon-ui-icon-refresh-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon-mono-02</title>
+<path d="M10.53 6.37H16V.92L14.11 2.8c-.14-.17-.3-.33-.45-.49a8 8 0 1 0 0 11.31 15.58 15.58 0 0 0 1.39-1.88L13.36 11a12.8 12.8 0 0 1-1 1.32 6.12 6.12 0 1 1 .41-8.15z"></path>
+</symbol>
+<symbol id="icon-ui-icon-remove-collection-mono" viewbox="0 0 19 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.586 14l-1.414-1.414 1.414-1.414L16 12.586l1.414-1.414 1.414 1.414L17.414 14l1.414 1.414-1.414 1.414L16 15.414l-1.414 1.414-1.414-1.414L14.586 14zm-3.56.516l-2.703 1.407a.717.717 0 0 1-.646 0L.23 12.046c-.307-.17-.307-.646 0-.816l1.394-.713c.102-.035.204-.035.272 0l5.339 2.788c.238.102.476.17.748.17.238 0 .51-.034.748-.17l2.743-1.432a4.98 4.98 0 0 0-.448 2.643zM7.677.076a.651.651 0 0 1 .612 0l7.481 3.877c.307.17.307.646 0 .816L8.323 8.646a.722.722 0 0 1-.646 0L.23 4.77c-.306-.17-.306-.645 0-.816L7.677.076zm8.06 7.481c.306.17.306.647.034.817L8.323 12.25a.72.72 0 0 1-.646 0L.23 8.374c-.307-.17-.307-.646 0-.817l1.394-.713c.102-.035.204-.035.272 0l5.339 2.788c.238.102.476.17.748.17.238 0 .51-.033.748-.17l5.34-2.788a.37.37 0 0 1 .271 0l1.395.713z" fill-rule="evenodd"></path>
+</symbol>
+<symbol id="icon-ui-icon-reorder-bring-forward-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 5V0H0v11h5v5h11V5h-5zM1 1h1.142L1 2.142V1zm0 2.554L3.554 1h1.088L1 4.642V3.554zm0 2.5L6.054 1h1.088L1 7.142V6.054zm0 2.5L8.554 1h1.088L1 9.642V8.554zM2.054 10L10 2.054v1.088L3.142 10H2.054zm2.5 0L10 4.554v1.088L5.642 10H4.554zm3.588 0H7.054L10 7.054v1.088L8.142 10zM10 9.554V10h-.446L10 9.554zM15 15H6v-4h5V6h4v9z"></path>
+</symbol>
+<symbol id="icon-ui-icon-reorder-bring-to-front-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 9V3H7V0H0v7h3v6h6v3h7V9h-3zm-2.858-5L4 10.142V9.054L9.054 4h1.088zm-2.5 0L4 7.642V6.554L6.554 4h1.088zM4 5.142V4.054L4.054 4h1.088L4 5.142zM3 6H1V1h5v2H3v3zm1 6v-.446L11.554 4H12v.642L4.642 12H4zm2.054 0L12 6.054v1.088L7.142 12H6.054zm2.5 0L12 8.554v1.088L9.642 12H8.554zM12 11.054V12h-.946l.946-.946zM15 15h-5v-2h3v-3h2v5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-reorder-send-backward-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 5V0H0v11h5v5h11V5h-5zm-1 0h-.446L10 4.554V5zm0-1.858L8.142 5H7.054L10 2.054v1.088zM1 1h1.142L1 2.142V1zm0 2.554L3.554 1h1.088L1 4.642V3.554zm0 2.5L6.054 1h1.088L1 7.142V6.054zM5 10h-.446L5 9.554V10zm0-1.858L3.142 10H2.054L5 7.054v1.088zM5 5v.642l-4 4V8.554L8.554 1h1.088l-4 4H5zm10 10H6V6h9v9z"></path>
+</symbol>
+<symbol id="icon-ui-icon-reorder-send-to-back-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 9V3H7V0H0v7h3v6h6v3h7V9h-3zm-1 0h-.446L12 8.554V9zM7 4h.642L7 4.642V4zm0 3v-.946L9.054 4h1.088L4 10.142V9.054L6.054 7H7zM1 6V1h5v5H1zm3.642 1L4 7.642V7h.642zM4 12v-.446L11.554 4H12v.642L4.642 12H4zm5 0h-.446L9 11.554V12zm0-1.858L7.142 12H6.054L9 9.054v1.088zm3-4.088v1.088L10.142 9H9.054L12 6.054zM15 15h-5v-5h5v5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-replace-image-mono" viewbox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0v12h6v-1H1V1h12v6l1 1V0z"></path>
+<path d="M2 2v6l3-3 2 2 3-3 2 2V2zM11 11l2.5 3 2.5-3h-2.051c.025-.165.051-.329.051-.501A3.5 3.5 0 1 0 10.5 14c.325 0 .637-.048.933-.134l-.467-.935c-.153.032-.304.069-.466.069a2.5 2.5 0 1 1 2.449-2H11z"></path>
+</symbol>
+<symbol id="icon-ui-icon-resize-mono" viewbox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 0L4 2l3 3-2 2-3-3-2 2V0h6zm9 15V9l-1.999 2-3-3L8 10l3.001 3-2 2H15z"></path>
+</symbol>
+<symbol id="icon-ui-icon-restore-mono" viewbox="0 0 21 20" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.4 8.3C9.4 7 7.7 4.6 5 4.6c-2 0-3 1-3.7 1.7L0 5v4h4L2.7 7.7C3.4 7 4 6.3 5.4 6.3c2 0 3.3.7 4 2zM5 9v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V9H5zm9 4h-4c-.6 0-1-.4-1-1s.4-1 1-1h4c.6 0 1 .4 1 1s-.4 1-1 1zm5.3-5.3L6.2 2.9c-.6-.2-.8-.8-.6-1.3l.3-.9c.2-.5.8-.8 1.3-.6l13.2 4.8c.5.2.8.8.6 1.3l-.3.9c-.3.5-.9.8-1.4.6z"></path>
+</symbol>
+<symbol id="icon-ui-icon-reverse-order-mono" viewbox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 11h13l-2.25 2.25.75.75 3.5-3.5L12.5 7l-.75.75L14 10H1M15 3H2L4.25.75 3.5 0 0 3.5 3.5 7l.75-.75L2 4h13"></path>
+</symbol>
+<symbol id="icon-ui-icon-roll-mono" viewbox="0 0 14 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0v18h8l6-2.5V0H0zm8 17l2-4 3 2-5 2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-room-view-mosaic-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 12h4v4h-4zM6 12h4v4H6zM0 12h4v4H0zM12 6h4v4h-4zM6 6h4v4H6zM0 6h4v4H0zM12 0h4v4h-4zM6 0h4v4H6zM0 0h4v4H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-room-view-mural-mono" viewbox="0 0 24 9" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 8H0V0h10v8zm6-8h-5v4h5V0zm8 0h-7v5h7V0zm-8 5h-5v4h5V5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-row-mono" viewbox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon-Plan de travail 1-mono</title>
+<path d="M0 10h12v5H0zm16-1H4V0h12zm-1-5V1H5v3zm0 4V5H5v3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-save-mono" viewbox="0 0 14 11" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 11L0 6l1-1 4 4 8-9 1 1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-search-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 15l-5.29-5.29A5.974 5.974 0 0 0 12 6a6 6 0 1 0-6 6 5.974 5.974 0 0 0 3.71-1.29L15 16l1-1zM1 6a5 5 0 1 1 10 0 4.95 4.95 0 0 1-1.129 3.128l-.743.744A4.955 4.955 0 0 1 6 11a5 5 0 0 1-5-5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-send-sync-copy-mono" viewbox="0 0 15 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.77 9.156l4.79 2.766a2.5 2.5 0 1 1-.464.887l-4.861-2.807a3 3 0 1 1 .161-3.807l4.784-2.763a2.5 2.5 0 1 1 .553.836L5.856 7.083a2.998 2.998 0 0 1-.088 2.073z" fill-rule="evenodd"></path>
+</symbol>
+<symbol id="icon-ui-icon-settings-mono" viewbox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 0H1v10H0v2h1v2h2v-2h1v-2H3V0zm12 2h1v2h-1v10h-2V4h-1V2h1V0h2v2zm-5 2H9V0H7v4H6v2h1v8h2V6h1V4z"></path>
+<path d="M2 10.414V13H-.586l-.414.414V15h12v-5H2.414z" fill="none"></path>
+</symbol>
+<symbol id="icon-ui-icon-settings-shortcut-mono" viewbox="0 0 21 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 14h2v-2h1v-2H3V0H1v10H0v2h1zM15 0h-2v2h-1v2h1v2h2V4h1V2h-1zM9 0H7v4H6v2h1v8h2V6h1V4H9zM11 8v10h10V8H11zm6 7v-1.5c-.752.032-3.998-.14-4 1.5.002-2.501 3.285-2.472 4-2.5V11l2 2-2 2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-share-board-mono" viewbox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM7 7.101a4.988 4.988 0 0 1 2 0V3h2L8 0 5 3h2v4.101zm-1.753.732L2.828 5.414 4.243 4H0v4.243l1.414-1.414 2.419 2.419a5.028 5.028 0 0 1 1.414-1.415zM11.757 4l1.414 1.414-2.419 2.419a5.037 5.037 0 0 1 1.414 1.414l2.419-2.419L16 8.243V4h-4.243z"></path>
+</symbol>
+<symbol id="icon-ui-icon-shared-board-mono" viewbox="0 0 16 10" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 9.045c0 .528.367.955.82.955h6.36c.453 0 .82-.427.82-.955v-.387c-.006-.277-.098-.795-.268-1.053-.433-.653-.952-1.08-1.698-1.321 0 0-.563-.284-2.033-.284-1.471 0-2.034.284-2.034.284-.745.243-1.267.666-1.698 1.321-.171.257-.263.776-.269 1.053v.387zM8 5a2 2 0 1 1 0-4 2 2 0 1 1 0 4zM10.557.628A1.975 1.975 0 0 1 12 0a2 2 0 0 1 0 4c-.221 0-.43-.044-.629-.111.076-.285.129-.58.129-.889 0-.918-.363-1.747-.943-2.372zM2 2a2 2 0 0 1 2-2c.571 0 1.08.243 1.442.628A3.48 3.48 0 0 0 4.5 3c0 .309.053.604.129.889A1.961 1.961 0 0 1 4 4a2 2 0 0 1-2-2zm.567 6.535H.883c-.453 0-.883.038-.883-.49v-.148c0-.084.033-.167.031-.239.006-.277.13-.795.3-1.053.431-.655.953-1.078 1.699-1.321 0 0 .563-.284 2.033-.284.42 0 .742.027 1.019.06a4.606 4.606 0 0 0-2.004 1.72c-.414.627-.495 1.471-.511 1.755zM12.922 6.78a4.6 4.6 0 0 0-2.004-1.72c.277-.033.599-.06 1.019-.06 1.47 0 2.033.284 2.033.284.746.243 1.267.666 1.698 1.321.171.258.294.776.3 1.053-.001.072.032.155.032.239v.148c0 .528-.43.49-.883.49h-1.684c-.015-.284-.096-1.128-.511-1.755z"></path>
+</symbol>
+<symbol id="icon-ui-icon-slide-left-mono" viewbox="0 0 6 10" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9L2 5l4-4-1-1-5 5 5 5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-slide-right-mono" viewbox="0 0 6 10" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 9l4-4-4-4 1-1 5 5-5 5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-slideshow-all-boards" viewbox="0 0 106 22" xmlns="http://www.w3.org/2000/svg">
+<path d="M68 22H36V0h32v22zm38-19H82v16h24V3zM16 5H0v12h16V5zm18 0H18v12h16V5zm46-5H70v7h10V0zm0 9H70v7h10V9zm-6 9h-4v3h4v-3zm6 0h-4v3h4v-3z" fill="#ccc"></path>
+</symbol>
+<symbol id="icon-ui-icon-slideshow-fullscreen-off-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 15l-2-2-3 3-2-2 3-3-2-2h6v6zm2-8h6l-2-1.999 3-3L14 0l-3 3.001-2-2V7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-slideshow-fullscreen-on-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 10l2 2 3-3 2 2-3 3 2 2H0v-6zM16 0h-6l2 1.999-3 3L11 7l3-3.001 2 2V0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-stats-admin-mono" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M30 27.23v1.38c0 1.88-1.28 3.4-2.87 3.4H4.87C3.29 32 2 30.48 2 28.6v-1.38c.02-.98.34-2.83.94-3.74 1.51-2.33 3.33-3.83 5.94-4.7 0 0 .57-.28 1.86-.55l3.31 9.93 1.31-7.22L13 17h6l-2.37 3.95 1.31 7.22 3.31-9.93c1.29.27 1.86.55 1.86.55 2.61.86 4.43 2.37 5.94 4.7.61.91.93 2.75.95 3.74M23 7.22V7c0-3.87-3.13-7-7-7S9 3.13 9 7v.22c0 3.87 3.13 7 7 7s7-3.13 7-7" fill-rule="evenodd"></path>
+</symbol>
+<symbol id="icon-ui-icon-stats-board-mono" viewbox="0 0 32 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M28 4v16H4V4h24m4-4H0v24h32V0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-stats-guest-mono" viewbox="0 0 28 32" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="7" r="7"></circle>
+<path d="M28 27.2v1.4c0 1.8-1.2 3.4-2.8 3.4H2.8C1.2 32 0 30.4 0 28.6v-1.4a9 9 0 0 1 1-3.8 10.5 10.5 0 0 1 6-4.6s2-1 7-1 7 1 7 1a10.5 10.5 0 0 1 6 4.6 9 9 0 0 1 1 3.8zM14 21a6.6 6.6 0 0 1 5.8 3.4.9.9 0 0 1 0 1.2 6.6 6.6 0 0 1-11.6 0 .9.9 0 0 1 0-1.2A6.6 6.6 0 0 1 14 21zm0 7a3 3 0 1 0-3-3 2.9 2.9 0 0 0 3 3zm0-4a1 1 0 0 1 0 2 1.1 1.1 0 0 1-1-1 .9.9 0 0 1 1-1z" fill-rule="evenodd"></path>
+</symbol>
+<symbol id="icon-ui-icon-stats-user-mono" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+<g clip-rule="evenodd" fill-rule="evenodd">
+<circle cx="16" cy="7" r="7"></circle>
+<path d="M29 23.4c-1.6-2.4-3.4-3.8-6-4.6 0 0-1.96-.97-7-1-5.04.03-7 1-7 1-2.6.8-4.4 2.2-6 4.6-.6 1-1 2.8-1 3.8v1.4C2 30.4 3.2 32 4.8 32h22.4c1.6 0 2.8-1.6 2.8-3.4v-1.4c0-1-.4-2.8-1-3.8z"></path>
+</g>
+</symbol>
+<symbol id="icon-ui-icon-sticker-l-mono" viewbox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 0C4.925 0 0 4.924 0 11c0 6.075 4.925 11 11 11l11-11c0-6.076-4.925-11-11-11m0 21c0-5.522 4.476-10 10-10L11 21z"></path>
+</symbol>
+<symbol id="icon-ui-icon-sticker-m-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 0C3.581 0 0 3.581 0 8s3.581 8 8 8l8-8a8 8 0 0 0-8-8zm0 15c0-3.313 3.686-7 7-7l-7 7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-sticker-s-mono" viewbox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 0a6 6 0 1 0 0 12l6-6a6 6 0 0 0-6-6m0 11c0-2.76 2.239-5 5-5l-5 5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-sync-card" viewbox="0 0 18 16" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path d="M72 303.5V301H56v2.5a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5zm-17 .5v-14a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H56a1 1 0 0 1-1-1zm3.5-10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" id="jda"></path>
+</defs>
+<use fill-rule="evenodd" transform="translate(-55 -289)" xlink:href="#jda"></use>
+</symbol>
+<symbol id="icon-ui-icon-sync-copy-mono" viewbox="0 0 14 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 3.998V1.997h11V0l3 2.997L11 6V3.998H2V10H0V3.998zm14 9.004v2.001H3V17l-3-2.997L3 11v2.001h9V7h2v6.003z" fill-rule="evenodd"></path>
+</symbol>
+<symbol id="icon-ui-icon-table-insert-column-left-mono" viewbox="0 0 15 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 4v12h9V4H6zm4 11H7V5h3v10zm4 0h-3V5h3v10zM0 0v9h5V0H0zm1 1h1.048L1 2.048V1zm3 5.548L2.548 8H1.462L4 5.462v1.086zm0-2.5l-3 3V5.962l3-3v1.086zm0-2.5l-3 3V3.462L3.462 1H4v.548zM3 10v3l1.25-1.25.75.75L2.5 15 0 12.5l.75-.75L2 13v-3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-table-insert-column-right-mono" viewbox="0 0 15 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0v9h5V0h-5zm1 1h1.048L11 2.048V1zm3 5.548L12.548 8h-1.086L14 5.462v1.086zm0-2.5l-3 3V5.962l3-3v1.086zm0-2.5l-3 3V3.462L13.462 1H14v.548zM13 10v3l1.25-1.25.75.75-2.5 2.5-2.5-2.5.75-.75L12 13v-3zM0 4v12h9V4H0zm4 11H1V5h3v10zm4 0H5V5h3v10z"></path>
+</symbol>
+<symbol id="icon-ui-icon-table-insert-row-above-mono" viewbox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 2h3L11.75.75 12.5 0 15 2.5 12.5 5l-.75-.75L13 3h-3zM0 5h9V0H0v5zm2.048-4L1 2.048V1h1.048zm3.414 3L8 1.462v1.086L6.548 4H5.462zm-2.5 0l3-3h1.086l-3 3H2.962zM1 4v-.538L3.462 1h1.086l-3 3H1zM16 6H4v9h12V6zM5 10V7h10v3H5zm0 4v-3h10v3H5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-table-insert-row-below-mono" viewbox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 12h3l-1.25-1.25.75-.75 2.5 2.5-2.5 2.5-.75-.75L13 13h-3zM0 15h9v-5H0v5zm2.048-4L1 12.048V11h1.048zm3.414 3L8 11.462v1.086L6.548 14H5.462zm-2.5 0l3-3h1.086l-3 3H2.962zM1 14v-.538L3.462 11h1.086l-3 3H1zM16 0H4v9h12V0zM5 4V1h10v3H5zm0 4V5h10v3H5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-table-select-all-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 0v16H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-align-bottom-mono" viewbox="0 0 16 13" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 7H9V0H7v7H5l3 3zM0 12h16v1H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-align-center-mono" viewbox="0 0 16 11" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 1H5V0h6v1zM0 4v1h16V4H0zm13-2H2v1h11V2zM1 7h14V6H1v1zm2 1v1h10V8H3zm-2 3h13v-1H1v1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-align-justified-mono" viewbox="0 0 16 11" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 0v1H0V0h16zM0 3h16V2H0v1zm0 2h16V4H0v1zm0 2h16V6H0v1zm0 2h16V8H0v1zm0 2h16v-1H0v1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-align-left-mono" viewbox="0 0 16 11" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 1H0V0h11v1zM0 2v1h16V2H0zm12 2H0v1h12V4zM0 7h15V6H0v1zm11 1H0v1h11V8zM0 11h14v-1H0v1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-align-middle-mono" viewbox="0 0 16 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 14h2v3h2v-3h2l-3-3zM11 3H9V0H7v3H5l3 3zM0 8h16v1H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-align-right-mono" viewbox="0 0 16 11" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 0v1H5V0h11zM0 3h16V2H0v1zm4 2h12V4H4v1zM1 7h15V6H1v1zm4 2h11V8H5v1zm-3 2h14v-1H2v1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-align-top-mono" viewbox="0 0 16 13" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 6h2v7h2V6h2L8 3zM0 0h16v1H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-color-background-mono" viewbox="0 0 14 13" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.924 0L1 13H0V0h5.924zm3.123 8L7.709 4.231a35.87 35.87 0 0 1-.91-2.781c-.164.833-.394 1.788-.692 2.61L4.699 8h4.348zM4.21 9l-1.409 4h8.266L9.572 9H4.21zm3.542-9L13 13h1V0H7.752z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-color-body-mono" viewbox="0 0 12 13" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 13L4.924 0h1.828L12 13h-1.934L8.572 9.062H3.21L1.801 13H0zm3.699-5.338h4.348l-1.338-3.6c-.408-1.094-.712-1.993-.911-2.697a16.65 16.65 0 0 1-.691 2.484L3.699 7.662z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-position-bottom-mono" viewbox="0 0 10 15" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h10v10H0zM0 12h10v1H0zM1 14h8v1H1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-position-inside-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0v16h16V0H0zm12 10H4V9h8v1zm1-2H3V7h10v1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-position-left-mono" viewbox="0 0 22 10" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 0h10v10H12zM0 4h10v1H0zM2 6h8v1H2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-position-right-mono" viewbox="0 0 22 10" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h10v10H0zM12 4h10v1H12zM12 6h8v1h-8z"></path>
+</symbol>
+<symbol id="icon-ui-icon-text-position-top-mono" viewbox="0 0 10 15" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 5h10v10H0zM0 0h10v1H0zM1 2h8v1H1z"></path>
+</symbol>
+<symbol id="icon-ui-icon-timer-decrease-mono" viewbox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 6L0 0h10z"></path>
+</symbol>
+<symbol id="icon-ui-icon-timer-increase-mono" viewbox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 0L0 6h10z"></path>
+</symbol>
+<symbol id="icon-ui-icon-timer-pause-mono" viewbox="0 0 10 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h3v12H0zM7 0h3v12H7z"></path>
+</symbol>
+<symbol id="icon-ui-icon-timer-play-mono" viewbox="0 0 10 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 12l10-6L0 0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-timer-reset-mono" viewbox="0 0 18 15" xmlns="http://www.w3.org/2000/svg">
+<style>.st0{fill:#1a171b}.st1,.st2{fill:none;stroke:#fff;stroke-miterlimit:10}.st2{stroke:#000}.st3{opacity:.75}.st4{fill:#fff}.st5{fill:#979797}.st6{fill:none;stroke:red;stroke-miterlimit:10}</style>
+<path d="M18 7.5c0 4.1-3.5 7.5-7.7 7.5-.9 0-1.7-.2-2.5-.4l.9-1.5c.5.1 1 .2 1.5.2 3.3 0 6-2.6 6-5.8 0-3.5-2.9-5.8-6-5.8-3.3 0-6 2.6-6 5.8h3.4l-3.9 6-3.7-6h2.6C2.6 3.4 6 0 10.3 0 14.5 0 18 3.2 18 7.5z" id="kcscene"></path>
+</symbol>
+<symbol id="icon-ui-icon-tool-new-marker" viewbox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon</title>
+<path d="M19 0a19 19 0 1 0 19 19A19 19 0 0 0 19 0z" fill="#1a6c8f" fill-opacity=".15"></path>
+<path d="M35 19A16 16 0 1 1 19 3a16 16 0 0 1 16 16z" fill="#2390bf"></path>
+<path d="M10.71 18.85l-.54-1.08.16 1.08v3.59H9V15.5h1l2.61 3.67.52 1.05-.13-1.04v-3.63h1.28v6.95h-1zm5-3.3h4.09v1.2h-2.73v1.6h2.49v1.2h-2.49v1.68h2.79v1.2h-4.14v-6.88zm7.19 3.85l.1 1.22.14-1.24 1.2-3.83h.89l1.18 3.85.14 1.22.15-1.24.84-3.83H29l-1.9 6.95h-.91L25 18.66l-.2-1.05-.17 1.06-1.27 3.83h-1l-1.89-6.94H22z" fill="#fff"></path>
+</symbol>
+<symbol id="icon-ui-icon-trash-mono" viewbox="0 0 13 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 4v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V4H1zm8-3L8 0H5L4 1H1a1 1 0 0 0-1 1v1h13V2a1 1 0 0 0-1-1H9z"></path>
+</symbol>
+<symbol id="icon-ui-icon-unlike-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 1l8.2-1L14 7 9 8a14.7 14.7 0 0 1 1 5v1h-.9c0-1.9-4.3-6-6.1-6zM0 1h2v7H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-update-all-mono" viewbox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon</title>
+<path d="M15.5 9l-2.25 3.6L11 9h2a3.5 3.5 0 0 0-3.5-3.5 3.23 3.23 0 0 0-.9.13l-.55-.87A4.23 4.23 0 0 1 9.5 4.5 4.5 4.5 0 0 1 14 9h1.5zm-5.1 3.37a3.23 3.23 0 0 1-.9.13A3.5 3.5 0 0 1 6 9h2L5.75 5.4 3.5 9H5a4.5 4.5 0 0 0 4.5 4.5 4.22 4.22 0 0 0 1.45-.26zM16 3v12H3V3h13m1-1H2v14h15V2zm-1-1V0H0v15h1V1h15z"></path>
+</symbol>
+<symbol id="icon-ui-icon-update-circle-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon</title>
+<path d="M16 8a8 8 0 1 1-8-8 8 8 0 0 1 8 8zm-3.35 0v-.15A4.66 4.66 0 0 0 8 3.35a4.38 4.38 0 0 0-1.42.25l.66 1.16A3.08 3.08 0 0 1 8 4.65a3.35 3.35 0 0 1 3.35 3.2V8H9.5l2.25 4L14 8h-1.35zm-3.89 3.24a3.1 3.1 0 0 1-.76.11 3.35 3.35 0 0 1-3.35-3.2V8H6.5L4.25 4 2 8h1.35v.15A4.66 4.66 0 0 0 8 12.65a4.36 4.36 0 0 0 1.42-.25z"></path>
+</symbol>
+<symbol id="icon-ui-icon-update-mono" viewbox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon</title>
+<path d="M16 6l-3 4.8L10 6h2.67A4.67 4.67 0 0 0 8 1.33a4.31 4.31 0 0 0-1.2.18L6.07.35A5.63 5.63 0 0 1 8 0a6 6 0 0 1 6 6h2zm-6.8 4.49a4.31 4.31 0 0 1-1.2.18A4.67 4.67 0 0 1 3.33 6H6L3 1.2 0 6h2a6 6 0 0 0 6 6 5.62 5.62 0 0 0 1.93-.35z"></path>
+</symbol>
+<symbol id="icon-ui-icon-user-add-mono" viewbox="0 0 18 17" xmlns="http://www.w3.org/2000/svg">
+<style>.st0{fill:#1a171b}.st1{fill-rule:evenodd;clip-rule:evenodd}.st2,.st3{fill:none;stroke:#fff;stroke-miterlimit:10}.st3{stroke:#000}.st4{opacity:.75}.st5{fill:#979797}.st6{clip-path:url(#SVGID_2_);enable-background:new}.st7{clip-path:url(#SVGID_4_)}.st8{clip-path:url(#SVGID_6_)}.st9{clip-path:url(#SVGID_8_)}.st10{clip-path:url(#SVGID_10_);enable-background:new}.st11{clip-path:url(#SVGID_12_)}.st12{clip-path:url(#SVGID_14_)}.st13{clip-path:url(#SVGID_16_)}.st14{clip-path:url(#SVGID_18_);enable-background:new}.st15{clip-path:url(#SVGID_20_)}.st16{clip-path:url(#SVGID_22_)}.st17{clip-path:url(#SVGID_24_)}</style>
+<g id="kjscene">
+<path d="M13.5 8C11.01 8 9 10.01 9 12.5s2.01 4.5 4.5 4.5a4.5 4.5 0 0 0 0-9zm2.5 5h-2v2h-1v-2h-2v-1h2v-2h1v2h2v1z"></path>
+<circle cx="7" cy="3.5" r="3.5"></circle>
+<path d="M7 12.5c0-1.32.4-2.55 1.07-3.58-.32-.02-.67-.03-1.07-.03-2.57 0-3.56.51-3.56.51-1.31.43-2.22 1.18-2.97 2.35-.3.45-.46 1.37-.47 1.86v.69c0 .94.64 1.7 1.44 1.7h6.59A6.445 6.445 0 0 1 7 12.5z"></path>
+</g>
+</symbol>
+<symbol id="icon-ui-icon-user-menu-change-password-mono" viewbox="0 0 14 13.586" xmlns="http://www.w3.org/2000/svg">
+<path d="M.505 13.586h2.442v-1.431h1.431v-1.411h1.374V9.313h1.87l1.181-1.181a4.112 4.112 0 0 0 3.999-1.042c1.608-1.613 1.595-4.236-.029-5.867-1.627-1.62-4.25-1.633-5.857-.019A4.096 4.096 0 0 0 5.87 5.207L0 11.077l.009 2.013c.002.364.136.489.496.496zm9.722-10.015c-.431-.437-.435-1.134-.009-1.555a1.089 1.089 0 0 1 1.555.009 1.1 1.1 0 0 1 .01 1.555 1.114 1.114 0 0 1-1.556-.009z"></path>
+</symbol>
+<symbol id="icon-ui-icon-user-menu-language-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm5.8 5h-3.1c-.3-1.2-.9-2.3-1.6-3.4 2 .3 3.7 1.6 4.7 3.4zm.7 3c0 .7-.1 1.4-.3 2H11c.2-1.3.2-2.7 0-4h3.2c.2.6.3 1.3.3 2zm-8.4 2c-.3-1.3-.3-2.7 0-4h3.8c.3 1.3.3 2.7 0 4H6.1zm3.6 1c-.3 1.1-.9 2.2-1.7 3.2-.8-1-1.3-2.1-1.7-3.2h3.4zM1.5 8c0-.7.1-1.4.3-2H5c-.2 1.3-.2 2.7 0 4H1.8c-.2-.6-.3-1.3-.3-2zm4.8-3c.4-1.1.9-2.2 1.7-3.2.8 1 1.3 2.1 1.7 3.2H6.3zm.6-3.4C6.2 2.7 5.6 3.8 5.3 5H2.2c1-1.8 2.7-3.1 4.7-3.4zM2.2 11h3.1c.3 1.2.9 2.3 1.6 3.4-2-.3-3.7-1.6-4.7-3.4zm6.9 3.4c.7-1.1 1.3-2.2 1.6-3.4h3.1c-1 1.8-2.7 3.1-4.7 3.4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-user-menu-logout-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 4V2H2v12h6v-4h2v6H0V0h10v4z"></path>
+<path d="M16 7l-4 3V8H6V6h6V4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-user-remove-mono" viewbox="0 0 18 17" xmlns="http://www.w3.org/2000/svg">
+<style>.st0{fill:#1a171b}.st1{fill-rule:evenodd;clip-rule:evenodd}.st2,.st3{fill:none;stroke:#fff;stroke-miterlimit:10}.st3{stroke:#000}.st4{opacity:.75}.st5{fill:#979797}.st6{clip-path:url(#SVGID_2_);enable-background:new}.st7{clip-path:url(#SVGID_4_)}.st8{clip-path:url(#SVGID_6_)}.st9{clip-path:url(#SVGID_8_)}.st10{clip-path:url(#SVGID_10_);enable-background:new}.st11{clip-path:url(#SVGID_12_)}.st12{clip-path:url(#SVGID_14_)}.st13{clip-path:url(#SVGID_16_)}.st14{clip-path:url(#SVGID_18_);enable-background:new}.st15{clip-path:url(#SVGID_20_)}.st16{clip-path:url(#SVGID_22_)}.st17{clip-path:url(#SVGID_24_)}</style>
+<g id="knscene">
+<path d="M13.5 8C11.01 8 9 10.01 9 12.5s2.01 4.5 4.5 4.5a4.5 4.5 0 0 0 0-9zm2.5 5h-5v-1h5v1z"></path>
+<circle cx="7" cy="3.5" r="3.5"></circle>
+<path d="M7 12.5c0-1.32.4-2.55 1.07-3.58-.32-.02-.67-.03-1.07-.03-2.57 0-3.56.51-3.56.51-1.31.43-2.22 1.18-2.97 2.35-.3.45-.46 1.37-.47 1.86v.69c0 .94.64 1.7 1.44 1.7h6.59A6.445 6.445 0 0 1 7 12.5z"></path>
+</g>
+</symbol>
+<symbol id="icon-ui-icon-utilities-animation-mono" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0v11h16V0H0zm6 8V3l5 2.5L6 8zm4 4h1.5l1.5 4h-1.5L10 12zm-5.5 4H3l1.5-4H6l-1.5 4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-export-as-images-mono" viewbox="0 0 20 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 6.868V2H4v4.268l.029.017zM6.887 14H18v-1H8.554zM6 0v7.468l1.27.762L9.5 6 12 8.5 15.5 4 19 8.5V11h-7.113l-1.666 1H20V0zM8 11L3 8v2H0v2h3v2z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-export-mono" viewbox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1h12v2l1 1V0H0v12h9v-1H1z"></path>
+<path d="M16 7l-6-4v3H4v2h6v3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-export-notes-mono" viewbox="0 0 16 11" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h2v2H0zM3 0h2v2H3zM6 0h2v2H6zM9 0h2v2H9zM12 0h2v2h-2zM0 3h2v2H0zM3 3h2v2H3zM6 3h2v2H6zM0 9h2v2H0zM0 6h2v2H0zM3 9h2v2H3zM6 9h2v2H6z"></path>
+<path d="M10 11V8H4V6h6V3l6 4z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-filter-mono" viewbox="0 0 13 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.021 1.566L12 0H0l5 8v6l2-2V8.445C7.59 8.789 8.268 9 9 9a4 4 0 0 0 4-4c0-1.468-.801-2.738-1.979-3.434zM9 8a2.982 2.982 0 0 1-1.679-.514l3.171-5.074A2.987 2.987 0 0 1 12 5a3 3 0 0 1-3 3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-import-export-mono" viewbox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 14v-3H6V9h5V6l5 4-5 4zM10 3H5V0L0 4l5 4V5h5V3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-import-mono" viewbox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 0v4h1V1h12v10H9l-1 1h8V0z"></path>
+<path d="M12 7L6 3v3H0v2h6v3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-legend-mono" viewbox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0l5 2v12l-5-2V0zm11 0v12l5 2V2l-5-2zM6 14l4-2V0L6 2v12z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-mono" viewbox="0 0 14 20" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.667 16.066H0v2.623h4.667L7.333 20 14 18.689v-2.623l-6.667-1.312zM8 5.41l2.694-2.787H14C12.936 1.311 11.227 0 9.327 0 6.94 0 4.931 1.196 4.03 3.169L0 2.752V7.85l4.03-.386c.901 1.975 2.91 3.028 5.297 3.028 1.9 0 3.609-1.312 4.673-2.623h-3.306L8 5.41z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-more-mono" viewbox="0 0 18 4" xmlns="http://www.w3.org/2000/svg">
+<circle cx="16" cy="2" r="2"></circle>
+<circle cx="9" cy="2" r="2"></circle>
+<circle cx="2" cy="2" r="2"></circle>
+</symbol>
+<symbol id="icon-ui-icon-utilities-redo-mono" viewbox="0 0 16 8" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.857 3.077c2.286 0 3.429 1.23 4.572 2.461L9.143 8H16V.615l-2.286 2.462C12.571 1.846 10.857 0 7.429 0 2.857 0 0 4.308 0 6.769c1.143-2.461 3.429-3.692 6.857-3.692z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-slideshow-mono" viewbox="0 0 20 14" xmlns="http://www.w3.org/2000/svg">
+<style>.st0{fill:#010202}.st1,.st2{fill:none;stroke:#fff;stroke-miterlimit:10}.st2{stroke:#000}.st3{opacity:.75}.st4{fill:#fff}.st5{fill:#979797}.st6{fill:none;stroke:red;stroke-miterlimit:10}</style>
+<path d="M20 12h-2V3h2v9zM2 12H0V3h2v9zM15 2v10H5V2h10m2-2H3v14h14V0z" id="kzannotations"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-team-mono" viewbox="0 0 18 15" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 13.567C0 14.359.551 15 1.23 15h9.539c.68 0 1.23-.641 1.23-1.433v-.58c-.009-.415-.147-1.193-.403-1.579-.649-.98-1.428-1.62-2.547-1.981C9.05 9.426 8.206 9 6.001 9c-2.206 0-3.05.426-3.05.426-1.119.365-1.901.999-2.547 1.981-.256.387-.395 1.164-.404 1.579v.581zM6 7.5a3 3 0 1 1 0-6 3 3 0 1 1 0 6zM9.836.942A2.955 2.955 0 0 1 12 0a3 3 0 1 1 0 6 2.92 2.92 0 0 1-.943-.166c.113-.429.193-.87.193-1.334A5.213 5.213 0 0 0 9.836.942zm3.547 9.228c-.787-1.196-1.785-2.032-3.006-2.58.415-.05.898-.09 1.529-.09 2.206 0 3.05.426 3.05.426 1.119.365 1.901.999 2.547 1.981.256.387.441 1.164.45 1.579-.003.108.047.234.047.359v.222c0 .792-.645.735-1.324.735H14.15c-.024-.426-.145-1.692-.767-2.632z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-undo-mono" viewbox="0 0 16 8" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.143 3.077c-2.286 0-3.429 1.23-4.572 2.461L6.857 8H0V.615l2.286 2.462C3.429 1.846 5.143 0 8.571 0 13.143 0 16 4.308 16 6.769c-1.143-2.461-3.429-3.692-6.857-3.692z"></path>
+</symbol>
+<symbol id="icon-ui-icon-utilities-undo-redo-mono" viewbox="0 0 16 15.5" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 11.5c2 0 3 1 4 2l-2 2h6v-6l-2 2c-1-1-2.5-2.5-5.5-2.5-4 0-6.5 3.5-6.5 5.5 1-2 3-3 6-3zM8 2.5c-2 0-3 1-4 2l2 2H0v-6l2 2C3 1.5 4.5 0 7.5 0c4 0 6.5 3.5 6.5 5.5-1-2-3-3-6-3z"></path>
+</symbol>
+<symbol id="icon-ui-icon-value-decrease-mono" viewbox="0 0 11 2" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h11v2H0z"></path>
+</symbol>
+<symbol id="icon-ui-icon-value-increase-mono" viewbox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 5H7V0H5v5H0v2h5v5h2V7h5z"></path>
+</symbol>
+<symbol id="icon-ui-icon-value-mono" viewbox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+<title>ui-icon-value-mono</title>
+<path d="M0 9h15v2H0zM1 4h15v2H1z"></path>
+<path d="M6 0h2L5 15H3L6 0zM11 0h2l-3 15H8l3-15z"></path>
+</symbol>
+<symbol id="icon-ui-icon-warning-mono" viewbox="0 0 17 15" xmlns="http://www.w3.org/2000/svg">
+<style>.st0{fill:#010202}.st1,.st2{fill:none;stroke:#fff;stroke-miterlimit:10}.st2{stroke:#000}.st3{opacity:.75}.st4{fill:#fff}.st5{fill:#979797}.st6{fill:none;stroke:red;stroke-miterlimit:10}</style>
+<path d="M16.5 13.3L9.5.8c-.5-1-1.4-1-2 0l-7 12.5c-.5 1-.1 1.7 1 1.7h14c1.1 0 1.6-.8 1-1.7zM7.5 4h2v5h-2V4zm1 9.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5z" id="lgannotations"></path>
+</symbol>
+<symbol id="icon-ui-icon-zoom-in-mono" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 6H8V0H6v6H0v2h6v6h2V8h6z"></path>
+</symbol>
+<symbol id="icon-ui-icon-zoom-out-mono" viewbox="0 0 14 2" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h14v2H0z"></path>
+</symbol>
+</svg>
+<svg height="0" style="position:absolute" width="0">
+<symbol id="ui-icon-story-points-mono" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.49,4H14l-.56-2.09a1,1,0,0,0-1.22-.71L1.62,4.05a1,1,0,0,0-.7,1.22L5.06,20.73a1,1,0,0,0,1.22.7L9,20.71v.79a1.5,1.5,0,0,0,1.5,1.5h11A1.5,1.5,0,0,0,23,21.5V5.5A1.5,1.5,0,0,0,21.49,4ZM22,21.5a.5.5,0,0,1-.5.5h-11a.5.5,0,0,1-.5-.5V5.5a.5.5,0,0,1,.5-.5h11a.5.5,0,0,1,.5.5Z"></path>
+<circle cx="15.99" cy="10" r="2"></circle>
+<circle cx="15.99" cy="16.93" r="2"></circle>
+</symbol>
+<symbol id="utilities-export-stories-mono" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<g>
+<path d="M6,8H4V6H6ZM9,6H7V8H9ZM6,9H4v2H6ZM9,9H7v2H9ZM6,15H4v2H6Zm0-3H4v2H6Zm3,3H7v2H9Zm11-2L14,9v3H8v2h6v3Z"></path>
+<rect height="5" width="1" x="10" y="6"></rect>
+<rect height="2" width="1" x="10" y="15"></rect>
+<rect height="1" width="6" x="11" y="6"></rect>
+<rect height="1" width="2" x="11" y="16"></rect>
+<polygon points="18 9.67 18 6 17 6 17 9 18 9.67"></polygon>
+</g>
+</symbol>
+<defs xmlns="http://www.w3.org/2000/svg">
+<lineargradient id="jiracard-tool_linearGradient-1" x1="98.0308675%" x2="58.8877062%" y1="0.160599572%" y2="40.7655246%">
+<stop offset="18%" stop-color="#0052CC"></stop>
+<stop offset="100%" stop-color="#2684FF"></stop>
+</lineargradient>
+<lineargradient id="jiracard-tool_linearGradient-2" x1="98.0308675%" x2="58.8877062%" y1="0.160599572%" y2="40.7655246%">
+<stop offset="18%" stop-color="#FFFFFF" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#FFFFFF"></stop>
+</lineargradient>
+</defs>
+<symbol id="jiracard-size-small-icon" viewbox="0 0 28 20" xmlns="http://www.w3.org/2000/svg">
+<path d="M21,12.5V11l-4,4h1.5H8c-0.6,0-1-0.4-1-1V6c0-0.6,0.4-1,1-1h12c0.6,0,1,0.4,1,1V12.5z M17,14l3-3h-2 c-0.6,0-1,0.4-1,1V14z"></path>
+</symbol>
+<symbol id="jiracard-size-medium-icon" viewbox="0 0 28 20" xmlns="http://www.w3.org/2000/svg">
+<path d="M21,14.5V13l-4,4h1.5H8c-0.6,0-1-0.4-1-1V4c0-0.6,0.4-1,1-1h12c0.6,0,1,0.4,1,1V14.5z M17,16l3-3h-2 c-0.6,0-1,0.4-1,1V16z"></path>
+</symbol>
+<symbol id="jiracard-migrate-mono-icon" viewbox="0 0 20 15" xmlns="http://www.w3.org/2000/svg">
+<g>
+<path d="M12,7h8V4h-8V7z M18.5,4.5c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1s-1-0.4-1-1C17.5,4.9,17.9,4.5,18.5,4.5z"></path>
+<path d="M0,15h8v-3H0V15z M6.5,12.5c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1s-1-0.4-1-1C5.5,12.9,5.9,12.5,6.5,12.5z"></path>
+<path d="M12,0v3h8V0H12z M18.5,2.5c-0.6,0-1-0.4-1-1c0-0.6,0.4-1,1-1s1,0.4,1,1C19.5,2.1,19.1,2.5,18.5,2.5z"></path>
+<path d="M8,1.5H5.5c-1.1,0-2,0.9-2,2V7h1V3.5c0-0.6,0.4-1,1-1H8V4l3-2L8,0V1.5z"></path>
+<path d="M0,11h8V8H0V11z M6.5,8.5c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1s-1-0.4-1-1C5.5,8.9,5.9,8.5,6.5,8.5z"></path>
+</g>
+</symbol>
+<symbol id="jiracard-new-icon" viewbox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" fill-rule="evenodd" id="Visualisation---Workflow" stroke="none" stroke-width="1">
+<g id="11" transform="translate(-643.000000, -406.000000)">
+<g id="popover" transform="translate(300.000000, 264.000000)">
+<g id="list1-copy-4" transform="translate(28.000000, 131.000000)">
+<g id="Group-16" transform="translate(315.000000, 11.000000)">
+<path d="M11.8713158,14.1157368 C11.594,14.1962105 11.3045263,14.246 11,14.246 C9.13463158,14.246 7.62242105,12.7337895 7.62242105,10.8684211 L9.55263158,10.8684211 L7.38157895,7.39473684 L5.21052632,10.8684211 L6.65789474,10.8684211 C6.65789474,13.267 8.60142105,15.2105263 11,15.2105263 C11.4932632,15.2105263 11.9598947,15.1155789 12.397,14.9563684 L11.8713158,14.1157368 Z M16.7894737,10.8684211 L14.6184211,14.3421053 L12.4473684,10.8684211 L14.377,10.8684211 C14.377,9.00305263 12.8653684,7.49142105 11,7.49142105 C10.6954737,7.49142105 10.4054211,7.54121053 10.1281053,7.62168421 L9.60242105,6.78047368 C10.0395263,6.62184211 10.5061579,6.52631579 11,6.52631579 C13.398,6.52631579 15.3421053,8.47042105 15.3421053,10.8684211 L16.7894737,10.8684211 Z" fill="#FFFFFF" id="Fill-1-Copy"></path>
+<g id="Page-1">
+<path d="M11,0 C4.93436842,0 0,4.93436842 0,11 C0,17.0656316 4.93436842,22 11,22 C17.0656316,22 22,17.0656316 22,11 C22,4.93436842 17.0656316,0 11,0" fill="#1A6C8F" fill-opacity="0.15" id="Fill-1"></path>
+<path d="M20.2631579,11 C20.2631579,16.1190526 16.1190526,20.2631579 11,20.2631579 C5.87921053,20.2631579 1.73684211,16.1190526 1.73684211,11 C1.73684211,5.88152632 5.87921053,1.73684211 11,1.73684211 C16.1190526,1.73684211 20.2631579,5.88152632 20.2631579,11" fill="#2390BF" id="Fill-3"></path>
+<path d="M13.2552316,11.2338368 L13.3287579,11.9407316 L13.3519158,11.9407316 L13.4318105,11.2222579 L14.1277053,9.00431053 L14.6400737,9.00431053 L15.3243895,11.2338368 L15.4042842,11.9407316 L15.4274421,11.9407316 L15.5125474,11.2222579 L15.9971263,9.00431053 L16.7897053,9.00431053 L15.6897053,13.0239421 L15.1651789,13.0239421 L14.4524947,10.8059947 L14.3552316,10.1963632 L14.3268632,10.1963632 L14.2296,10.8117842 L13.5232842,13.0239421 L12.9698105,13.0239421 L11.8750211,9.00431053 L12.7243368,9.00431053 L13.2552316,11.2338368 Z M9.09838947,9.00431053 L11.4651263,9.00431053 L11.4651263,9.70020526 L9.87996842,9.70020526 L9.87996842,10.6294158 L11.3221263,10.6294158 L11.3221263,11.3253105 L9.87996842,11.3253105 L9.87996842,12.3002579 L11.4934947,12.3002579 L11.4934947,12.9955737 L9.09838947,12.9955737 L9.09838947,9.00431053 Z M6.20191579,10.9148368 L5.88870526,10.2878368 L5.86033684,10.2878368 L5.95181053,10.9148368 L5.95181053,12.9955737 L5.21075789,12.9955737 L5.21075789,8.97594211 L5.78044211,8.97594211 L7.29149474,11.1024158 L7.59370526,11.7132053 L7.62207368,11.7132053 L7.53117895,11.1024158 L7.53117895,9.00431053 L8.27223158,9.00431053 L8.27223158,13.0239421 L7.70196842,13.0239421 L6.20191579,10.9148368 Z" fill="#FFFFFF" id="Fill-5"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</symbol>
+<symbol id="jiracard-tool" viewbox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+<g>
+<path d="M14.16,14.39H.83c-.86,0-.86,0-.76.87A6.56,6.56,0,0,0,5.5,20.84a26.2,26.2,0,0,0,3.07,0c.59,0,.59,0,.59.6a19.19,19.19,0,0,0,.1,3A6.52,6.52,0,0,0,15.31,30c.29,0,.39,0,.39-.37V15.91C15.68,14.86,15.21,14.39,14.16,14.39Z"></path>
+<path d="M30,1.46A1.3,1.3,0,0,0,28.86,0H15.2c-.89,0-.89,0-.79.89A6.52,6.52,0,0,0,20,6.46a28.82,28.82,0,0,0,3.22,0c.23,0,.32,0,.32.3V9.89a6.51,6.51,0,0,0,6.11,5.65c.28,0,.35,0,.35-.35Z"></path>
+<path d="M22.81,8.34a1.19,1.19,0,0,0-1.15-1.13H7.35c-.2,0-.22.08-.2.25s0,.57,0,.85a6.52,6.52,0,0,0,6.21,5.41h2.57c.22,0,.3,0,.3.3v2.2a6.39,6.39,0,0,0,1,3.58,6.46,6.46,0,0,0,5.22,3c.16,0,.26,0,.26-.22C22.81,21.39,22.83,10,22.81,8.34Z"></path>
+</g>
+</symbol>
+<symbol id="jiracard-tool-white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" fill-rule="evenodd" id="Symbols" stroke="none" stroke-width="1">
+<g fill-rule="nonzero" id="utilities-jira-white" transform="translate(-3.000000, -3.000000)">
+<g id="jira-logo-white" transform="translate(3.000000, 3.000000)">
+<path d="M17.2158904,0 L8.68684932,0 C8.68684932,1.02082917 9.09237212,1.99984783 9.81420735,2.72168306 C10.5360426,3.44351829 11.5150612,3.8490411 12.5358904,3.8490411 L14.1065753,3.8490411 L14.1065753,5.36547945 C14.1079365,7.49028315 15.8308123,9.21205523 17.9556164,9.21205479 L17.9556164,0.739726027 C17.9556164,0.331186623 17.6244298,2.50158237e-17 17.2158904,0 Z" fill="#FFFFFF" id="Shape"></path>
+<path d="M12.8712329,4.37178082 L4.34465753,4.37178082 C4.34601766,6.49562208 6.06739162,8.21699604 8.19123288,8.21835616 L9.76191781,8.21835616 L9.76191781,9.73479452 C9.76191781,10.7556237 10.1674406,11.7346424 10.8892758,12.4564776 C11.6111111,13.1783128 12.5901297,13.5838356 13.6109589,13.5838356 L13.6109589,5.11150685 C13.6109589,4.70296745 13.2797723,4.37178082 12.8712329,4.37178082 Z" fill="url(#jiracard-tool_linearGradient-2)" id="Shape"></path>
+<path d="M8.52657534,8.74356164 L0,8.74356164 C0.00136118138,10.8683653 1.72423696,12.5901374 3.8490411,12.590137 L5.42465753,12.590137 L5.42465753,14.1065753 C5.42465361,16.2294566 7.14342405,17.9515366 9.26630137,17.9556164 L9.26630137,9.48328767 C9.26630137,9.07474827 8.93511475,8.74356164 8.52657534,8.74356164 Z" fill="url(#jiracard-tool_linearGradient-2)" id="Shape"></path>
+</g>
+</g>
+</g>
+</symbol>
+<symbol id="jiracard-tool-refresh-board" viewbox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.179 3.633a5.361 5.361 0 0 0-7.97-.4 5.339 5.339 0 0 0 .031 7.566 5.363 5.363 0 0 0 7.581-.031s.65-.762.87-1.152l1.517.664c-.302.573-1.213 1.649-1.213 1.649a7.023 7.023 0 0 1-9.919.042 6.988 6.988 0 0 1-.042-9.9 7.022 7.022 0 0 1 10.317.383L14 .806V5.57H9.21l1.969-1.937z" fill-rule="evenodd"></path>
+</symbol>
+<symbol id="jiracard-tool-update-issue" viewbox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.204 10.487c-.383.111-.784.18-1.204.18A4.666 4.666 0 0 1 3.333 6H6L3 1.2 0 6h2a6 6 0 0 0 6 6c.682 0 1.326-.132 1.93-.351l-.726-1.162zM16 6l-3 4.8L10 6h2.666A4.667 4.667 0 0 0 8 1.333c-.421 0-.822.069-1.205.18L6.069.351A5.639 5.639 0 0 1 8 0a6 6 0 0 1 6 6h2z" fill="#808080" fill-rule="evenodd"></path>
+</symbol>
+<symbol id="jiracard-tool-update-all-issues" viewbox="0 0 17 16" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" fill-rule="evenodd">
+<path d="M10.403 12.365a3.196 3.196 0 0 1-.903.135A3.5 3.5 0 0 1 6 9h2L5.75 5.4 3.5 9H5a4.5 4.5 0 0 0 4.5 4.5c.511 0 .995-.099 1.448-.263l-.545-.872zM15.5 9l-2.25 3.6L11 9h2a3.5 3.5 0 0 0-3.5-3.5c-.316 0-.616.052-.903.135l-.545-.872A4.231 4.231 0 0 1 9.5 4.5 4.5 4.5 0 0 1 14 9h1.5z" fill="#808080"></path>
+<rect height="13" rx="2" stroke="#808080" width="14" x="2.5" y="2.5"></rect>
+<path d="M15 .5H3.5a3 3 0 0 0-3 3V14" stroke="#808080"></path>
+</g>
+</symbol>
+<symbol id="jiracard-tool-import" viewbox="0 0 19 13" xmlns="http://www.w3.org/2000/svg">
+<g>
+<path d="M18,1H8C7.4,1,7,1.4,7,2v0.6L10.4,6L7,9.4V12c0,0.6,0.4,1,1,1h7.6L19,9.6V2C19,1.4,18.6,1,18,1z"></path>
+</g>
+<path d="M15.6,12.1v-1.6c0-0.6,0.4-1,1-1h1.6L15.6,12.1L15.6,12.1z" fill="#FFFFFF"></path>
+<path d="M1,6.6h5.7L4.1,9.1L5,10l4-4L5,2L4.1,2.9l2.6,2.6H1V6.6z" id="a"></path>
+</symbol>
+<symbol id="jiracard-tool-pushUpdates" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(-4, -4)">
+<path d="M12,4 L7,10 L10,10 L10,16.001 L14,16.001 L14,10 L16.999,10 L12,4 Z M4,20 L20,20 L20,18 L4,18 L4,20 Z">
+<rect height="24" width="24" x="0" y="0"></rect>
+</path>
+</g>
+</symbol>
+<symbol id="jiracard-logo" viewbox="0 0 32 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.1751897,0.91349481 L12.001182,0.91349481 L12.001182,4.90942103 C12.001182,5.96804328 11.5151815,6.69864173 10.3763134,6.69864173 C10.0395253,6.70349908 9.70437337,6.653062 9.3855398,6.54954 L9.3855398,5.78415115 C9.65750896,5.88465063 9.94696084,5.9352395 10.238648,5.93325288 C10.9363612,5.93325288 11.1772756,5.53564828 11.1772756,4.96210364 L11.1751897,0.91349481 Z" fill="#253858" id="Shape"></path>
+<path d="M13.4628645,0.610257768 C13.6082884,0.600032368 13.7510655,0.652356325 13.8541586,0.753656527 C13.9572518,0.854956728 14.0105019,0.995250694 14.0000955,1.13814542 C14.0000955,1.42968972 13.759569,1.66603307 13.4628645,1.66603307 C13.16616,1.66603307 12.9256334,1.42968972 12.9256334,1.13814542 C12.915227,0.995250694 12.9684771,0.854956728 13.0715703,0.753656527 C13.1746635,0.652356325 13.3174406,0.600032368 13.4628645,0.610257768 L13.4628645,0.610257768 Z M13.0690985,2.29989817 L13.8393332,2.29989817 L13.8393332,6.69896194 L13.0690985,6.69896194 L13.0690985,2.29989817 Z" fill="#253858" id="Shape"></path>
+<path d="M14.9245469,2.34996466 L15.66706,2.34996466 L15.66706,3.11447156 C15.9232722,2.60183709 16.3703877,2.23637513 17.2324665,2.28872509 L17.2324665,3.01866127 C16.2598648,2.91988777 15.66706,3.21028186 15.66706,4.1308509 L15.66706,6.69896194 L14.9245469,6.69896194 L14.9245469,2.34996466 Z" fill="#253858" id="Shape"></path>
+<path d="M20.9081959,5.82060154 C20.6156865,6.40051903 20.0680094,6.69896194 19.3657795,6.69896194 C18.1521768,6.69896194 17.5401891,5.70681395 17.5401891,4.41522491 C17.5401891,3.17653713 18.1791457,2.13148789 19.457059,2.13148789 C20.1229846,2.13148789 20.6343573,2.42094756 20.9092331,2.99188182 L20.9092331,2.21932393 L21.6944444,2.21932393 L21.6944444,6.6111259 L20.9092331,6.6111259 L20.9081959,5.82060154 Z M19.5753075,5.99627362 C20.2785747,5.99627362 20.9081959,5.56607666 20.9081959,4.59089699 L20.9081959,4.23556029 C20.9081959,3.26038062 20.3335498,2.83018366 19.6634752,2.83018366 C18.7776489,2.83018366 18.3212514,3.39213468 18.3212514,4.41123237 C18.3254004,5.46925739 18.7631272,5.99627362 19.5763447,5.99627362 L19.5753075,5.99627362 Z" fill="#253858" id="Shape"></path>
+<path d="M7.4489329,3.5932082 L4.09473307,0.317520635 L3.76960205,0 L3.76960205,0 L1.24469212,2.46580898 L1.24469212,2.46580898 L0.0902712026,3.5932082 C-0.0300904009,3.71089885 -0.0300904009,3.9015579 0.0902712026,4.01924855 L2.39705525,6.27203736 L3.76960205,7.61245675 L6.29451198,5.14664776 L6.33361001,5.1084649 L7.4489329,4.01924855 C7.5692945,3.9015579 7.5692945,3.71089885 7.4489329,3.5932082 Z M3.76960205,4.93161797 L2.61723892,3.80622837 L3.76960205,2.68083878 L4.92196518,3.80622837 L3.76960205,4.93161797 Z" fill="#2684FF" id="Shape"></path>
+<path d="M3.69267139,2.67461978 C2.95854993,1.93693288 2.95497208,0.742111859 3.68466235,0 L1.23089046,2.46439205 L2.56639911,3.80622837 L3.69267139,2.67461978 Z" fill="url(#linearGradient-3)" id="Shape"></path>
+<path d="M4.81785657,3.80622837 L3.69267139,4.93373944 C4.04729639,5.28888616 4.24654038,5.77069533 4.24654038,6.2730981 C4.24654038,6.77550086 4.04729639,7.25731003 3.69267139,7.61245675 L3.69267139,7.61245675 L6.15445232,5.14558703 L4.81785657,3.80622837 Z" fill="url(#linearGradient-4)" id="Shape"></path>
+</symbol>
+<symbol id="jiracard-display-links" viewbox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" fill-rule="evenodd" id="Artboard" stroke="none" stroke-width="1">
+<circle cx="4.5" cy="4.5" fill="#666666" id="Oval" r="4.5" transform="translate(4.500000, 4.500000) rotate(-270.000000) translate(-4.500000, -4.500000) "></circle>
+<polygon fill="#666666" id="Triangle" points="26 21 31 29 21 29" transform="translate(26.000000, 25.000000) rotate(-270.000000) translate(-26.000000, -25.000000) "></polygon>
+<path d="M23.2115139,5.91699443 C23.2115139,9.91699443 23.1728692,13.5324523 19.7115139,14.9169944 C14.7115139,16.9169944 9.21151389,10.4169944 4.71151389,14.4169944 C1.843522,16.9663206 3.27347317,22.0382058 3.27347317,23.7884861" id="Path-7" stroke="#666666" stroke-width="2" transform="translate(13.064254, 14.852740) rotate(-270.000000) translate(-13.064254, -14.852740) "></path>
+</g>
+</symbol>
+<symbol id="stack-simple-custom-tool" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 18l-5-3v2H0v2h3v2z"></path>
+<path d="M19 9V3H9L5 7v6.868l2.16 1.295v-3.836H6V10h3.897v1.327H8.722v4.762l1.5.91H18v3H8.554l-1.667 1H19v-4h1V9h-1zM6 9V7.414L6.414 7H9V4.414L9.414 4H18v5H6zm7.09 6.998l-.597-1.806h-.017l-.596 1.806h-1.722l1.395-3.04L10.233 10h1.747l.496 1.74h.017L12.99 10h1.746l-1.302 2.957 1.403 3.04H13.09zm5.896-4.67H17.81v4.67h-1.562v-4.67h-1.16V10h3.898v1.327z"></path>
+</symbol>
+<symbol id="activity-card-toolset-item-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<g id="scene">
+<path d="M0,15V1c0-0.6,0.4-1,1-1l16,0c0.6,0,1,0.4,1,1v14c0,0.6-0.4,1-1,1H1C0.4,16,0,15.6,0,15z M17,14.5V12H1v2.5C1,14.8,1.2,15,1.5,15h15C16.8,15,17,14.8,17,14.5z M16,4H2v1h14V4z M14,7H4v1h10V7z"></path>
+</g>
+</symbol>
+<symbol id="inconsistent-indicator" viewbox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+<!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+<g fill="none" fill-rule="evenodd" id="Icons/Multi/tool-warning-marker" stroke="none" stroke-width="1">
+<g id="ui-icon-tool-update-marker">
+<path d="M19,0 C8.523,0 0,8.523 0,19 C0,29.477 8.523,38 19,38 C29.477,38 38,29.477 38,19 C38,8.523 29.477,0 19,0" fill="#B76B1D" fill-opacity="0.15" id="fill"></path>
+<path d="M35,19 C35,27.842 27.842,35 19,35 C10.155,35 3,27.842 3,19 C3,10.159 10.155,3 19,3 C27.842,3 35,10.159 35,19" fill="#F48E27" id="fill"></path>
+<path d="M19.9873032,19.1419717 C19.6155215,21.6193428 18.2939616,21.6193428 18.0044675,19.1419717 L17.0130497,11.8689846 C16.7235557,9.3552122 21.3505028,9.39889381 20.9787211,11.8689846 L19.9873032,19.1419717 Z M21,25 C21,26.104 20.104,27 19,27 C17.896,27 17,26.104 17,25 C17,23.896 17.896,23 19,23 C20.104,23 21,23.896 21,25 Z" fill="#FFFFFF" id="Combined-Shape"></path>
+</g>
+</g>
+</symbol>
+<symbol id="ui-icon-column-mono" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M8,18V4H4V18Zm1,0h4V4H9Zm4,1H3V3H14V19ZM15,5h6V21H15Z"></path>
+</symbol>
+</svg>
+<!-- --><ng-include class="main-wrapper" ng-controller="MainController" src="'views/main/main.tpl.html'"><div class="AppGlobal-topContainer" id="iob-appTopContainer"><license-warning class="LicenseWarning LicenseWarning--closed"><div class="LicenseWarning-elements"><div class="LicenseWarning-messageContainer"><svg-icon-mono class="LicenseWarning-messageIcon SvgIconMono" name="icon-ui-icon-warning-mono"><!-- --><svg class="icon-ui-icon-warning-mono-dims svg-wrapper" focusable="false" ng-if="href"><use xlink:href="#icon-ui-icon-warning-mono"></use></svg><!-- --></svg-icon-mono><label class="LicenseWarning-message"></label></div><div class="LicenseWarning-closeButton" ng-click="closeWarning()"><svg-icon-mono class="LicenseWarning-closeIcon SvgIconMono" name="icon-ui-icon-close-mono"><!-- --><svg class="icon-ui-icon-close-mono-dims svg-wrapper" focusable="false" ng-if="href"><use xlink:href="#icon-ui-icon-close-mono"></use></svg><!-- --></svg-icon-mono></div></div></license-warning></div><div class="AppGlobal-mainContainer" id="iob-appMainContainer"><!-- --><!-- --><!-- --><div class="main-menu ng-hide" ng-hide="!currentPath || ['login', 'slideshow', 'card'].indexOf(currentPath) !== -1"><div ng-class="{'MainMenu--ideationMode': isIdeationActive, 'MainMenu--voteMode': isVoteActive}" ng-switch="currentPath"><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --><!-- --></div></div><div class="notifications" ng-controller="NotificationsController" ng-hide="currentPath === 'slideshow'"><!-- --></div><!-- BOTTOM BARS --><!-- --><!-- --><!-- --><!-- --><!-- --></div></ng-include>
+<script src="node_modules/@babel/polyfill/dist/polyfill.min.js" type="text/javascript"></script>
+<script src="node_modules/systemjs/dist/system.js" type="text/javascript"></script>
+<script src="system.config.js"></script>
+<script src="lib/iobeya-release.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+window.IOBEYA_ENV.type = 'deployed';
+</script>
+<script>
+  System.import('./compiled/main.js');
+</script>
+<div aria-hidden="true" style="display:none;">This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users.</div></body></html>

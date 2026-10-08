@@ -1,4 +1,4 @@
-# PhishGuard Baseline V2 — Clean Data Methodology
+# PhishOut Baseline V2 — Clean Data Methodology
 
 **Date:** August 20, 2026  
 **Purpose:** Establish scientifically valid baseline by fixing data leakage  
@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-Baseline V2 addresses the critical data leakage issue identified in the original PhishGuard training pipeline. The key changes are:
+Baseline V2 addresses the critical data leakage issue identified in the original PhishOut training pipeline. The key changes are:
 
 1. **Dataset externalized** to CSV file for version control
 2. **Domain-level split** implemented before augmentation
@@ -398,7 +398,7 @@ All predictions work correctly with the retrained model.
 ### Unchanged Files
 - `backend/main.py` - API endpoint (unchanged)
 - `backend/ml_model.py` - Feature extraction (unchanged)
-- `phishguard-react/` - Frontend (unchanged)
+- `phishguard-react/` - Frontend (unchanged, directory name preserved for technical consistency)
 - `extension/` - Chrome extension (unchanged)
 
 ---

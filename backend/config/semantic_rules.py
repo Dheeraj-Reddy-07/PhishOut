@@ -12,7 +12,7 @@ ALL values in this file are PRELIMINARY and based on:
   - Order-of-magnitude reasoning about relative signal strength
 
 They have NOT yet been calibrated against a labelled research dataset.
-Once the final PhishGuard dataset is selected and processed, these values
+Once the final PhishOut dataset is selected and processed, these values
 should be tuned empirically (e.g. grid search / Bayesian optimisation on
 the validation set).
 

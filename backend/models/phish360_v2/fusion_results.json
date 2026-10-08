@@ -1,0 +1,37 @@
+{
+  "model_type": "v2_fusion",
+  "validation_metrics": {
+    "model": "V2 Fusion (Validation)",
+    "accuracy": 0.9529,
+    "precision": 0.9305,
+    "recall": 0.9488,
+    "f1": 0.9396,
+    "roc_auc": 0.9897,
+    "confusion_matrix": {
+      "tn": 773,
+      "fp": 36,
+      "fn": 26,
+      "tp": 482
+    }
+  },
+  "test_metrics": {
+    "model": "V2 Fusion (Test)",
+    "accuracy": 0.9588,
+    "precision": 0.9724,
+    "recall": 0.9337,
+    "f1": 0.9526,
+    "roc_auc": 0.9898,
+    "confusion_matrix": {
+      "tn": 927,
+      "fp": 20,
+      "fn": 50,
+      "tp": 704
+    }
+  },
+  "fusion_config": {
+    "coef_structural": 4.257184454355309,
+    "coef_semantic": 5.500292395713912,
+    "intercept": -4.756776860876156,
+    "formula": "P(phish) = sigmoid(4.2572\u00d7p_struct + 5.5003\u00d7p_sem + -4.7568)"
+  }
+}

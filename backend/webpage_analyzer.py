@@ -158,12 +158,32 @@ def extract_semantic_features(html: str, url: str) -> Dict:
     base_domain = urlparse(url).netloc.lower()
     scripts = len(soup.find_all("script"))
 
+    # ── De-obfuscation / CSS Preprocessing ─────────────────────────────────
+    # 1. Ignore hidden text
+    for hidden in soup.find_all(style=re.compile(r'display:\s*none', re.I)):
+        hidden.decompose()
+    for hidden in soup.find_all(attrs={"aria-hidden": "true"}):
+        hidden.decompose()
+
     # ── Visible text (used for keyword counting) ───────────────────────────
     for tag in soup(["script", "style", "noscript"]):
         tag.decompose()
     raw_text = soup.get_text(separator=" ")
+    
+    # 2. De-obfuscate hyphens in words (e.g. pass-word -> password)
+    raw_text = re.sub(r'([a-zA-Z])-([a-zA-Z])', r'\1\2', raw_text)
+
     lines = (line.strip() for line in raw_text.splitlines())
     visible_text = " ".join(chunk for line in lines for chunk in line.split("  ") if chunk)
+    
+    # Handle case where visible_text might be empty or invalid
+    if not isinstance(visible_text, str) or len(visible_text) == 0:
+        visible_text = ""
+        
+    # 3. Chunking: if text is excessively long (massive benign text injection), cap it
+    if len(visible_text) > 5000:
+        visible_text = visible_text[:5000]
+    
     text_lower = visible_text.lower()
 
     # ── Title ──────────────────────────────────────────────────────────────
@@ -171,10 +191,15 @@ def extract_semantic_features(html: str, url: str) -> Dict:
     if soup.title and soup.title.string:
         page_title = soup.title.string.strip()
 
-    # ── Form analysis ──────────────────────────────────────────────────────
     forms = soup.find_all("form")
     form_count = len(forms)
+    
     password_fields = len(soup.find_all("input", {"type": "password"}))
+    for text_inp in soup.find_all("input", {"type": "text"}):
+        style = text_inp.get("style", "").lower()
+        if "text-security" in style or "-webkit-text-security" in style:
+            password_fields += 1
+            
     text_fields  = len(soup.find_all("input", {"type": "text"}))
     email_fields = len(soup.find_all("input", {"type": "email"}))
     text_email_fields = text_fields + email_fields
@@ -182,16 +207,31 @@ def extract_semantic_features(html: str, url: str) -> Dict:
     form_actions = []
     for form in forms:
         action = form.get("action", "")
+        onsubmit = form.get("onsubmit", "").lower()
+        if "this.action" in onsubmit:
+            match = re.search(r"this\.action\s*=\s*['\"]([^'\"]+)['\"]", onsubmit)
+            if match:
+                action = match.group(1)
         if action:
             form_actions.append(urljoin(url, action))
 
     # ── Links / iframes / scripts ──────────────────────────────────────────
     external_links = 0
-    for a in soup.find_all("a", href=True):
+    for a in soup.find_all(["a", "button"]):
         try:
-            link_netloc = urlparse(urljoin(url, a["href"])).netloc.lower()
-            if link_netloc and link_netloc != base_domain:
-                external_links += 1
+            target_url = None
+            if a.name == "a" and a.has_attr("href"):
+                target_url = a["href"]
+            elif a.name == "button" and a.has_attr("onclick"):
+                onclick = a["onclick"]
+                match = re.search(r"window\.location\.href\s*=\s*['\"]([^'\"]+)['\"]", onclick)
+                if match:
+                    target_url = match.group(1)
+                    
+            if target_url:
+                link_netloc = urlparse(urljoin(url, target_url)).netloc.lower()
+                if link_netloc and link_netloc != base_domain:
+                    external_links += 1
         except Exception:
             continue
 

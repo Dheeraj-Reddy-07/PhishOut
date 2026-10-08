@@ -1,0 +1,43 @@
+{
+  "model_type": "v3_fusion",
+  "structural_model_source": "V2 (frozen)",
+  "semantic_model_source": "V3 (retrained with hard negatives, 19 features)",
+  "validation_metrics": {
+    "model": "V3 Fusion (Validation)",
+    "accuracy": 0.9734,
+    "precision": 0.9683,
+    "recall": 0.9626,
+    "f1": 0.9654,
+    "roc_auc": 0.9949,
+    "confusion_matrix": {
+      "tn": 793,
+      "fp": 16,
+      "fn": 19,
+      "tp": 489
+    },
+    "false_positive_rate": 0.019777503090234856,
+    "false_negative_rate": 0.03740157480314961
+  },
+  "test_metrics": {
+    "model": "V3 Fusion (Test)",
+    "accuracy": 0.9688,
+    "precision": 0.9534,
+    "recall": 0.9775,
+    "f1": 0.9653,
+    "roc_auc": 0.9939,
+    "confusion_matrix": {
+      "tn": 911,
+      "fp": 36,
+      "fn": 17,
+      "tp": 737
+    },
+    "false_positive_rate": 0.03801478352692714,
+    "false_negative_rate": 0.022546419098143235
+  },
+  "fusion_config": {
+    "coef_structural": 5.072930309551027,
+    "coef_semantic": 5.206859173097705,
+    "intercept": -4.710380146151001,
+    "formula": "P(phish) = sigmoid(5.0729\u00d7p_struct + 5.2069\u00d7p_sem + -4.7104)"
+  }
+}

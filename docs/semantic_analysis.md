@@ -478,7 +478,7 @@ The semantic webpage analysis module extracts content-based features from webpag
 
 - `backend/ml_model.py` - Structural feature extraction unchanged
 - `backend/train_model_v2.py` - Training pipeline unchanged
-- `phishguard-react/` - Frontend unchanged
+- `phishguard-react/` - Frontend unchanged (directory name preserved for technical consistency)
 - `extension/` - Chrome extension unchanged
 
 ---

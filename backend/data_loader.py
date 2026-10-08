@@ -1,5 +1,5 @@
 """
-Data Loader for PhishGuard Baseline V2
+Data Loader for PhishOut Baseline V2
 Loads clean dataset from CSV, validates, and returns structured data.
 """
 import pandas as pd

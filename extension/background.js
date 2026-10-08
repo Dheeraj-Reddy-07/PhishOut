@@ -1,5 +1,5 @@
 /**
- * PhishGuard Background Service Worker — v4.0
+ * PhishOut Background Service Worker — v4.0
  *
  * Why this exists:
  * Content scripts run in the page's security context. When a page is HTTPS,
@@ -83,7 +83,7 @@ async function scanUrl(url) {
     // Check cache first
     const cached = scanCache.get(url);
     if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
-        console.log(`[PhishGuard BG] Cache hit for: ${url}`);
+        console.log(`[PhishOut BG] Cache hit for: ${url}`);
         persistLastScan(cached.result, url);
         return { ...cached.result, fromCache: true };
     }
@@ -105,7 +105,7 @@ async function scanUrl(url) {
         });
 
         if (!res.ok) {
-            console.error(`[PhishGuard BG] PhishOut API error: ${res.status}`);
+            console.error(`[PhishOut BG] PhishOut API error: ${res.status}`);
             backendOnline = false;
             chrome.storage.local.set({ backendStatus: "offline", phishoutReady: false });
             return { error: `PhishOut backend returned an error (${res.status}).`, is_dangerous: false };
@@ -118,14 +118,14 @@ async function scanUrl(url) {
         persistLastScan(result, url);
 
         console.log(
-            `[PhishGuard BG] PhishOut scan: ${url} → ${result.verdict} ` +
+            `[PhishOut BG] PhishOut scan: ${url} → ${result.verdict} ` +
             `(risk=${result.risk_score}, struct=${result.structural_score}, ` +
             `sem=${result.semantic_score}, page=${result.webpage_analysis_available})`
         );
         return result;
 
     } catch (err) {
-        console.error(`[PhishGuard BG] Fetch error:`, err);
+        console.error(`[PhishOut BG] Fetch error:`, err);
         backendOnline = false;
         return { error: "PhishOut backend is unavailable. Start the backend server and try again.", is_dangerous: false };
     }

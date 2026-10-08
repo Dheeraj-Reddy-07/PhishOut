@@ -1,0 +1,46 @@
+{
+  "extraction_date": "2026-08-24T17:06:46.121660",
+  "total_features": 51,
+  "structural_features": 32,
+  "semantic_features": 19,
+  "semantic_feature_keys": [
+    "password_fields",
+    "text_email_fields",
+    "forms",
+    "external_links",
+    "iframes",
+    "scripts",
+    "login_indicators",
+    "credential_indicators",
+    "payment_indicators",
+    "urgency_indicators",
+    "brand_indicators",
+    "text_length",
+    "domain_brand_consistency",
+    "form_action_same_origin",
+    "trusted_domain",
+    "link_to_form_ratio",
+    "text_to_script_ratio",
+    "credential_density",
+    "brand_context_score"
+  ],
+  "v2_context_features": [
+    "domain_brand_consistency",
+    "form_action_same_origin",
+    "trusted_domain"
+  ],
+  "v3_new_features": [
+    "link_to_form_ratio",
+    "text_to_script_ratio",
+    "credential_density",
+    "brand_context_score"
+  ],
+  "dataset_statistics": {
+    "train_samples": 7730,
+    "validation_samples": 1317,
+    "test_samples": 1701,
+    "hard_neg_train_samples": 600,
+    "hard_neg_val_samples": 200,
+    "hard_neg_eval_samples": 200
+  }
+}

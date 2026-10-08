@@ -50,8 +50,9 @@ body {
 
 /* ===================== SCROLLBAR ===================== */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-secondary); }
-::-webkit-scrollbar-thumb { background: var(--accent-purple); border-radius: 3px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.25); border-radius: 3px; transition: background 0.2s; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 212, 255, 0.5); }
 
 /* ===================== APP LAYOUT ===================== */
 .app-wrapper {
@@ -504,6 +505,7 @@ body {
   gap: 10px;
   overflow-y: auto;
   max-height: 340px;
+  padding-right: 8px;
 }
 
 .feature-row {
@@ -549,6 +551,12 @@ body {
 
 /* ===================== SCAN HISTORY ===================== */
 .history-panel { display: flex; flex-direction: column; }
+
+.history-table-container {
+  overflow-y: auto;
+  max-height: 340px;
+  padding-right: 6px;
+}
 
 .history-table {
   width: 100%;

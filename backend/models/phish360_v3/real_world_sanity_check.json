@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.google.com",
+    "v2_struct_prob": 0.03537969964809424,
+    "v2_sem_prob": 0.9470390196798992,
+    "v2_fusion_prob": 0.6463040847305547,
+    "v2_verdict": "PHISHING",
+    "v3_sem_prob": 0.7887494866904388,
+    "v3_fusion_prob": 0.39556144214117195,
+    "v3_verdict": "SAFE",
+    "v3_new_features": {
+      "link_to_form_ratio": 2.0,
+      "text_to_script_ratio": 20.727272727272727,
+      "credential_density": 0.0,
+      "brand_context_score": 1.6666666666666667
+    },
+    "script_count": 10,
+    "text_length": 228
+  },
+  {
+    "url": "https://www.microsoft.com",
+    "v2_struct_prob": 0.03156417354356454,
+    "v2_sem_prob": 0.7183457917467457,
+    "v2_fusion_prob": 0.3382079463336819,
+    "v2_verdict": "SAFE",
+    "v3_sem_prob": 0.8013113439885634,
+    "v3_fusion_prob": 0.4066233642468883,
+    "v3_verdict": "SAFE",
+    "v3_new_features": {
+      "link_to_form_ratio": 44.0,
+      "text_to_script_ratio": 23.53793103448276,
+      "credential_density": 1.3596193065941535,
+      "brand_context_score": 1.196078431372549
+    },
+    "script_count": 144,
+    "text_length": 3413
+  },
+  {
+    "url": "https://gemini.google.com",
+    "v2_struct_prob": 0.03958335586703807,
+    "v2_sem_prob": 0.9466457952767247,
+    "v2_fusion_prob": 0.649892213571549,
+    "v2_verdict": "PHISHING",
+    "v3_sem_prob": 0.9482095091671464,
+    "v3_fusion_prob": 0.6053044485733841,
+    "v3_verdict": "PHISHING",
+    "v3_new_features": {
+      "link_to_form_ratio": 2.0,
+      "text_to_script_ratio": 2.125,
+      "credential_density": 0.0,
+      "brand_context_score": 1.8333333333333335
+    },
+    "script_count": 15,
+    "text_length": 34
+  },
+  {
+    "url": "https://www.paypal.com",
+    "v2_struct_prob": 0.03439712131207386,
+    "v2_sem_prob": 0.880255450897674,
+    "v2_fusion_prob": 0.5575736006115004,
+    "v2_verdict": "PHISHING",
+    "v3_sem_prob": 0.8006993862565736,
+    "v3_fusion_prob": 0.4093248758619818,
+    "v3_verdict": "SAFE",
+    "v3_new_features": {
+      "link_to_form_ratio": 9.0,
+      "text_to_script_ratio": 61.125,
+      "credential_density": 0.40535062829347385,
+      "brand_context_score": 1.5263157894736843
+    },
+    "script_count": 23,
+    "text_length": 1467
+  },
+  {
+    "url": "https://www.wikipedia.org",
+    "v2_struct_prob": 0.03369941263950899,
+    "v2_sem_prob": 0.02917028682566419,
+    "v2_fusion_prob": 0.011511082792351888,
+    "v2_verdict": "SAFE",
+    "v3_sem_prob": 0.023745237935260545,
+    "v3_fusion_prob": 0.01194073208008111,
+    "v3_verdict": "SAFE",
+    "v3_new_features": {
+      "link_to_form_ratio": 187.0,
+      "text_to_script_ratio": 1588.0,
+      "credential_density": 0.0,
+      "brand_context_score": 0.8333333333333334
+    },
+    "script_count": 4,
+    "text_length": 7940
+  }
+]

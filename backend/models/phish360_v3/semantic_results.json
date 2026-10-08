@@ -1,0 +1,80 @@
+{
+  "model_type": "V3 Semantic (19 features)",
+  "training_data": "Augmented with hard negatives (8,330 samples)",
+  "feature_count": 19,
+  "semantic_features": [
+    "password_fields",
+    "text_email_fields",
+    "forms",
+    "external_links",
+    "iframes",
+    "scripts",
+    "login_indicators",
+    "credential_indicators",
+    "payment_indicators",
+    "urgency_indicators",
+    "brand_indicators",
+    "text_length",
+    "domain_brand_consistency",
+    "form_action_same_origin",
+    "trusted_domain",
+    "link_to_form_ratio",
+    "text_to_script_ratio",
+    "credential_density",
+    "brand_context_score"
+  ],
+  "training_metrics": {
+    "model": "V3 Semantic (Train)",
+    "accuracy": 0.9865546218487395,
+    "precision": 0.9865131578947368,
+    "recall": 0.9768729641693811,
+    "f1": 0.9816693944353518,
+    "roc_auc": 0.9993279746349439,
+    "confusion_matrix": {
+      "tn": 5219,
+      "fp": 41,
+      "fn": 71,
+      "tp": 2999
+    },
+    "false_positive_rate": 0.00779467680608365,
+    "false_negative_rate": 0.023127035830618894
+  },
+  "validation_metrics": {
+    "model": "V3 Semantic (Validation)",
+    "accuracy": 0.9468488990129081,
+    "precision": 0.9433198380566802,
+    "recall": 0.9173228346456693,
+    "f1": 0.9301397205588823,
+    "roc_auc": 0.9866949573206933,
+    "confusion_matrix": {
+      "tn": 781,
+      "fp": 28,
+      "fn": 42,
+      "tp": 466
+    },
+    "false_positive_rate": 0.034610630407911,
+    "false_negative_rate": 0.08267716535433071
+  },
+  "test_metrics": {
+    "model": "V3 Semantic (Test)",
+    "accuracy": 0.9347442680776014,
+    "precision": 0.9398084815321477,
+    "recall": 0.9111405835543767,
+    "f1": 0.9252525252525252,
+    "roc_auc": 0.9819925550180804,
+    "confusion_matrix": {
+      "tn": 903,
+      "fp": 44,
+      "fn": 67,
+      "tp": 687
+    },
+    "false_positive_rate": 0.046462513199577615,
+    "false_negative_rate": 0.08885941644562334
+  },
+  "hard_negative_augmentation": {
+    "original_samples": 7730,
+    "hard_negative_samples": 600,
+    "total_samples": 8330,
+    "augmentation_percentage": 7.2
+  }
+}

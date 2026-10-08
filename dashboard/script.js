@@ -117,7 +117,7 @@ function updateWebpageStatus(available, mode) {
         webpageStatus.classList.add('webpage-fail');
         webpageLabel.textContent = 'Webpage Analysis: Unavailable';
     }
-    fusionLabel.textContent = mode === 'combined' ? 'HYBRID' : 'URL ONLY';
+    fusionLabel.textContent = (mode === 'phish360_v2_learned_fusion' || mode === 'combined') ? 'HYBRID (V2)' : 'URL ONLY';
 }
 
 /* ─── Reasons render ──────────────────────────────────────────────────── */

@@ -1,0 +1,64 @@
+{
+  "url_overlap": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0,
+    "total": 0
+  },
+  "registered_domain_overlap": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0,
+    "total": 0
+  },
+  "root_domain_overlap": {
+    "train_val": 2,
+    "train_test": 1,
+    "val_test": 1,
+    "total": 4
+  },
+  "sample_id_overlap": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0,
+    "total": 0
+  },
+  "label_validation": {
+    "train": {
+      "total_samples": 7655,
+      "unique_labels": 2,
+      "label_values": [
+        0,
+        1
+      ],
+      "invalid_labels": [],
+      "has_invalid": false
+    },
+    "val": {
+      "total_samples": 1298,
+      "unique_labels": 2,
+      "label_values": [
+        0,
+        1
+      ],
+      "invalid_labels": [],
+      "has_invalid": false
+    },
+    "test": {
+      "total_samples": 1681,
+      "unique_labels": 2,
+      "label_values": [
+        0,
+        1
+      ],
+      "invalid_labels": [],
+      "has_invalid": false
+    }
+  },
+  "test_contamination": {
+    "url_leakage": false,
+    "domain_leakage": false,
+    "is_contaminated": false
+  },
+  "overall_pass": true
+}

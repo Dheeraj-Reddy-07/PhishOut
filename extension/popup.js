@@ -1,5 +1,5 @@
 /**
- * PhishGuard Popup Script — v4.0
+ * PhishOut Popup Script — v4.0
  * Scans the active tab through the shared PhishOut background pipeline.
  */
 

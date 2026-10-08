@@ -1,6 +1,6 @@
 # PhishOut Hybrid Model — Technical Documentation
 
-**Phase 3 of the PhishGuard Capstone Project**
+**Phase 3 of the PhishOut Capstone Project**
 **Version:** 1.0 | **Date:** August 2026
 
 ---

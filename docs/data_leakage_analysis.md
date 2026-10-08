@@ -1,4 +1,4 @@
-# Data Leakage Analysis: PhishGuard Training Pipeline
+# Data Leakage Analysis: PhishOut Training Pipeline
 
 **Date:** August 20, 2026  
 **File Analyzed:** `backend/train_model.py`  

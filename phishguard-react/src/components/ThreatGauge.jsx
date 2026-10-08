@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Activity } from 'lucide-react';
 
 function getColor(pct) {
-  if (pct >= 60) return '#ff003c';
-  if (pct >= 30) return '#ffbb00';
+  if (pct >= 50) return '#ff003c';
+  if (pct >= 15) return '#ffbb00';
   return '#00ff88';
 }
 
@@ -51,11 +51,10 @@ export default function ThreatGauge({ result }) {
 
   // Active arc end point
   const arcEnd = calcArcEnd(animPct, cx, cy, r);
-  const largeArc = animPct > 50 ? 1 : 0;
 
   // Zone boundaries
-  const z30 = calcArcEnd(30, cx, cy, r);
-  const z60 = calcArcEnd(60, cx, cy, r);
+  const z15 = calcArcEnd(15, cx, cy, r);
+  const z50 = calcArcEnd(50, cx, cy, r);
 
   return (
     <div className="panel gauge-panel">
@@ -65,26 +64,26 @@ export default function ThreatGauge({ result }) {
       </div>
 
       <div className="gauge-container">
-        <svg viewBox="0 0 220 130" className="gauge-svg">
+        <svg viewBox="0 0 220 145" className="gauge-svg">
           {/* BG track */}
-          <path d={`M ${leftX} ${leftY} A ${r} ${r} 0 0 0 ${rightX} ${rightY}`}
+          <path d={`M ${leftX} ${leftY} A ${r} ${r} 0 0 1 ${rightX} ${rightY}`}
             fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="14" strokeLinecap="round" />
 
-          {/* Green zone 0→30% */}
-          <path d={`M ${leftX} ${leftY} A ${r} ${r} 0 0 0 ${z30.x} ${z30.y}`}
+          {/* Green zone 0→15% */}
+          <path d={`M ${leftX} ${leftY} A ${r} ${r} 0 0 1 ${z15.x} ${z15.y}`}
             fill="none" stroke="rgba(0,255,136,0.13)" strokeWidth="14" strokeLinecap="butt" />
 
-          {/* Yellow zone 30→60% */}
-          <path d={`M ${z30.x} ${z30.y} A ${r} ${r} 0 0 0 ${z60.x} ${z60.y}`}
+          {/* Yellow zone 15→50% */}
+          <path d={`M ${z15.x} ${z15.y} A ${r} ${r} 0 0 1 ${z50.x} ${z50.y}`}
             fill="none" stroke="rgba(255,187,0,0.13)" strokeWidth="14" strokeLinecap="butt" />
 
-          {/* Red zone 60→100% */}
-          <path d={`M ${z60.x} ${z60.y} A ${r} ${r} 0 0 0 ${rightX} ${rightY}`}
+          {/* Red zone 50→100% */}
+          <path d={`M ${z50.x} ${z50.y} A ${r} ${r} 0 0 1 ${rightX} ${rightY}`}
             fill="none" stroke="rgba(255,0,60,0.13)" strokeWidth="14" strokeLinecap="butt" />
 
           {/* Active filled arc */}
           {animPct > 0.5 && (
-            <path d={`M ${leftX} ${leftY} A ${r} ${r} 0 ${largeArc} 0 ${arcEnd.x} ${arcEnd.y}`}
+            <path d={`M ${leftX} ${leftY} A ${r} ${r} 0 0 1 ${arcEnd.x} ${arcEnd.y}`}
               fill="none" stroke={color} strokeWidth="14" strokeLinecap="round"
               style={{ filter: `drop-shadow(0 0 8px ${color})`, transition: 'stroke 0.4s ease' }} />
           )}
@@ -96,9 +95,9 @@ export default function ThreatGauge({ result }) {
           )}
 
           {/* Zone labels */}
-          <text x="16" y="128" fill="rgba(0,255,136,0.6)" fontSize="9" fontFamily="JetBrains Mono">SAFE</text>
-          <text x="176" y="128" fill="rgba(255,0,60,0.6)" fontSize="9" fontFamily="JetBrains Mono">CRIT</text>
-          <text x="96" y="18" fill="rgba(255,187,0,0.6)" fontSize="9" fontFamily="JetBrains Mono">WARN</text>
+          <text x="14" y="136" fill="rgba(0,255,136,0.6)" fontSize="9" fontFamily="JetBrains Mono" textAnchor="start">SAFE</text>
+          <text x="206" y="136" fill="rgba(255,0,60,0.6)" fontSize="9" fontFamily="JetBrains Mono" textAnchor="end">CRITICAL</text>
+          <text x="110" y="12" fill="rgba(255,187,0,0.6)" fontSize="9" fontFamily="JetBrains Mono" textAnchor="middle">SUSPICIOUS</text>
         </svg>
 
         <div className="gauge-center">
@@ -106,9 +105,9 @@ export default function ThreatGauge({ result }) {
             {result ? `${Math.round(animPct)}%` : '--'}
           </div>
           <div className={`gauge-verdict verdict-${verdict.toLowerCase()}`}>{verdict}</div>
-          {confidence !== null && (
+          {result && (
             <div className="gauge-confidence">
-              ML Confidence: {(confidence * 100).toFixed(1)}%
+              RISK SCORE: {Math.round(result.risk_score)} / 100
             </div>
           )}
         </div>

@@ -1,23 +1,27 @@
-# Python
 __pycache__/
-*.py[cod]
-*.pyo
-*.egg-info/
+*.pyc
 .venv/
 venv/
-env/
+.pytest_cache/
 
-# Local datasets and generated research artifacts
-*.parquet
-**/dataset/
-
-# Frontend dependencies and build output
+# Node
 node_modules/
 dist/
+build/
+.next/
 
-# Local environment and editor files
+# Env
 .env
 .env.*
 !.env.example
+
+# OS / Editor
+.DS_Store
+Thumbs.db
 .vscode/
+.idea/
+
+# Logs and temp
 *.log
+tmp/
+temp/

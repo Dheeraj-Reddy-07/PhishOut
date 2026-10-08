@@ -1,0 +1,6 @@
+{
+  "coef_structural": 5.072930309551027,
+  "coef_semantic": 5.206859173097705,
+  "intercept": -4.710380146151001,
+  "formula": "P(phish) = sigmoid(5.0729\u00d7p_struct + 5.2069\u00d7p_sem + -4.7104)"
+}

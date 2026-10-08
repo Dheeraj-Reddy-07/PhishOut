@@ -1,4 +1,4 @@
-# PhishGuard Baseline Documentation
+# PhishOut Baseline Documentation
 
 **Date:** August 20, 2026  
 **Purpose:** Establish reproducible baseline for PhishOut research transformation  
@@ -434,7 +434,7 @@ final_threat = 0.7 * ml_score + 0.3 * rule_score
 - `backend/train_model.py` - Training pipeline
 - `backend/phishing_model.pkl` - Trained model (6.1 MB)
 - `backend/feature_scaler.pkl` - Feature scaler (1.3 KB)
-- `phishguard-react/src/App.jsx` - React main component
+- `phishguard-react/src/App.jsx` - React main component (directory name preserved for technical consistency)
 - `extension/manifest.json` - Extension manifest
 - All extension files present and valid
 
@@ -442,4 +442,4 @@ final_threat = 0.7 * ml_score + 0.3 * rule_score
 
 ## Conclusion
 
-The PhishGuard baseline is fully operational with all components running successfully. The system achieves perfect classification metrics on the current test set, but this is likely due to the small real dataset size and heavy synthetic augmentation. The baseline provides a solid foundation for URL-based phishing detection but requires significant enhancements to support the PhishOut research goals of adversarial robustness and hybrid structural-semantic analysis.
+The PhishOut baseline is fully operational with all components running successfully. The system achieves perfect classification metrics on the current test set, but this is likely due to the small real dataset size and heavy synthetic augmentation. The baseline provides a solid foundation for URL-based phishing detection but requires significant enhancements to support the PhishOut research goals of adversarial robustness and hybrid structural-semantic analysis.

@@ -1,0 +1,86 @@
+{
+  "test_set": {
+    "v2": {
+      "model": "V2 Fusion (Test)",
+      "accuracy": 0.5832,
+      "precision": 0.9592,
+      "recall": 0.0623,
+      "f1": 0.1171,
+      "roc_auc": 0.9616,
+      "confusion_matrix": {
+        "tn": 945,
+        "fp": 2,
+        "fn": 707,
+        "tp": 47
+      },
+      "false_positive_rate": 0.0021,
+      "false_negative_rate": 0.9377
+    },
+    "v3": {
+      "model": "V3 Fusion (Test)",
+      "accuracy": 0.9618,
+      "precision": 0.9411,
+      "recall": 0.9748,
+      "f1": 0.9577,
+      "roc_auc": 0.9917,
+      "confusion_matrix": {
+        "tn": 901,
+        "fp": 46,
+        "fn": 19,
+        "tp": 735
+      },
+      "false_positive_rate": 0.0486,
+      "false_negative_rate": 0.0252
+    },
+    "delta": {
+      "accuracy": 0.3786,
+      "precision": -0.0181,
+      "recall": 0.9125,
+      "f1": 0.8406,
+      "fpr": 0.0465,
+      "fnr": -0.9125
+    }
+  },
+  "hard_negative_set": {
+    "v2": {
+      "model": "V2 Fusion (Hard-Negative)",
+      "accuracy": 1.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": NaN,
+      "confusion_matrix": {
+        "tn": 200,
+        "fp": 0,
+        "fn": 0,
+        "tp": 0
+      },
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0
+    },
+    "v3": {
+      "model": "V3 Fusion (Hard-Negative)",
+      "accuracy": 0.945,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": NaN,
+      "confusion_matrix": {
+        "tn": 189,
+        "fp": 11,
+        "fn": 0,
+        "tp": 0
+      },
+      "false_positive_rate": 0.055,
+      "false_negative_rate": 0
+    },
+    "delta": {
+      "false_positives": 11,
+      "fpr": 0.055
+    }
+  },
+  "v3_improves_over_v2": false,
+  "v3_phishing_recall_improvement": 0.9125,
+  "v3_phishing_f1_improvement": 0.8406,
+  "v3_hard_negative_fp_change": 11
+}

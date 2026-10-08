@@ -1,0 +1,17 @@
+source_target,evaluating_model,detection_rate
+Structural_V2,Structural_V2,1.0
+Structural_V2,Semantic_V4,1.0
+Structural_V2,Baseline_V3,1.0
+Structural_V2,Hardened_V4,1.0
+Semantic_V4,Structural_V2,0.92
+Semantic_V4,Semantic_V4,1.0
+Semantic_V4,Baseline_V3,0.96
+Semantic_V4,Hardened_V4,1.0
+Baseline_V3,Structural_V2,0.92
+Baseline_V3,Semantic_V4,1.0
+Baseline_V3,Baseline_V3,0.9333333333333333
+Baseline_V3,Hardened_V4,1.0
+Hardened_V4,Structural_V2,0.92
+Hardened_V4,Semantic_V4,1.0
+Hardened_V4,Baseline_V3,0.96
+Hardened_V4,Hardened_V4,1.0

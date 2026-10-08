@@ -18,7 +18,7 @@ export default function App() {
   const [result, setResult] = useState(null);
   const [scanHistory, setScanHistory] = useState([]);
   const [logs, setLogs] = useState([
-    { type: 'sys', msg: 'PhishGuard v4.0 initialized. Learned-fusion engine standing by.', time: timestamp() },
+    { type: 'sys', msg: 'PhishOut v3.0 initialized. Learned-fusion engine standing by.', time: timestamp() },
     { type: 'info', msg: 'Awaiting target URL for threat analysis...', time: timestamp() },
   ]);
   const [backendStatus, setBackendStatus] = useState('checking');
@@ -29,24 +29,28 @@ export default function App() {
 
   // Health check on mount
   useEffect(() => {
+    let initialCheck = true;
     const check = async () => {
       try {
         const res = await fetch(`${API}/health`, { signal: AbortSignal.timeout(3000) });
         if (res.ok) {
           const data = await res.json();
           setBackendStatus('online');
-          addLog(`Backend online. PhishOut ready: ${data.phishout_ready}`, 'ok');
-          if (!data.phishout_ready) {
-            addLog('WARNING: The PhishOut predictor is not loaded.', 'warn');
+          if (initialCheck) {
+            addLog(`Backend online. PhishOut ready: ${data.phishout_ready}`, 'ok');
+            if (!data.phishout_ready) {
+              addLog('WARNING: The PhishOut predictor is not loaded.', 'warn');
+            }
           }
         } else {
           setBackendStatus('offline');
-          addLog('Backend unreachable. Start with: uvicorn main:app --reload', 'err');
+          if (initialCheck) addLog('Backend unreachable. Start with: uvicorn main:app --reload', 'err');
         }
       } catch {
         setBackendStatus('offline');
-        addLog('Cannot connect to backend (port 8000). Is the server running?', 'err');
+        if (initialCheck) addLog('Cannot connect to backend (port 8000). Is the server running?', 'err');
       }
+      initialCheck = false;
     };
     check();
     const interval = setInterval(check, 30000);

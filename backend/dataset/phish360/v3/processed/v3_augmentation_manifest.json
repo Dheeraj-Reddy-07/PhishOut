@@ -1,0 +1,15 @@
+{
+  "augmentation_date": "2026-08-24T17:07:11.529656",
+  "original_train_samples": 7730,
+  "hard_negative_train_samples": 600,
+  "augmented_train_samples": 8330,
+  "augmentation_ratio": 0.07761966364812418,
+  "feature_count": 54,
+  "hard_negative_percentage": 7.202881152460984,
+  "split_provenance": {
+    "original_train_source": "V2 train split (same domain stratification)",
+    "hard_negative_source": "Phish360 legit HTML with auth keywords (Step 1)",
+    "validation_source": "V2 validation split (unchanged)",
+    "test_source": "V2 test split (unchanged, frozen)"
+  }
+}

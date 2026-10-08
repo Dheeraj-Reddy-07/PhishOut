@@ -8,7 +8,7 @@ Pipeline (10 steps):
   1.  Validate and normalise URL
   2.  Run structural analysis (32 features → structural model probability)
   3.  Fetch webpage HTML
-  4.  Extract semantic features from HTML (12 features → semantic model probability)
+  4.  Extract semantic features from HTML (15 features V2 → semantic model probability)
   5.  Generate semantic evidence strings
   6.  Inject compound flags into semantic features dict
   7.  Calculate semantic risk score (rule-based, for evidence/display)
@@ -16,9 +16,10 @@ Pipeline (10 steps):
   9.  Assign verdict (SAFE / SUSPICIOUS / PHISHING)
   10. Generate explanations and assemble final result
 
-Model loading priority (Phish360 research models first):
-  1. models/phish360/  — Phish360-trained structural + semantic + fusion models
-  2. models/           — Legacy PhreshPhish or baseline models (fallback)
+Model loading priority (V2 Phish360 research models first):
+  1. models/phish360_v2/  — V2 Phish360-trained models (47 features, context-aware)
+  2. models/phish360/     — V1 Phish360 baseline models (44 features, fallback)
+  3. models/              — Legacy PhreshPhish or baseline models (fallback)
 
 Singleton usage:
     from phishout_predictor import get_predictor
@@ -46,29 +47,56 @@ from phishout_fusion import calculate_semantic_score, fuse_scores, assign_verdic
 from explanation_engine import generate_explanations
 
 # ── Model paths ────────────────────────────────────────────────────────────────
-_BASE       = os.path.dirname(os.path.abspath(__file__))
-_PHISH360_DIR  = os.path.join(_BASE, "models", "phish360")
-_LEGACY_DIR    = os.path.join(_BASE, "models")
+_BASE          = os.path.dirname(os.path.abspath(__file__))
+_PHISH360_V3_DIR = os.path.join(_BASE, "models", "phish360_v3")   # V3 (preferred - FIXED script extraction)
+_PHISH360_V2_DIR = os.path.join(_BASE, "models", "phish360_v2")   # V2 (fallback)
+_PHISH360_DIR    = os.path.join(_BASE, "models", "phish360")       # V1 (fallback)
+_LEGACY_DIR      = os.path.join(_BASE, "models")                   # Legacy
 
-# Phish360 research model paths
-_P360_STRUCT_MODEL  = os.path.join(_PHISH360_DIR, "structural_model.pkl")
-_P360_STRUCT_SCALER = os.path.join(_PHISH360_DIR, "structural_scaler.pkl")
-_P360_SEM_MODEL     = os.path.join(_PHISH360_DIR, "semantic_model.pkl")
-_P360_SEM_SCALER    = os.path.join(_PHISH360_DIR, "semantic_scaler.pkl")
-_P360_FUSION_MODEL  = os.path.join(_PHISH360_DIR, "fusion_model.pkl")
-_P360_FUSION_CONFIG = os.path.join(_PHISH360_DIR, "fusion_config.json")
-_P360_THRESHOLD_CFG = os.path.join(_PHISH360_DIR, "threshold_config.json")
+# Phish360 V3 research model paths (51 features: 32 structural + 19 semantic)
+_P360_V3_STRUCT_MODEL  = os.path.join(_PHISH360_V3_DIR, "structural_model.pkl")  # V3 hard-negative retrained
+_P360_V3_STRUCT_SCALER = os.path.join(_PHISH360_V3_DIR, "structural_scaler.pkl")  # V3 hard-negative retrained
+_P360_V3_SEM_MODEL     = os.path.join(_PHISH360_V3_DIR, "semantic_model.pkl")
+_P360_V3_SEM_SCALER    = os.path.join(_PHISH360_V3_DIR, "semantic_scaler.pkl")
+_P360_V3_FUSION_MODEL  = os.path.join(_PHISH360_V3_DIR, "fusion_model.pkl")
+_P360_V3_FUSION_CONFIG = os.path.join(_PHISH360_V3_DIR, "fusion_config.json")
+_P360_V3_THRESHOLD_CFG = os.path.join(_PHISH360_V3_DIR, "threshold_config.json")
+
+# Phish360 V2 research model paths (47 features: 32 structural + 15 semantic) - FALLBACK
+_P360_STRUCT_MODEL  = os.path.join(_PHISH360_V2_DIR, "structural_model.pkl")
+_P360_STRUCT_SCALER = os.path.join(_PHISH360_V2_DIR, "structural_scaler.pkl")
+_P360_SEM_MODEL     = os.path.join(_PHISH360_V2_DIR, "semantic_model.pkl")
+_P360_SEM_SCALER    = os.path.join(_PHISH360_V2_DIR, "semantic_scaler.pkl")
+_P360_FUSION_MODEL  = os.path.join(_PHISH360_V2_DIR, "fusion_model.pkl")
+_P360_FUSION_CONFIG = os.path.join(_PHISH360_V2_DIR, "fusion_config.json")
+_P360_THRESHOLD_CFG = os.path.join(_PHISH360_V2_DIR, "threshold_config.json")
 
 # Legacy model paths (fallback)
 _LEGACY_STRUCT_MODEL  = os.path.join(_LEGACY_DIR, "structural_only_model.pkl")
 _LEGACY_STRUCT_SCALER = os.path.join(_LEGACY_DIR, "structural_only_scaler.pkl")
 
-# Semantic feature keys used during training
-SEMANTIC_KEYS = [
+# Semantic feature keys — V3: 19 features (12 original + 3 context + 4 V3 new)
+# IMPORTANT: These must match the features used in V3 semantic model training.
+SEMANTIC_KEYS_V3 = [
     'password_fields', 'text_email_fields', 'forms', 'external_links',
     'iframes', 'scripts', 'login_indicators', 'credential_indicators',
     'payment_indicators', 'urgency_indicators', 'brand_indicators', 'text_length',
+    # V2 context features
+    'domain_brand_consistency', 'form_action_same_origin', 'trusted_domain',
+    # V3 new features
+    'link_to_form_ratio', 'text_to_script_ratio', 'credential_density', 'brand_context_score',
 ]
+
+# V2 fallback semantic keys (15 features)
+SEMANTIC_KEYS_V2 = [
+    'password_fields', 'text_email_fields', 'forms', 'external_links',
+    'iframes', 'scripts', 'login_indicators', 'credential_indicators',
+    'payment_indicators', 'urgency_indicators', 'brand_indicators', 'text_length',
+    'domain_brand_consistency', 'form_action_same_origin', 'trusted_domain',
+]
+
+# Current semantic keys (will be set based on loaded model)
+SEMANTIC_KEYS = SEMANTIC_KEYS_V3  # Default to V3
 
 _FETCH_TIMEOUT = 10  # seconds
 
@@ -102,7 +130,39 @@ class PhishOutPredictor:
 
     def _load_models(self):
         """Load the best available models from disk."""
-        # ── Priority 1: Phish360 research models ─────────────────────────────
+        # ── Priority 1: Phish360 V3 research models (FIXED script extraction) ──
+        p360_v3_struct_ok   = (os.path.exists(_P360_V3_STRUCT_MODEL) and
+                                os.path.exists(_P360_V3_STRUCT_SCALER))
+        p360_v3_sem_ok      = (os.path.exists(_P360_V3_SEM_MODEL) and
+                                os.path.exists(_P360_V3_SEM_SCALER))
+        p360_v3_fusion_ok   = os.path.exists(_P360_V3_FUSION_MODEL)
+
+        if p360_v3_struct_ok and p360_v3_sem_ok and p360_v3_fusion_ok:
+            try:
+                # V3 uses retrained structural model
+                self._struct_model  = joblib.load(_P360_V3_STRUCT_MODEL)
+                self._struct_scaler = joblib.load(_P360_V3_STRUCT_SCALER)
+                # V3 semantic model with 19 features
+                self._sem_model     = joblib.load(_P360_V3_SEM_MODEL)
+                self._sem_scaler    = joblib.load(_P360_V3_SEM_SCALER)
+                self._fusion_model  = joblib.load(_P360_V3_FUSION_MODEL)
+
+                if os.path.exists(_P360_V3_FUSION_CONFIG):
+                    with open(_P360_V3_FUSION_CONFIG) as f:
+                        self._fusion_config = json.load(f)
+                if os.path.exists(_P360_V3_THRESHOLD_CFG):
+                    with open(_P360_V3_THRESHOLD_CFG) as f:
+                        self._threshold_cfg = json.load(f)
+
+                self._model_type = "phish360_v3_learned_fusion"
+                SEMANTIC_KEYS = SEMANTIC_KEYS_V3
+                print("[PhishOut] Phish360 V3 research models loaded (51 features):")
+                print("  structural_model (V3 retrained) + semantic_model (V3 with 19 features) + learned_fusion")
+                return
+            except Exception as e:
+                print(f"[PhishOut] WARNING: Could not load Phish360 V3 models — {e}")
+
+        # ── Priority 2: Phish360 V2 research models (fallback) ─────────────────
         p360_struct_ok   = (os.path.exists(_P360_STRUCT_MODEL) and
                             os.path.exists(_P360_STRUCT_SCALER))
         p360_sem_ok      = (os.path.exists(_P360_SEM_MODEL) and
@@ -124,12 +184,13 @@ class PhishOutPredictor:
                     with open(_P360_THRESHOLD_CFG) as f:
                         self._threshold_cfg = json.load(f)
 
-                self._model_type = "phish360_learned_fusion"
-                print("[PhishOut] Phish360 research models loaded:")
-                print("  structural_model + semantic_model + learned_fusion")
+                self._model_type = "phish360_v2_learned_fusion"
+                SEMANTIC_KEYS = SEMANTIC_KEYS_V2
+                print("[PhishOut] Phish360 V2 research models loaded (47 features):")
+                print("  structural_model + semantic_model (V2) + learned_fusion")
                 return
             except Exception as e:
-                print(f"[PhishOut] WARNING: Could not load Phish360 models — {e}")
+                print(f"[PhishOut] WARNING: Could not load Phish360 V2 models — {e}")
 
         elif p360_struct_ok:
             try:
@@ -204,7 +265,7 @@ class PhishOutPredictor:
         semantic_probability = 0.0
 
         # ── Step 8: Compute final probability / risk score ─────────────────
-        if self._model_type == "phish360_learned_fusion" and webpage_available and self._sem_model is not None:
+        if self._model_type == "phish360_v2_learned_fusion" and webpage_available and self._sem_model is not None:
             # Use learned score-level fusion
             sem_arr = _sem_features_to_array(sem_feats)
             sem_arr_s = self._sem_scaler.transform(sem_arr)
@@ -215,14 +276,14 @@ class PhishOutPredictor:
             X_fusion = np.array([[struct_prob, sem_prob]])
             fusion_prob = float(self._fusion_model.predict_proba(X_fusion)[0, 1])
             phishout_score = max(0, min(100, int(round(fusion_prob * 100))))
-            fusion_mode = "phish360_learned_fusion"
+            fusion_mode = "phish360_v2_learned_fusion"
             fusion_note = (
-                f"Learned score-level fusion (Phish360): "
+                f"Learned score-level fusion (Phish360 V2): "
                 f"P(phish) = sigmoid({self._fusion_config.get('coef_structural', 0):+.2f}×p_struct "
                 f"{self._fusion_config.get('coef_semantic', 0):+.2f}×p_sem "
                 f"{self._fusion_config.get('intercept', 0):+.2f})"
             )
-        elif self._model_type == "phish360_learned_fusion" and not webpage_available:
+        elif self._model_type == "phish360_v2_learned_fusion" and not webpage_available:
             # No HTML — structural-only
             phishout_score = struct_score
             fusion_mode = "structural_only"
@@ -370,3 +431,5 @@ def get_predictor() -> PhishOutPredictor:
 
 def predict(url: str, fetch_timeout: int = _FETCH_TIMEOUT) -> Dict:
     return get_predictor().predict(url, fetch_timeout=fetch_timeout)
+
+# (Reload trigger)

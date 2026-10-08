@@ -1,5 +1,5 @@
 """
-PhishGuard ML Feature Extractor — v3.0
+PhishOut ML Feature Extractor — v3.0
 32 engineered features based on academic phishing research.
 """
 import re
@@ -220,7 +220,10 @@ def extract_features(url: str) -> dict:
 
     # ── Security signals ──────────────────────────────────────────────────
     https_token = 1 if "https" in hostname and not hostname.startswith("https") else 0
-    is_shortening = 1 if any(s in hostname for s in SHORTENING_SERVICES) else 0
+    # Fix: Use domain boundary matching instead of substring matching to avoid false positives
+    # (e.g., 't.co' was matching in 'www.microsoft.com')
+    # Check if hostname exactly matches or ends with a shortening service (for subdomains)
+    is_shortening = 1 if any(hostname == s or hostname.endswith('.' + s) for s in SHORTENING_SERVICES) else 0
     tld_risk_score = _get_tld_risk(hostname)
 
     query_lower = query.lower()

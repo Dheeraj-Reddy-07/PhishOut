@@ -6,14 +6,15 @@ const TYPE_CLASSES = {
   err:  'log-err',
   warn: 'log-warn',
   ok:   'log-ok',
-  info: 'log-info',
 };
 
 export default function DiagnosticsTerminal({ logs }) {
-  const bottomRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
   }, [logs]);
 
   return (
@@ -23,14 +24,13 @@ export default function DiagnosticsTerminal({ logs }) {
         <h2>Diagnostics Monitor</h2>
       </div>
 
-      <div className="terminal-window">
+      <div className="terminal-window" ref={containerRef}>
         {logs.map((log, i) => (
           <p key={i} className={TYPE_CLASSES[log.type] || 'log-info'}>
             <span style={{ opacity: 0.45 }}>[{log.time}] &gt; </span>
             {log.msg}
           </p>
         ))}
-        <div ref={bottomRef} />
       </div>
     </div>
   );

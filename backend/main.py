@@ -1,5 +1,5 @@
 """
-PhishGuard Backend — FastAPI Application v4.0
+PhishOut Backend — FastAPI Application v4.0
 ==============================================
 Endpoints:
   POST /scan            — Structural-only scan (UNCHANGED — backward compat)
@@ -32,7 +32,7 @@ WHITELIST_DOMAINS = [
 ]
 
 app = FastAPI(
-    title="PhishGuard Security Engine v4 — PhishOut",
+    title="PhishOut Security Engine v4.0",
     description="Adversarially Robust Phishing Webpage Detection using Hybrid Structural and Semantic Analysis",
     version="4.0.0",
 )
@@ -318,9 +318,12 @@ async def health():
     phishout_dataset = "none"
     if phishout is not None:
         phishout_model = phishout._model_type
-        cfg = getattr(phishout, "_best_config", {})
-        if cfg:
-            phishout_dataset = "phreshphish"
+        if "phish360_v3" in phishout_model:
+            phishout_dataset = "phish360_v3"
+        elif "phish360_v2" in phishout_model:
+            phishout_dataset = "phish360_v2"
+        elif "phish360" in phishout_model:
+            phishout_dataset = "phish360"
 
     return {
         "status":              "online",

@@ -1,0 +1,251 @@
+{
+  "v2_artifacts_verified": {
+    "threshold": {
+      "safe_max_probability": 0.05,
+      "phishing_min_probability": 0.45,
+      "safe_max_risk_score": 5,
+      "phishing_min_risk_score": 45,
+      "validation_f1": 0.9416342412451362,
+      "validation_precision": 0.9307692307692308,
+      "validation_recall": 0.952755905511811,
+      "calibration_set_size": 1317,
+      "calibration_method": "grid_search_maximize_f1",
+      "test_f1": 0.9515477792732167,
+      "test_precision": 0.9658469945355191,
+      "test_recall": 0.9376657824933687
+    },
+    "fusion_results": {
+      "model_type": "v2_fusion",
+      "validation_metrics": {
+        "model": "V2 Fusion (Validation)",
+        "accuracy": 0.9529,
+        "precision": 0.9305,
+        "recall": 0.9488,
+        "f1": 0.9396,
+        "roc_auc": 0.9897,
+        "confusion_matrix": {
+          "tn": 773,
+          "fp": 36,
+          "fn": 26,
+          "tp": 482
+        }
+      },
+      "test_metrics": {
+        "model": "V2 Fusion (Test)",
+        "accuracy": 0.9588,
+        "precision": 0.9724,
+        "recall": 0.9337,
+        "f1": 0.9526,
+        "roc_auc": 0.9898,
+        "confusion_matrix": {
+          "tn": 927,
+          "fp": 20,
+          "fn": 50,
+          "tp": 704
+        }
+      },
+      "fusion_config": {
+        "coef_structural": 4.257184454355309,
+        "coef_semantic": 5.500292395713912,
+        "intercept": -4.756776860876156,
+        "formula": "P(phish) = sigmoid(4.2572\u00d7p_struct + 5.5003\u00d7p_sem + -4.7568)"
+      }
+    }
+  },
+  "test_set_alignment": {
+    "v2_exists": true,
+    "v2_samples": 1701,
+    "v3_samples": 1701,
+    "same_size": true
+  },
+  "hard_negative_dataset": {
+    "manifest": null,
+    "eval_samples": 200,
+    "v3_false_positives": 11
+  },
+  "v3_false_positive_analysis": [
+    {
+      "index": 24,
+      "url": "https://www.volgistics.com/ex/portal.dll/?from=256484\n",
+      "domain": "volgistics",
+      "v2_struct_prob": 0.2872874848548422,
+      "v2_sem_prob": 0.058779785062607524,
+      "v2_fusion_prob": 0.03877491658635776,
+      "v2_verdict": "SAFE",
+      "v3_sem_prob": 0.7491406560883379,
+      "v3_fusion_prob": 0.5779369031437029,
+      "v3_verdict": "PHISHING",
+      "link_to_form_ratio": 0.0,
+      "text_to_script_ratio": 24712.0,
+      "credential_density": 0.7000622277535781,
+      "brand_context_score": 0.9090909090909091
+    },
+    {
+      "index": 46,
+      "url": "https://www.dolbycustomer.com/login.aspx\n",
+      "domain": "dolbycustomer",
+      "v2_struct_prob": 0.4630737452901912,
+      "v2_sem_prob": 0.055327348873841664,
+      "v2_fusion_prob": 0.07719595040398712,
+      "v2_verdict": "SAFE",
+      "v3_sem_prob": 0.6979209800746192,
+      "v3_fusion_prob": 0.753933743858473,
+      "v3_verdict": "PHISHING",
+      "link_to_form_ratio": 0.0,
+      "text_to_script_ratio": 24921.0,
+      "credential_density": 0.6558388951043556,
+      "brand_context_score": 1.0
+    },
+    {
+      "index": 53,
+      "url": "http://slideplayer.com/slide/4759150/\n",
+      "domain": "slideplayer",
+      "v2_struct_prob": 0.822131164376939,
+      "v2_sem_prob": 0.06902661302673611,
+      "v2_fusion_prob": 0.2937694857903217,
+      "v2_verdict": "SAFE",
+      "v3_sem_prob": 0.05722482648804964,
+      "v3_fusion_prob": 0.6118237536809749,
+      "v3_verdict": "PHISHING",
+      "link_to_form_ratio": 0.0,
+      "text_to_script_ratio": 108413.0,
+      "credential_density": 0.1370952263442187,
+      "brand_context_score": 0.8333333333333334
+    },
+    {
+      "index": 84,
+      "url": "https://www.christianbook.com/hello-name-discover-your-true-identity/matthew-west/9781617958601/pd/958601?event=ESRCG\n",
+      "domain": "christianbook",
+      "v2_struct_prob": 0.7410068184488153,
+      "v2_sem_prob": 0.08428651496398443,
+      "v2_fusion_prob": 0.2425823321327706,
+      "v2_verdict": "SAFE",
+      "v3_sem_prob": 0.04281950760896109,
+      "v3_fusion_prob": 0.4798569207475893,
+      "v3_verdict": "PHISHING",
+      "link_to_form_ratio": 0.0,
+      "text_to_script_ratio": 67515.0,
+      "credential_density": 0.21893016127855214,
+      "brand_context_score": 0.5
+    },
+    {
+      "index": 91,
+      "url": "https://v6.upperbooking.com//en/booking/details/wrap/panoramicmountainresidence1/88061/ubytovanie-na-7-a-viac-noci-so-zlavou-15?Currency=EUR\n",
+      "domain": "upperbooking",
+      "v2_struct_prob": 0.8235663770388865,
+      "v2_sem_prob": 0.06755030974634298,
+      "v2_fusion_prob": 0.2933526181632278,
+      "v2_verdict": "SAFE",
+      "v3_sem_prob": 0.05917651474778122,
+      "v3_fusion_prob": 0.6158029738968218,
+      "v3_verdict": "PHISHING",
+      "link_to_form_ratio": 0.0,
+      "text_to_script_ratio": 31528.0,
+      "credential_density": 0.43039842597147077,
+      "brand_context_score": 0.7692307692307692
+    },
+    {
+      "index": 135,
+      "url": "https://www.bridgecrest.com/Account/Login\n",
+      "domain": "bridgecrest",
+      "v2_struct_prob": 0.829078805136371,
+      "v2_sem_prob": 0.06653166962281132,
+      "v2_fusion_prob": 0.2970695173379575,
+      "v2_verdict": "SAFE",
+      "v3_sem_prob": 0.6282471434808845,
+      "v3_fusion_prob": 0.9505422100869086,
+      "v3_verdict": "PHISHING",
+      "link_to_form_ratio": 0.0,
+      "text_to_script_ratio": 24359.0,
+      "credential_density": 0.5126385109822942,
+      "brand_context_score": 1.0
+    },
+    {
+      "index": 149,
+      "url": "https://fondationdefrance.evision.ca/eAwards_applicant/faces/jsp/login/login.xhtml?lang=FR\n",
+      "domain": "evision",
+      "v2_struct_prob": 0.5807830429936363,
+      "v2_sem_prob": 0.062308671078589284,
+      "v2_fusion_prob": 0.12547652934063783,
+      "v2_verdict": "SAFE",
+      "v3_sem_prob": 0.8087948362354205,
+      "v3_fusion_prob": 0.9075860733443888,
+      "v3_verdict": "PHISHING",
+      "link_to_form_ratio": 0.0,
+      "text_to_script_ratio": 24197.0,
+      "credential_density": 0.5556217009961504,
+      "brand_context_score": 0.9090909090909091
+    },
+    {
+      "index": 157,
+      "url": "http://e-coka.cepac.cz/inf-portal/Login.aspx\n",
+      "domain": "cepac",
+      "v2_struct_prob": 0.6349877524811509,
+      "v2_sem_prob": 0.05947598362989636,
+      "v2_fusion_prob": 0.15105100177992595,
+      "v2_verdict": "SAFE",
+      "v3_sem_prob": 0.7092014768589886,
+      "v3_fusion_prob": 0.8976875087024689,
+      "v3_verdict": "PHISHING",
+      "link_to_form_ratio": 0.0,
+      "text_to_script_ratio": 24472.0,
+      "credential_density": 0.5103643216080401,
+      "brand_context_score": 1.0
+    },
+    {
+      "index": 176,
+      "url": "http://tureng.com/en/german-english/bascule%20bridge\n",
+      "domain": "tureng",
+      "v2_struct_prob": 0.7211573321094279,
+      "v2_sem_prob": 0.06133067997216211,
+      "v2_fusion_prob": 0.20597822846476696,
+      "v2_verdict": "SAFE",
+      "v3_sem_prob": 0.12693930473524861,
+      "v3_fusion_prob": 0.5413972055541636,
+      "v3_verdict": "PHISHING",
+      "link_to_form_ratio": 0.0,
+      "text_to_script_ratio": 29503.0,
+      "credential_density": 0.4261875881060879,
+      "brand_context_score": 1.0
+    },
+    {
+      "index": 179,
+      "url": "https://gerardnico.com/wiki/database/transaction\n",
+      "domain": "gerardnico",
+      "v2_struct_prob": 0.8944335098988176,
+      "v2_sem_prob": 0.06703041731869687,
+      "v2_fusion_prob": 0.3588586124156166,
+      "v2_verdict": "SAFE",
+      "v3_sem_prob": 0.8931640111640796,
+      "v3_fusion_prob": 0.988780821980421,
+      "v3_verdict": "PHISHING",
+      "link_to_form_ratio": 0.0,
+      "text_to_script_ratio": 34302.0,
+      "credential_density": 0.5665401393688743,
+      "brand_context_score": 1.0
+    },
+    {
+      "index": 191,
+      "url": "https://investorjunkie.com/8995/optionshouse-review/\n",
+      "domain": "investorjunkie",
+      "v2_struct_prob": 0.7526723898026635,
+      "v2_sem_prob": 0.09114515746074488,
+      "v2_fusion_prob": 0.258997297079215,
+      "v2_verdict": "SAFE",
+      "v3_sem_prob": 0.059284259073738174,
+      "v3_fusion_prob": 0.5146006778742391,
+      "v3_verdict": "PHISHING",
+      "link_to_form_ratio": 0.0,
+      "text_to_script_ratio": 76393.0,
+      "credential_density": 0.27134236946493867,
+      "brand_context_score": 0.18181818181818177
+    }
+  ],
+  "semantic_correlation": {
+    "correlation": -0.11628500023928026,
+    "v3_more_aggressive_count": 48,
+    "v3_more_aggressive_pct": 0.24,
+    "v2_mean_prob": 0.08147300300445227,
+    "v3_mean_prob": 0.10415912469381994
+  }
+}

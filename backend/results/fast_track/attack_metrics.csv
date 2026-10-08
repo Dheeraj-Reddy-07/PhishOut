@@ -1,0 +1,13 @@
+target_model,attack_algorithm,attacks_attempted,successful_evasions,attack_success_rate,average_queries,average_mutations,average_probability_reduction
+Structural_V2,BeamSearch,23,0,0.0,2.0,0.5652173913043478,0.011176954342176706
+Structural_V2,SimulatedAnnealing,23,0,0.0,50.0,0.5652173913043478,0.011176954342176706
+Structural_V2,MCTS,23,0,0.0,50.0,0.5652173913043478,0.011176954342176706
+Semantic_V4,BeamSearch,25,0,0.0,50.0,1.4,0.05874009866215721
+Semantic_V4,SimulatedAnnealing,25,0,0.0,50.0,15.32,0.04944608950888421
+Semantic_V4,MCTS,25,0,0.0,50.0,2.2,0.06123877903994208
+Baseline_V3,BeamSearch,25,2,0.08,46.56,2.2,0.016044603475725294
+Baseline_V3,SimulatedAnnealing,25,1,0.04,48.04,35.4,0.016042845521453745
+Baseline_V3,MCTS,25,2,0.08,46.48,3.08,0.016684023143811982
+Hardened_V4,BeamSearch,25,0,0.0,50.0,1.92,0.004340425607298059
+Hardened_V4,SimulatedAnnealing,25,0,0.0,50.0,17.16,0.0023056063633516066
+Hardened_V4,MCTS,25,0,0.0,50.0,2.36,0.00450972533322235

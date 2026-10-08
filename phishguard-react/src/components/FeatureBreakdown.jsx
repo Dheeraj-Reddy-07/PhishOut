@@ -30,7 +30,23 @@ export default function FeatureBreakdown({ result }) {
   }
 
   const scores = result.structural_analysis || {};
-  const labels = {};
+  const labels = {
+    suspicious_keywords: 'Suspicious Keywords',
+    levenshtein_min: 'Brand Similarity / Brand Name Distance',
+    has_ip: 'IP Address in URL',
+    prefix_suffix: 'Hyphen in Domain',
+    tld_suspicious: 'Suspicious TLD',
+    sub_domain_count: 'Subdomain Count',
+    url_length: 'Total URL Length',
+    domain_entropy: 'Domain Randomness',
+    digit_ratio: 'Digit Ratio',
+    special_char_count: 'Special Characters',
+    has_at: 'Contains @ Symbol',
+    is_shortening: 'URL Shortener',
+    https_token: 'Fake HTTPS Token',
+    num_params: 'Query Parameters',
+    url_depth: 'URL Depth',
+  };
   const norms = {
     url_length: 300, hostname_length: 75, path_length: 200,
     query_length: 150, url_depth: 10, num_params: 12,
@@ -45,7 +61,8 @@ export default function FeatureBreakdown({ result }) {
       label: labels[k] || k,
       raw: scores[k],
       val: Math.min(Number(scores[k] || 0) / (norms[k] || 1), 1),
-    }));
+    }))
+    .sort((a, b) => b.val - a.val);
 
   return (
     <div className="panel features-panel">
