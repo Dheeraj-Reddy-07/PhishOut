@@ -4,7 +4,7 @@ pydantic
 requests
 beautifulsoup4
 python-Levenshtein
-scikit-learn
+scikit-learn==1.8.0
 joblib
 numpy
 pandas
