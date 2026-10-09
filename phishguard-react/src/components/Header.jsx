@@ -37,7 +37,7 @@ export default function Header({ backendStatus }) {
           )}
         </div>
         <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', textAlign: 'right', marginTop: '-4px', marginBottom: '4px' }}>
-          API: localhost:8000
+          API: {import.meta.env.VITE_API_URL || 'localhost:8000'}
         </div>
         <div className="clock">
           <Clock size={11} />

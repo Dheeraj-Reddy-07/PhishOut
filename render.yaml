@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: phishout-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: https://phishout.vercel.app
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+    plan: free
+    healthCheckPath: /health
